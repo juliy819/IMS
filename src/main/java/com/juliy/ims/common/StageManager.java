@@ -17,9 +17,9 @@ import java.util.Map;
  */
 public class StageManager {
     /** 存储已创建的stage，key为对应的页面名称 */
-    public static Map<String, Stage> STAGE = new HashMap<>();
+    public static final Map<String, Stage> STAGE = new HashMap<>();
     /** 存储已创建的controller，key为对应的页面名称 */
-    public static Map<String, Object> CONTROLLER = new HashMap<>();
+    public static final Map<String, Object> CONTROLLER = new HashMap<>();
 
     /**
      * 创建新的stage

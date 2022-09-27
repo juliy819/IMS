@@ -1,5 +1,6 @@
 package com.juliy.ims.controller;
 
+import com.juliy.ims.entity.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -16,11 +17,10 @@ public class IndexController {
 
     /**
      * 获取登录用户信息
-     * @param username 登录用户名
-     * @param password 登陆密码
+     * @param user 登录用户信息
      */
-    public void initData(String username, String password) {
-        usernameShow.setText(username);
-        passwordShow.setText(password);
+    public void initData(User user) {
+        usernameShow.setText(user.getUsername());
+        passwordShow.setText(user.getPassword());
     }
 }

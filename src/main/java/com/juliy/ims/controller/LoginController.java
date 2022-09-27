@@ -1,6 +1,7 @@
 package com.juliy.ims.controller;
 
 import com.juliy.ims.common.StageManager;
+import com.juliy.ims.entity.User;
 import com.juliy.ims.service.UserService;
 import com.juliy.ims.service.impl.UserServiceImpl;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
@@ -63,10 +64,14 @@ public class LoginController {
         successAlert.setContentText("登录成功！");
         successAlert.showAndWait();
 
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
+
         Stage newStage = StageManager.createStage("index", "index", true);
         Stage thisStage = StageManager.STAGE.get("login");
         IndexController indexController = (IndexController) StageManager.CONTROLLER.get("index");
-        indexController.initData(username, password);
+        indexController.initData(user);
         thisStage.close();
         newStage.show();
     }
