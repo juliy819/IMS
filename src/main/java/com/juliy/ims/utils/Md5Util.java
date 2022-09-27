@@ -15,7 +15,7 @@ public class Md5Util {
     /**
      * 将byte数组转换为16进制字符串
      * @param b byte数组
-     * @return String 转换后的16进制字符串
+     * @return 转换后的16进制字符串
      */
     private static String byteArrayToHexString(byte[] b) {
         StringBuilder resultSb = new StringBuilder();
@@ -28,7 +28,7 @@ public class Md5Util {
     /**
      * 将byte转换为16进制字符串
      * @param b 要转换的byte
-     * @return String 转换后的16进制字符串
+     * @return 转换后的16进制字符串
      */
     private static String byteToHexString(byte b) {
         int n = b;
@@ -44,7 +44,7 @@ public class Md5Util {
      * 对字符串进行MD5加密
      * @param origin      要加密的字符串
      * @param charsetName 编码格式
-     * @return String 加密后的32位字符串
+     * @return 加密后的32位字符串
      */
     public static String md5Encode(String origin, String charsetName) {
         String resultString = null;

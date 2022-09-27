@@ -5,6 +5,7 @@ module com.juliy.ims {
     requires org.controlsfx.controls;
     requires rxcontrols;
     requires lombok;
+    requires java.sql;
 
     opens com.juliy.ims.controller to javafx.fxml;
     exports com.juliy.ims;

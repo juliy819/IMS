@@ -1,29 +1,36 @@
 package com.juliy.ims.controller;
 
 import com.juliy.ims.common.StageManager;
-import com.juliy.ims.entity.User;
+import com.juliy.ims.service.UserService;
+import com.juliy.ims.service.impl.UserServiceImpl;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 /**
+ * 登录页面控制器
  * @author JuLiy
  * @date 2022/9/26 22:49
  */
 public class LoginController {
 
-    public RXTextField usernameField;
-    public RXPasswordField passwordField;
-    public AnchorPane login;
+    @FXML
+    private RXTextField usernameField;
+    @FXML
+    private RXPasswordField passwordField;
+    private final UserService userService = new UserServiceImpl();
 
+    /**
+     * 登录功能
+     * @throws IOException 由StageManager.createStage()引起
+     */
     public void login() throws IOException {
-        User user = new User("admin", "123");
         String username = usernameField.getText();
         String password = passwordField.getText();
         if ("".equals(username)) {
@@ -42,7 +49,7 @@ public class LoginController {
             failAlert.showAndWait();
             return;
         }
-        if (!username.equals(user.getUsername()) || !password.equals(user.getPassword())) {
+        if (!userService.loginCheck(username, password)) {
             Alert failAlert = new Alert(Alert.AlertType.ERROR);
             failAlert.setTitle("登陆消息");
             failAlert.setHeaderText(null);
@@ -64,6 +71,11 @@ public class LoginController {
         newStage.show();
     }
 
+    /**
+     * 监听输入框的回车按钮，触发登录功能
+     * @param keyEvent 按键事件
+     * @throws IOException 由login()引起
+     */
     public void doLogin(KeyEvent keyEvent) throws IOException {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             this.login();
