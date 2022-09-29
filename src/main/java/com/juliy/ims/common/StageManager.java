@@ -1,58 +1,55 @@
 package com.juliy.ims.common;
 
-import com.juliy.ims.MainApplication;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * stage管理类
+ * 窗口管理类
  * @author JuLiy
  * @date 2022/9/27 10:03
  */
 public class StageManager {
-    /** 存储已创建的stage，key为对应的页面名称 */
-    public static final Map<String, Stage> STAGE = new HashMap<>();
-    /** 存储已创建的controller，key为对应的页面名称 */
-    public static final Map<String, Object> CONTROLLER = new HashMap<>();
+    /** 存储已创建的窗口，key为对应的页面名称 */
+    private final Map<String, Stage> stageMap = new HashMap<>();
 
     /**
-     * 创建新的stage
-     * @param fxmlName    fxml文件名,不需要后缀
-     * @param title       页面的标题
-     * @param isResizable 页面是否可以缩放
-     * @return 创建好的stage对象，未显示
-     * @throws IOException 由FXMLLoader.load()引起
+     * 添加新建的窗口
+     * @param name  窗口名
+     * @param stage 窗口对象
      */
-    public static Stage createStage(String fxmlName, String title, boolean isResizable) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource(fxmlName + ".fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle(title);
-        stage.setResizable(isResizable);
-        STAGE.put(fxmlName, stage);
-        CONTROLLER.put(fxmlName, fxmlLoader.getController());
-        return stage;
+    public void addStage(String name, Stage stage) {
+        stageMap.put(name, stage);
     }
 
     /**
-     * 设置primaryStage
-     * @param primaryStage Application.start()中提供的初始stage
-     * @throws IOException 由FXMLLoader.load()引起
+     * 获取指定窗口
+     * @param name 窗口名
+     * @return 窗口对象
      */
-    public static void initPrimaryStage(Stage primaryStage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login.fxml"));
-        Parent root = fxmlLoader.load();
-        primaryStage.setScene(new Scene(root));
-        primaryStage.setTitle("login");
-        primaryStage.setResizable(false);
-        STAGE.put("login", primaryStage);
-        CONTROLLER.put("login", fxmlLoader.getController());
+    public Stage getStage(String name) {
+        return stageMap.get(name);
+    }
+
+    /**
+     * 关闭指定窗口
+     * @param name 窗口名
+     */
+    public void closeStage(String name) {
+        stageMap.get(name).close();
+    }
+
+    /**
+     * 删除指定窗口
+     * @param name 窗口名
+     */
+    public void releaseStage(String name) {
+        stageMap.remove(name);
+    }
+
+    public void jump(String currentStageName, String targetStageName) {
+        stageMap.get(currentStageName).close();
+        stageMap.get(targetStageName).show();
     }
 }
