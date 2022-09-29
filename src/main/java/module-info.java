@@ -1,4 +1,4 @@
-module com.juliy.ims {
+open module com.juliy.ims {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -6,7 +6,4 @@ module com.juliy.ims {
     requires rxcontrols;
     requires lombok;
     requires java.sql;
-
-    opens com.juliy.ims.controller to javafx.fxml;
-    exports com.juliy.ims;
 }

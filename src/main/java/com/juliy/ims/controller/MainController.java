@@ -45,11 +45,11 @@ public class MainController extends RootController {
         TreeItem<String> rootItem5 = new TreeItem<>("库存管理");
 
 
-        rootItem1.setGraphic(new ImageView(new Image("file:images/文件夹.png")));
-        rootItem2.setGraphic(new ImageView(new Image("file:images/文件夹.png")));
-        rootItem3.setGraphic(new ImageView(new Image("file:images/文件夹.png")));
-        rootItem4.setGraphic(new ImageView(new Image("file:images/文件夹.png")));
-        rootItem5.setGraphic(new ImageView(new Image("file:images/文件夹.png")));
+        rootItem1.setGraphic(new ImageView(new Image("images/文件夹.png")));
+        rootItem2.setGraphic(new ImageView(new Image("images/文件夹.png")));
+        rootItem3.setGraphic(new ImageView(new Image("images/文件夹.png")));
+        rootItem4.setGraphic(new ImageView(new Image("images/文件夹.png")));
+        rootItem5.setGraphic(new ImageView(new Image("images/文件夹.png")));
 
         rootItems.add(rootItem1);
         rootItems.add(rootItem2);
