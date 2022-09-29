@@ -1,6 +1,6 @@
 package com.juliy.ims;
 
-import com.juliy.ims.common.StageManager;
+import com.juliy.ims.common.Context;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,7 +12,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        StageManager.initPrimaryStage(primaryStage);
+        primaryStage = Context.factory.createStage("login", 350, 250, "login");
         primaryStage.show();
     }
 

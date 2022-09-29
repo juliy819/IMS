@@ -18,7 +18,7 @@
             <Font name="JetBrains Mono Bold" size="28.0"/>
         </font>
     </Label>
-    <Label alignment="CENTER" layoutX="62.0" layoutY="94.0" text="用户名：">
+    <Label fx:id="usernameLabel" alignment="CENTER" layoutX="62.0" layoutY="94.0" text="用户名：">
         <font>
             <Font size="16.0"/>
         </font>

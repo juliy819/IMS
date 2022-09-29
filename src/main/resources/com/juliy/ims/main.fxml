@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+      prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.juliy.ims.controller.MainController">
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" text="Close"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+            <MenuItem mnemonicParsing="false" text="Delete"/>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+            <MenuItem mnemonicParsing="false" text="About"/>
+        </Menu>
+    </MenuBar>
+    <SplitPane fx:id="splitPane" dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0"
+               VBox.vgrow="ALWAYS">
+        <AnchorPane fx:id="functionAnchorPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0"
+                    style="-fx-border-radius: 2;">
+            <JFXTreeView fx:id="functionTreeView" layoutX="-12.0" prefHeight="372.8" prefWidth="175.2"
+                         AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                         AnchorPane.topAnchor="0.0"/>
+        </AnchorPane>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" style="-fx-border-radius: 10;">
+            <JFXButton layoutY="3.0" mnemonicParsing="false" onAction="#stowLeftPane" prefHeight="69.0"
+                       prefWidth="121.0" style="-fx-background-color: #CCFFFF;" text="stow"/>
+        </AnchorPane>
+        <opaqueInsets>
+            <Insets/>
+        </opaqueInsets>
+    </SplitPane>
+</VBox>

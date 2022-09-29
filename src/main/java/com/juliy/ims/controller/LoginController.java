@@ -1,16 +1,15 @@
 package com.juliy.ims.controller;
 
-import com.juliy.ims.common.StageManager;
+import com.juliy.ims.common.Context;
 import com.juliy.ims.entity.User;
 import com.juliy.ims.service.UserService;
 import com.juliy.ims.service.impl.UserServiceImpl;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
-import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -19,13 +18,16 @@ import java.io.IOException;
  * @author JuLiy
  * @date 2022/9/26 22:49
  */
-public class LoginController {
+public class LoginController extends RootController {
 
-    @FXML
-    private RXTextField usernameField;
-    @FXML
-    private RXPasswordField passwordField;
+    public Label usernameLabel;
+    public RXTextField usernameField;
+    public RXPasswordField passwordField;
     private final UserService userService = new UserServiceImpl();
+
+    public void initialize() {
+
+    }
 
     /**
      * 登录功能
@@ -68,12 +70,8 @@ public class LoginController {
         user.setUsername(username);
         user.setPassword(password);
 
-        Stage newStage = StageManager.createStage("index", "index", true);
-        Stage thisStage = StageManager.STAGE.get("login");
-        IndexController indexController = (IndexController) StageManager.CONTROLLER.get("index");
-        indexController.initData(user);
-        thisStage.close();
-        newStage.show();
+        Context.factory.createStage("主界面", 600, 400, "main");
+        Context.stageManager.jump("login", "main");
     }
 
     /**
