@@ -14,7 +14,7 @@ import javafx.scene.input.KeyEvent;
 import java.io.IOException;
 
 /**
- * 登录页面控制器
+ * 登录界面控制器
  * @author JuLiy
  * @date 2022/9/26 22:49
  */
@@ -70,7 +70,7 @@ public class LoginController extends RootController {
         user.setUsername(username);
         user.setPassword(password);
 
-        Context.operation.createStage("主界面", "main");
+        Context.operation.createStage("main", "主界面", true);
         Context.operation.jump("login", "main");
     }
 

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 主页面控制器
+ * 主界面控制器
  * @author JuLiy
  * @date 2022/9/26 23:09
  */
@@ -39,6 +39,7 @@ public class MainController extends RootController {
         Context.operation.loadPage("product list", baseAnchorPane);
     }
 
+    /** 初始化功能菜单数据 */
     private void initTreeView() {
         treeView = new TreeView<>();
 
@@ -73,8 +74,24 @@ public class MainController extends RootController {
     }
 
     @FXML
-    public void onDrawerClosed() {
+    private void onDrawerClosed() {
+        //菜单关闭后设置宽度为0，以便右边的主菜单扩展为窗口窗口大小
         drawer.setPrefWidth(0);
+    }
+
+    /**
+     * 控制功能菜单的收起和展开
+     * @param drawerCtrlImageView 用的ImageView代替按钮功能，作为形参传入以实现图片的变化
+     */
+    public void drawerControl(ImageView drawerCtrlImageView) {
+        if (drawer.isClosed() || drawer.isClosing()) {
+            drawer.setPrefWidth(200);
+            drawer.open();
+            drawerCtrlImageView.setImage(new Image("images/left arrow.png"));
+        } else {
+            drawer.close();
+            drawerCtrlImageView.setImage(new Image("images/right arrow.png"));
+        }
     }
 
     @FXML

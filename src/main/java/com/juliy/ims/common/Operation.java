@@ -18,17 +18,18 @@ import java.util.Objects;
 public class Operation {
     /**
      * 创建新窗口
-     * @param title    窗口标题
-     * @param fxmlName 要加载的fxml文件名(无需后缀)
+     * @param fxmlName     要加载的fxml文件名(无需后缀)
+     * @param title        窗口标题
+     * @param isResizeable 窗口是否可缩放
      * @return 创建好的窗口对象
      * @throws IOException 由FXMLLoader.load()抛出
      */
-    public Stage createStage(String title, String fxmlName) throws IOException {
+    public Stage createStage(String fxmlName, String title, boolean isResizeable) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource(fxmlName + ".fxml")));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle(title);
-        stage.setResizable(false);
+        stage.setResizable(isResizeable);
         Context.stageMap.put(fxmlName, stage);
         return stage;
     }
