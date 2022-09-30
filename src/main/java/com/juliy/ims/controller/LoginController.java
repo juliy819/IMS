@@ -70,8 +70,8 @@ public class LoginController extends RootController {
         user.setUsername(username);
         user.setPassword(password);
 
-        Context.factory.createStage("主界面", 600, 400, "main");
-        Context.stageManager.jump("login", "main");
+        Context.operation.createStage("主界面", "main");
+        Context.operation.jump("login", "main");
     }
 
     /**

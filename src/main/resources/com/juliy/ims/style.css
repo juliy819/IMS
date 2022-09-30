@@ -1,0 +1,10 @@
+.basicWhitePane {
+    -fx-background-color: white;
+    -fx-border-width: 2;
+    -fx-border-color: #e2e2e2;
+}
+
+.basicWhitePane:hover {
+    -fx-effect: dropshadow(one-pass-box, #afafaf, 10.0, 0, 0, 0.5);
+    -fx-border-width: 0;
+}

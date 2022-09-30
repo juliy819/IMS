@@ -12,7 +12,7 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage = Context.factory.createStage("login", 350, 250, "login");
+        primaryStage = Context.operation.createStage("main", "main");
         primaryStage.show();
     }
 
