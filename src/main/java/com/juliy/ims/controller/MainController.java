@@ -68,6 +68,7 @@ public class MainController extends RootController {
 
         treeView.setRoot(root);
         treeView.setShowRoot(false);
+        treeView.setStyle("-fx-background-insets:-1.4 0 1 2; -fx-focus-color:transparent");
 
         drawer.setSidePane(treeView);
         drawer.open();

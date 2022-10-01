@@ -1,154 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXComboBox?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/18"
-         xmlns:fx="http://javafx.com/fxml/1"
-         fx:controller="com.juliy.ims.controller.ProductListController">
-    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true"
-                AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<fx:root stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.ProductListController">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" style="-fx-border-width: 0; -fx-background-insets: -1.4 0 1 2; -fx-focus-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0">
-            <AnchorPane prefHeight="40.0" prefWidth="1000.0"
-                        style="-fx-background-color: white;">
+            <AnchorPane prefHeight="40.0" prefWidth="1000.0" style="-fx-background-color: white;">
                 <VBox.margin>
-                    <Insets/>
+                    <Insets />
                 </VBox.margin>
-                <Label layoutX="14.0" layoutY="12.0" text="货品列表"
-                       AnchorPane.bottomAnchor="9.0"
-                       AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="9.0">
+                <Label layoutX="14.0" layoutY="12.0" text="货品列表" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="40.0" AnchorPane.topAnchor="9.0">
                     <font>
-                        <Font name="System Bold" size="16.0"/>
+                        <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <ImageView fx:id="drawerCtrlImageView" fitHeight="24.0"
-                           fitWidth="24.0" layoutX="3.0" layoutY="9.0"
-                           onMouseClicked="#drawerControl" pickOnBounds="true"
-                           preserveRatio="true" AnchorPane.bottomAnchor="8.0"
-                           AnchorPane.leftAnchor="5.0"
-                           AnchorPane.topAnchor="8.0"/>
+                <Pane fx:id="testPane" layoutX="5.0" layoutY="8.0" prefHeight="24.0" prefWidth="24.0" styleClass="ctrl-imageView-container" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="8.0">
+                    <ImageView fx:id="drawerCtrlImageView" fitHeight="24.0" fitWidth="24.0" focusTraversable="true" onMouseClicked="#drawerControl" pickOnBounds="true" preserveRatio="true">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </ImageView>
+                </Pane>
             </AnchorPane>
-            <HBox>
+            <HBox prefHeight="50.0" prefWidth="961.0">
                 <VBox.margin>
-                    <Insets left="20.0" right="20.0"/>
+                    <Insets left="15.0" right="15.0" />
                 </VBox.margin>
-                <AnchorPane minHeight="70.0" minWidth="150.0" prefHeight="70.0"
-                            prefWidth="200.0"
-                            style="-fx-background-color: white;"
-                            HBox.hgrow="SOMETIMES">
+                <AnchorPane minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="225.0" styleClass="floatPane" HBox.hgrow="SOMETIMES">
                     <HBox.margin>
-                        <Insets/>
+                        <Insets />
                     </HBox.margin>
-                    <Label text="货品类别" AnchorPane.leftAnchor="10.0"
-                           AnchorPane.topAnchor="10.0">
-                        <font>
-                            <Font size="13.0"/>
-                        </font>
-                    </Label>
-                    <JFXComboBox layoutX="11.0" layoutY="35.0" prefHeight="25.0"
-                                 prefWidth="180.0"
-                                 AnchorPane.bottomAnchor="10.0"
-                                 AnchorPane.leftAnchor="10.0"
-                                 AnchorPane.rightAnchor="10.0"/>
+                    <JFXComboBox focusColor="#0db3a6" labelFloat="true" layoutX="11.0" layoutY="35.0" prefHeight="25.0" prefWidth="180.0" promptText="货品类别" styleClass="filter-cbBox" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXComboBox>
                 </AnchorPane>
-                <AnchorPane minHeight="70.0" minWidth="150.0" prefHeight="70.0"
-                            prefWidth="200.0"
-                            style="-fx-background-color: white;"
-                            HBox.hgrow="SOMETIMES">
+                <AnchorPane minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="232.0" styleClass="floatPane" HBox.hgrow="SOMETIMES">
                     <HBox.margin>
-                        <Insets left="10.0"/>
+                        <Insets left="10.0" />
                     </HBox.margin>
-                    <Label text="货品编码" AnchorPane.leftAnchor="10.0"
-                           AnchorPane.topAnchor="10.0">
-                        <font>
-                            <Font size="13.0"/>
-                        </font>
-                    </Label>
-                    <JFXComboBox layoutX="11.0" layoutY="35.0" prefHeight="25.0"
-                                 prefWidth="180.0"
-                                 AnchorPane.bottomAnchor="10.0"
-                                 AnchorPane.leftAnchor="10.0"
-                                 AnchorPane.rightAnchor="10.0"/>
+                    <JFXComboBox focusColor="#0db3a6" labelFloat="true" layoutX="11.0" layoutY="35.0" prefHeight="25.0" prefWidth="180.0" promptText="货品编码" styleClass="filter-cbBox" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXComboBox>
                 </AnchorPane>
-                <AnchorPane minHeight="70.0" minWidth="150.0" prefHeight="70.0"
-                            prefWidth="200.0"
-                            style="-fx-background-color: white;"
-                            HBox.hgrow="SOMETIMES">
+                <AnchorPane minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="218.0" styleClass="floatPane" HBox.hgrow="SOMETIMES">
                     <HBox.margin>
-                        <Insets left="10.0" right="10.0"/>
+                        <Insets left="10.0" right="10.0" />
                     </HBox.margin>
-                    <Label text="货品名称" AnchorPane.leftAnchor="10.0"
-                           AnchorPane.topAnchor="10.0">
-                        <font>
-                            <Font size="13.0"/>
-                        </font>
-                    </Label>
-                    <JFXComboBox layoutX="11.0" layoutY="35.0" prefHeight="25.0"
-                                 prefWidth="180.0"
-                                 AnchorPane.bottomAnchor="10.0"
-                                 AnchorPane.leftAnchor="10.0"
-                                 AnchorPane.rightAnchor="10.0"/>
+                    <JFXComboBox focusColor="#0db3a6" labelFloat="true" layoutX="11.0" layoutY="35.0" prefHeight="25.0" prefWidth="180.0" promptText="货品名称" styleClass="filter-cbBox" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXComboBox>
                 </AnchorPane>
-                <AnchorPane minHeight="70.0" minWidth="150.0" prefHeight="70.0"
-                            prefWidth="200.0"
-                            style="-fx-background-color: white;"
-                            HBox.hgrow="SOMETIMES">
+                <AnchorPane minHeight="50.0" minWidth="150.0" prefHeight="50.0" prefWidth="213.0" styleClass="floatPane" HBox.hgrow="SOMETIMES">
                     <HBox.margin>
-                        <Insets/>
+                        <Insets />
                     </HBox.margin>
-                    <Label text="规格型号" AnchorPane.leftAnchor="10.0"
-                           AnchorPane.topAnchor="10.0">
-                        <font>
-                            <Font size="13.0"/>
-                        </font>
-                    </Label>
-                    <JFXComboBox layoutX="11.0" layoutY="35.0" prefHeight="25.0"
-                                 prefWidth="180.0"
-                                 AnchorPane.bottomAnchor="10.0"
-                                 AnchorPane.leftAnchor="10.0"
-                                 AnchorPane.rightAnchor="10.0"/>
+                    <JFXComboBox focusColor="#0db3a6" labelFloat="true" layoutX="11.0" layoutY="35.0" prefHeight="25.0" prefWidth="180.0" promptText="规格型号" styleClass="filter-cbBox" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </JFXComboBox>
                 </AnchorPane>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0"
-                  VBox.vgrow="ALWAYS">
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" VBox.vgrow="ALWAYS">
                 <VBox.margin>
-                    <Insets bottom="10.0" left="20.0" right="20.0"/>
+                    <Insets bottom="10.0" left="15.0" right="15.0" />
                 </VBox.margin>
-                <VBox maxWidth="250.0" minWidth="150.0" prefWidth="200.0"
-                      spacing="10.0" HBox.hgrow="SOMETIMES">
-                    <AnchorPane maxWidth="250.0" minHeight="150.0"
-                                minWidth="150.0" prefHeight="200.0"
-                                prefWidth="200.0"
-                                style="-fx-background-color: white;"
-                                VBox.vgrow="SOMETIMES">
-                        <Label layoutX="14.0" layoutY="14.0" text="货品数量"
-                               AnchorPane.leftAnchor="10.0"
-                               AnchorPane.topAnchor="10.0">
+                <VBox maxWidth="250.0" minWidth="150.0" prefWidth="200.0" spacing="10.0" HBox.hgrow="SOMETIMES">
+                    <AnchorPane maxWidth="250.0" minHeight="150.0" minWidth="150.0" prefHeight="200.0" prefWidth="200.0" styleClass="floatPane" VBox.vgrow="SOMETIMES">
+                        <Label layoutX="14.0" layoutY="14.0" text="货品数量" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
                     </AnchorPane>
-                    <AnchorPane layoutX="10.0" layoutY="10.0" maxWidth="250.0"
-                                minHeight="150.0" minWidth="150.0"
-                                prefHeight="200.0" prefWidth="200.0"
-                                style="-fx-background-color: white;"
-                                VBox.vgrow="SOMETIMES">
-                        <Label layoutX="32.0" layoutY="15.0" text="货品类别"
-                               AnchorPane.leftAnchor="10.0"
-                               AnchorPane.topAnchor="10.0">
+                    <AnchorPane layoutX="10.0" layoutY="10.0" maxWidth="250.0" minHeight="150.0" minWidth="150.0" prefHeight="200.0" prefWidth="200.0" styleClass="floatPane" VBox.vgrow="SOMETIMES">
+                        <Label layoutX="32.0" layoutY="15.0" text="货品类别" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <font>
-                                <Font name="System Bold" size="16.0"/>
+                                <Font name="System Bold" size="14.0" />
                             </font>
                         </Label>
                     </AnchorPane>
                 </VBox>
-                <VBox prefWidth="600.0" style="-fx-background-color: white;"
-                      HBox.hgrow="SOMETIMES"/>
+                <VBox prefWidth="600.0" styleClass="floatPane" HBox.hgrow="SOMETIMES">
+                    <AnchorPane focusTraversable="true" prefHeight="40.0" prefWidth="699.0">
+                        <opaqueInsets>
+                            <Insets />
+                        </opaqueInsets>
+                        <Label layoutX="14.0" layoutY="6.0" text="货品列表" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                    </AnchorPane>
+                    <TableView focusTraversable="false" prefHeight="491.0" prefWidth="699.0" style="-fx-background-insets: -1.4 0 1 2; -fx-focus-color: transparent; -fx-border-width: 0;" VBox.vgrow="SOMETIMES">
+                        <columns>
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="货品类别" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="货品编码" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="货品名称" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="规格型号" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="单位" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="参考进价" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="参考售价" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="最低库存" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="最高库存" />
+                            <TableColumn maxWidth="300.0" prefWidth="128.79998475313187" text="备注" />
+                        </columns>
+                    </TableView>
+                    <AnchorPane prefHeight="30.0" prefWidth="699.0">
+                        <ComboBox layoutY="1.0" prefHeight="23.0" prefWidth="100.0" promptText="100条/页" style="-fx-background-color: white; -tx-border-width: 1; -fx-border-color: #ededed;" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="2.5" AnchorPane.topAnchor="2.5">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ComboBox>
+                        <Label layoutX="108.0" layoutY="7.0" text="共0条" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="110.0" AnchorPane.topAnchor="7.0" />
+                        <TextField fx:id="pageJumpField" alignment="CENTER" layoutX="579.2" layoutY="3.0" onAction="#jumpPage" prefHeight="23.0" prefWidth="30.0" text="1" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="3.0">
+                            <cursor>
+                                <Cursor fx:constant="TEXT" />
+                            </cursor>
+                        </TextField>
+                        <Label fx:id="totalPageLabel" layoutX="609.0" layoutY="7.0" text="/ 1" AnchorPane.bottomAnchor="7.0" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="7.0" />
+                        <Pane layoutX="650.0" layoutY="3.0" prefHeight="24.0" prefWidth="24.0" styleClass="ctrl-imageView-container" AnchorPane.bottomAnchor="3.2" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="3.2">
+                            <ImageView fx:id="lastPageImageView" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#lastPage" pickOnBounds="true" preserveRatio="true">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                                <viewport>
+                                    <Rectangle2D />
+                                </viewport>
+                            </ImageView>
+                        </Pane>
+                        <Pane layoutX="683.0" layoutY="3.0" prefHeight="24.0" prefWidth="24.0" styleClass="ctrl-imageView-container" AnchorPane.bottomAnchor="3.2" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="3.2">
+                            <ImageView fx:id="nextPageImageView" fitHeight="24.0" fitWidth="24.0" onMouseClicked="#nextPage" pickOnBounds="true" preserveRatio="true">
+                                <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                </cursor>
+                            </ImageView>
+                        </Pane>
+                    </AnchorPane>
+                </VBox>
             </HBox>
         </VBox>
     </ScrollPane>

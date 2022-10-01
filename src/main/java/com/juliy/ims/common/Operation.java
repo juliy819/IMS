@@ -4,6 +4,8 @@ import com.juliy.ims.MainApplication;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -29,6 +31,7 @@ public class Operation {
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setTitle(title);
+        stage.getIcons().add(new Image("images/logo.png"));
         stage.setResizable(isResizeable);
         Context.stageMap.put(fxmlName, stage);
         return stage;
@@ -55,5 +58,34 @@ public class Operation {
     public void jump(String currentStageName, String targetStageName) {
         Context.stageMap.get(currentStageName).close();
         Context.stageMap.get(targetStageName).show();
+    }
+
+    /**
+     * 弹窗
+     * @param alertType 弹窗类型
+     * @param title     弹窗标题
+     * @param text      弹窗内容
+     */
+    public void showAlert(Alert.AlertType alertType, String title, String text) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        alert.showAndWait();
+    }
+
+    /**
+     * 创建弹窗对象，用于实现输入弹窗、确认弹窗等
+     * @param alertType 弹窗类型
+     * @param title     弹窗标题
+     * @param text      弹窗内容
+     * @return 未显示的弹窗对象
+     */
+    public Alert createAlert(Alert.AlertType alertType, String title, String text) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(text);
+        return alert;
     }
 }

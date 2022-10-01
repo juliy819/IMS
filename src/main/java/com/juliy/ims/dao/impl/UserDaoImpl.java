@@ -1,6 +1,7 @@
 package com.juliy.ims.dao.impl;
 
 import com.juliy.ims.dao.UserDao;
+import com.juliy.ims.entity.User;
 import com.juliy.ims.utils.JdbcUtil;
 
 import java.sql.Connection;
@@ -20,22 +21,26 @@ public class UserDaoImpl implements UserDao {
     ResultSet rs;
 
     @Override
-    public boolean queryUser(String username, String password) {
+    public User queryUser(String username, String password) {
         conn = JdbcUtil.getConnection();
-        String sql = "select id from t_user where username = ? and password = ?";
+        String sql = "select user_id, is_deleted from t_user where nickname = ? or username = ? and password = ?";
         try {
             pStatement = Objects.requireNonNull(conn).prepareStatement(sql);
             pStatement.setString(1, username);
-            pStatement.setString(2, password);
+            pStatement.setString(2, username);
+            pStatement.setString(3, password);
             rs = pStatement.executeQuery();
             if (rs.next()) {
-                return true;
+                User user = new User();
+                user.setUserId(rs.getInt("user_id"));
+                user.setDeleted(rs.getBoolean("is_deleted"));
+                return user;
             }
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             JdbcUtil.release(rs, pStatement, conn);
         }
-        return false;
+        return null;
     }
 }

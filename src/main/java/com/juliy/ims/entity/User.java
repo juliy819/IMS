@@ -3,19 +3,22 @@ package com.juliy.ims.entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
 /**
- * User实体类
+ * 登录用户
  * @author JuLiy
  * @date 2022/9/27 10:29
  */
 @Data
 @NoArgsConstructor
 public class User {
-    private int id;
+    /** 用户编号 */
+    private Integer userId;
+    /** 用户昵称 */
+    private String nickname;
+    /** 账号 */
     private String username;
+    /** 密码 */
     private String password;
-    private Date gmtCreate;
-    private Date gmtModified;
+    /** 是否删除 */
+    private Boolean deleted;
 }

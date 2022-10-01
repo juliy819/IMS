@@ -1,5 +1,7 @@
 package com.juliy.ims.dao;
 
+import com.juliy.ims.entity.User;
+
 /**
  * User数据库操作类
  * @author JuLiy
@@ -12,6 +14,6 @@ public interface UserDao {
      * @param password 密码
      * @return boolean 存在为true，不存在为false
      */
-    boolean queryUser(String username, String password);
+    User queryUser(String username, String password);
 
 }

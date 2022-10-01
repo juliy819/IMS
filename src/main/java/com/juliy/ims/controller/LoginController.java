@@ -8,8 +8,6 @@ import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 
 import java.io.IOException;
 
@@ -37,51 +35,34 @@ public class LoginController extends RootController {
         String username = usernameField.getText();
         String password = passwordField.getText();
         if ("".equals(username)) {
-            Alert failAlert = new Alert(Alert.AlertType.ERROR);
-            failAlert.setTitle("登陆消息");
-            failAlert.setHeaderText(null);
-            failAlert.setContentText("用户名不能为空!");
-            failAlert.showAndWait();
+            Context.operation.showAlert(Alert.AlertType.WARNING, "登录消息", "用户名不能为空!");
             return;
         }
         if ("".equals(password)) {
-            Alert failAlert = new Alert(Alert.AlertType.ERROR);
-            failAlert.setTitle("登陆消息");
-            failAlert.setHeaderText(null);
-            failAlert.setContentText("密码不能为空!");
-            failAlert.showAndWait();
+            Context.operation.showAlert(Alert.AlertType.WARNING, "登录消息", "密码不能为空!");
             return;
         }
         if (!userService.loginCheck(username, password)) {
-            Alert failAlert = new Alert(Alert.AlertType.ERROR);
-            failAlert.setTitle("登陆消息");
-            failAlert.setHeaderText(null);
-            failAlert.setContentText("用户名或密码错误！请重新输入");
-            failAlert.showAndWait();
+            Context.operation.showAlert(Alert.AlertType.ERROR, "登录消息", "用户名或密码错误！请重新输入");
             return;
         }
-        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-        successAlert.setTitle("登陆消息");
-        successAlert.setHeaderText(null);
-        successAlert.setContentText("登录成功！");
-        successAlert.showAndWait();
+        Context.operation.showAlert(Alert.AlertType.INFORMATION, "登录消息", "登录成功！");
 
         User user = new User();
         user.setUsername(username);
         user.setPassword(password);
 
-        Context.operation.createStage("main", "主界面", true);
+        Context.operation.createStage("main", "main", true);
         Context.operation.jump("login", "main");
     }
 
     /**
-     * 监听输入框的回车按钮，触发登录功能
-     * @param keyEvent 按键事件
+     * 输入框按回车触发登录功能
      * @throws IOException 由login()引起
+     * @triggerId usernameField, passwordField
+     * @triggerType ENTER pressed
      */
-    public void doLogin(KeyEvent keyEvent) throws IOException {
-        if (keyEvent.getCode() == KeyCode.ENTER) {
-            this.login();
-        }
+    public void doLogin() throws IOException {
+        this.login();
     }
 }
