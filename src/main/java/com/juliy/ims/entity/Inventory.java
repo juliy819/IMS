@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Inventory {
+    /** 库存编号 */
+    private Integer inventoryId;
     /** 仓库编号 */
     private Integer whsId;
     /** 货品编号 */

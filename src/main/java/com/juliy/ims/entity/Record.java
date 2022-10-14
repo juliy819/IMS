@@ -14,6 +14,8 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 public class Record {
+    /** 记录编号 */
+    private Integer recordId;
     /** 业务日期 */
     private Date bizDate;
     /** 仓库编号 */

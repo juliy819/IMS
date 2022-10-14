@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
  * @author JuLiy
  * @date 2022/9/29 16:20
  */
-public class ProductListController extends RootController {
+public class GoodsListController extends RootController {
 
     @FXML
     public ImageView drawerCtrlImageView;
@@ -78,8 +78,8 @@ public class ProductListController extends RootController {
 
     /**
      * 控制功能菜单的收起和展开
-     * @triggerId drawerCtrlImageView
-     * @triggerType mouseClicked
+     * @触发组件 drawerCtrlImageView
+     * @触发事件 点击
      */
     @FXML
     public void drawerControl() {
@@ -88,8 +88,8 @@ public class ProductListController extends RootController {
 
     /**
      * 表格跳转至指定页
-     * @triggerId pageJumpField
-     * @triggerType ENTER pressed
+     * @触发组件 pageJumpField
+     * @触发事件 回车
      */
     public void jumpPage() {
         String page = pageJumpField.getText();
@@ -103,8 +103,8 @@ public class ProductListController extends RootController {
 
     /**
      * 表格跳转至上一页
-     * @triggerId lastPageImageView
-     * @triggerType mouse clicked
+     * @触发组件 lastPageImageView
+     * @触发事件 点击
      */
     @FXML
     public void lastPage() {
@@ -113,8 +113,8 @@ public class ProductListController extends RootController {
 
     /**
      * 表格跳转至下一页
-     * @triggerId nextPageImageView
-     * @triggerType mouse clicked
+     * @触发组件 nextPageImageView
+     * @触发事件 点击
      */
     @FXML
     public void nextPage() {

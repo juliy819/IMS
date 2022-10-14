@@ -8,10 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Objects;
 
 /**
- * User数据库操作类实例
+ * user表数据库操作实现类
  * @author JuLiy
  * @date 2022/9/27 14:57
  */
@@ -25,7 +24,7 @@ public class UserDaoImpl implements UserDao {
         conn = JdbcUtil.getConnection();
         String sql = "select user_id, is_deleted from t_user where nickname = ? or username = ? and password = ?";
         try {
-            pStatement = Objects.requireNonNull(conn).prepareStatement(sql);
+            pStatement = conn.prepareStatement(sql);
             pStatement.setString(1, username);
             pStatement.setString(2, username);
             pStatement.setString(3, password);

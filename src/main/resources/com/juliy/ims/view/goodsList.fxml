@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<fx:root stylesheets="@style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.ProductListController">
+<fx:root stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.GoodsListController">
     <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" style="-fx-border-width: 0; -fx-background-insets: -1.4 0 1 2; -fx-focus-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <VBox prefHeight="700.0" prefWidth="1000.0" spacing="10.0">
             <AnchorPane prefHeight="40.0" prefWidth="1000.0" style="-fx-background-color: white;">

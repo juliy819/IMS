@@ -6,4 +6,5 @@ open module com.juliy.ims {
     requires rxcontrols;
     requires lombok;
     requires java.sql;
+    requires org.controlsfx.controls;
 }

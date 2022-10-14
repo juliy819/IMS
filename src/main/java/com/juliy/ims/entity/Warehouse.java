@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-public class WareHouse {
+public class Warehouse {
     /** 仓库编号 */
     private Integer whsId;
     /** 仓库名称 */

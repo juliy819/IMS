@@ -36,7 +36,7 @@ public class MainController extends RootController {
     @FXML
     private void initialize() throws IOException {
         initTreeView();
-        Context.operation.loadPage("product list", baseAnchorPane);
+        Context.operation.loadPage("goodsList", baseAnchorPane);
     }
 
     /** 初始化功能菜单数据 */
@@ -82,7 +82,7 @@ public class MainController extends RootController {
 
     /**
      * 控制功能菜单的收起和展开
-     * @param drawerCtrlImageView 用的ImageView代替按钮功能，作为形参传入以实现图片的变化
+     * @param drawerCtrlImageView 使用ImageView代替按钮功能，作为形参传入以实现图片的变化
      */
     public void drawerControl(ImageView drawerCtrlImageView) {
         if (drawer.isClosed() || drawer.isClosing()) {
@@ -97,11 +97,11 @@ public class MainController extends RootController {
 
     @FXML
     public void showPage1() throws IOException {
-        Context.operation.loadPage("product list", baseAnchorPane);
+        Context.operation.loadPage("goodsList", baseAnchorPane);
     }
 
     @FXML
     public void showPage2() throws IOException {
-        Context.operation.loadPage("inventory inquiry", baseAnchorPane);
+        Context.operation.loadPage("inventoryInquiry", baseAnchorPane);
     }
 }

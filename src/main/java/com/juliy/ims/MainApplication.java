@@ -4,6 +4,8 @@ import com.juliy.ims.common.Context;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 /**
  * @author JuLiy
  * @date 2022/9/27 10:10
@@ -11,8 +13,8 @@ import javafx.stage.Stage;
 public class MainApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage = Context.operation.createStage("login", "main", true);
+    public void start(Stage primaryStage) throws IOException {
+        primaryStage = Context.operation.createStage("login", "", true);
         primaryStage.show();
     }
 
