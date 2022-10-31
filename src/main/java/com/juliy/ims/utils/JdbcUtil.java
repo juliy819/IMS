@@ -1,5 +1,7 @@
 package com.juliy.ims.utils;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -20,10 +22,12 @@ public class JdbcUtil {
     /** 数据库密码 */
     private static final String PASSWORD;
 
+    private static final Logger log = Logger.getLogger(JdbcUtil.class);
+
     static {
         try {
             //读取配置文件中的数据库信息
-            InputStream in = JdbcUtil.class.getClassLoader().getResourceAsStream("db.properties");
+            InputStream in = JdbcUtil.class.getClassLoader().getResourceAsStream("info.properties");
             Properties props = new Properties();
             props.load(in);
             DRIVER_CLASS = props.getProperty("driverClass");

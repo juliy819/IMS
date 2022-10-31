@@ -8,7 +8,8 @@
       style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx/18"
       xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.juliy.ims.controller.MainController">
-    <MenuBar>
+    <MenuBar onMouseDragged="#dragWindow"
+             onMousePressed="#getOffset">
         <Menu mnemonicParsing="false" text="Test">
             <MenuItem mnemonicParsing="false" onAction="#showPage1"
                       text="Page 1"/>
@@ -24,7 +25,7 @@
                    onDrawerClosed="#onDrawerClosed" overLayVisible="false"
                    prefHeight="374.0" prefWidth="200.0"
                    style="-fx-border-width: 0 1 0 0; -fx-border-color: #e2e2e2;"/>
-        <AnchorPane fx:id="baseAnchorPane" prefHeight="200.0" prefWidth="200.0"
+        <AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0"
                     HBox.hgrow="ALWAYS"/>
     </HBox>
 </VBox>

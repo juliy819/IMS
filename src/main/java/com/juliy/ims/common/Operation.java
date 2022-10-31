@@ -1,6 +1,6 @@
 package com.juliy.ims.common;
 
-import com.juliy.ims.MainApplication;
+import com.juliy.ims.App;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -29,13 +29,13 @@ public class Operation {
      * @throws IOException 由FXMLLoader.load()抛出
      */
     public Stage createStage(String fxmlName, String title, boolean isResizeable) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("view/" + fxmlName + ".fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(App.class.getResource("view/" + fxmlName + ".fxml")));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setScene(scene);
         stage.setTitle(title);
-        stage.initStyle(StageStyle.DECORATED);
+        stage.initStyle(StageStyle.TRANSPARENT);
         stage.getIcons().add(new Image("images/logo.png"));
         stage.setResizable(isResizeable);
         Context.stageMap.put(fxmlName, stage);
@@ -50,7 +50,7 @@ public class Operation {
      */
     public void loadPage(String fxmlName, Pane basePane) throws IOException {
         basePane.getChildren().clear();
-        FXMLLoader innerLoader = new FXMLLoader(MainApplication.class.getResource("view/" + fxmlName + ".fxml"));
+        FXMLLoader innerLoader = new FXMLLoader(App.class.getResource("view/" + fxmlName + ".fxml"));
         innerLoader.setRoot(basePane);
         innerLoader.load();
     }

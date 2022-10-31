@@ -91,6 +91,7 @@ public class GoodsListController extends RootController {
      * @触发组件 pageJumpField
      * @触发事件 回车
      */
+    @FXML
     public void jumpPage() {
         String page = pageJumpField.getText();
         if ("".equals(page)) {

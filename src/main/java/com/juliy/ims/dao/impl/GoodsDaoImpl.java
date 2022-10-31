@@ -65,16 +65,16 @@ public class GoodsDaoImpl implements GoodsDao {
 
     /** 将结果集中的数据封装到对象中 */
     private void wrapGoods(Goods goods) throws SQLException {
-        goods.setGoodsId(rs.getInt(1));
-        goods.setGoodsTypeId(rs.getInt(2));
-        goods.setGoodsName(rs.getString(3));
-        goods.setGoodsSpec(rs.getString(4));
-        goods.setGoodsUnit(rs.getString(5));
-        goods.setRefPurPrice(rs.getBigDecimal(6));
-        goods.setRefSellPrice(rs.getBigDecimal(7));
-        goods.setMaxQty(rs.getInt(8));
-        goods.setMinQty(rs.getInt(9));
-        goods.setGoodsComment(rs.getString(10));
-        goods.setDeleted(rs.getBoolean(11));
+        goods.setGoodsId(rs.getInt("goods_id"));
+        goods.setGoodsTypeId(rs.getInt("goods_type_id"));
+        goods.setGoodsName(rs.getString("goods_name"));
+        goods.setGoodsSpec(rs.getString("goods_spec"));
+        goods.setGoodsUnit(rs.getString("goods_unit"));
+        goods.setRefPurPrice(rs.getBigDecimal("ref_pur_price"));
+        goods.setRefSellPrice(rs.getBigDecimal("ref_sel_price"));
+        goods.setMaxQty(rs.getInt("max_qty"));
+        goods.setMinQty(rs.getInt("min_qty"));
+        goods.setGoodsComment(rs.getString("goods_comment"));
+        goods.setDeleted(rs.getBoolean("is_deleted"));
     }
 }

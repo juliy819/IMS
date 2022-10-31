@@ -96,3 +96,62 @@ field.textProperty().addListener((observableValue, oldValue, newValue) -> {
         cbBox.show();
     }
 });
+
+**************************************************
+
+comboBox+checkBox
+
+cbBox.setCellFactory(new Callback<>() {
+    @Override
+    public ListCell<CheckCbBoxModel> call(ListView<CheckCbBoxModel> checkCbBoxModelListView) {
+        return new ListCell<>() {
+            private CheckBox cb = new CheckBox();
+            private BooleanProperty booleanProperty;
+
+            {
+                cb.setOnAction(actionEvent -> {
+                    getListView().getSelectionModel().select(getItem());
+                    String selected = obList.stream()
+                            .filter(CheckCbBoxModel::isSelected)
+                            .map(CheckCbBoxModel::getValue)
+                            .sorted()
+                            .map(i -> i + "")
+                            .collect(Collectors.joining(","));
+                    cbBox.setPromptText(selected);
+                });
+            }
+
+            @Override
+            protected void updateItem(CheckCbBoxModel checkCbBoxModel, boolean empty) {
+                super.updateItem(checkCbBoxModel, empty);
+                if (!empty) {
+                    if (booleanProperty != null) {
+                        cb.selectedProperty().unbindBidirectional(booleanProperty);
+                    }
+                    booleanProperty = checkCbBoxModel.selectedProperty();
+                    cb.selectedProperty().bindBidirectional(booleanProperty);
+                    setGraphic(cb);
+                    setText(checkCbBoxModel.getValue() + "");
+                } else {
+                    setGraphic(null);
+                    setText(null);
+                }
+            }
+        };
+    }
+});
+
+cbBox.setButtonCell(new ListCell<>() {
+    @Override
+    protected void updateItem(CheckCbBoxModel checkCbBoxModel, boolean empty) {
+        super.updateItem(checkCbBoxModel, empty);
+        String selected = cbBox.getItems()
+                .stream()
+                .filter(CheckCbBoxModel::isSelected)
+                .map(CheckCbBoxModel::getValue).sorted()
+                .map(i -> i + "")
+                .collect(Collectors.joining(","));
+        setText(selected);
+        System.out.println(3);
+    }
+});

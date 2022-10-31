@@ -1,0 +1,30 @@
+#root {
+    -fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#left {
+    -fx-background-color: rgba(102, 204, 204, 0.8);
+}
+
+#right {
+    -fx-background-color: white;
+}
+
+.input {
+    -fx-background-color: TRANSPARENT;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: lightgray;
+}
+
+#btn-login {
+    -fx-background-radius: 40;
+    -fx-background-color: #66CCCC;
+}
+
+#btn-exit {
+    -fx-background-color: TRANSPARENT;
+}
+
+#btn-exit:hover SVGPath {
+    -fx-fill: red;
+}

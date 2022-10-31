@@ -10,7 +10,7 @@ import java.io.IOException;
  * @author JuLiy
  * @date 2022/9/27 10:10
  */
-public class MainApplication extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {

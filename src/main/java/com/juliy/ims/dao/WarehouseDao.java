@@ -5,5 +5,5 @@ package com.juliy.ims.dao;
  * @author JuLiy
  * @date 2022/10/9 22:57
  */
-public class WarehouseDao {
+public interface WarehouseDao {
 }

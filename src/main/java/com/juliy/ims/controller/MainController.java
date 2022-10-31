@@ -7,7 +7,9 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,8 +25,10 @@ public class MainController extends RootController {
     @FXML
     public JFXDrawer drawer;
     @FXML
-    public AnchorPane baseAnchorPane;
+    public AnchorPane rootPane;
     public TreeView<String> treeView;
+
+    private double offsetX, offsetY;
 
     public String[] functionList = {
             "报表统计", "货品列表", "当前库存查询", "出入库流水账", "收发存汇总", "库存预警分析",
@@ -36,7 +40,7 @@ public class MainController extends RootController {
     @FXML
     private void initialize() throws IOException {
         initTreeView();
-        Context.operation.loadPage("goodsList", baseAnchorPane);
+        Context.operation.loadPage("goodsList", rootPane);
     }
 
     /** 初始化功能菜单数据 */
@@ -97,11 +101,36 @@ public class MainController extends RootController {
 
     @FXML
     public void showPage1() throws IOException {
-        Context.operation.loadPage("goodsList", baseAnchorPane);
+        Context.operation.loadPage("goodsList", rootPane);
     }
 
     @FXML
     public void showPage2() throws IOException {
-        Context.operation.loadPage("inventoryInquiry", baseAnchorPane);
+        Context.operation.loadPage("inventoryInquiry", rootPane);
+    }
+
+    /**
+     * 窗口拖动
+     * @param mouseEvent 鼠标事件
+     * @触发组件 menuBar
+     * @触发事件 鼠标拖动
+     */
+    @FXML
+    public void dragWindow(MouseEvent mouseEvent) {
+        Stage stage = Context.stageMap.get("main");
+        stage.setX(mouseEvent.getScreenX() - offsetX);
+        stage.setY(mouseEvent.getScreenY() - offsetY);
+    }
+
+    /**
+     * 获取鼠标在窗口内的坐标
+     * @param mouseEvent 鼠标事件
+     * @触发组件 menuBar
+     * @触发事件 鼠标按下
+     */
+    @FXML
+    public void getOffset(MouseEvent mouseEvent) {
+        offsetX = mouseEvent.getSceneX();
+        offsetY = mouseEvent.getSceneY();
     }
 }
