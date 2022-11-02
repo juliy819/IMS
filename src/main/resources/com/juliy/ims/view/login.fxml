@@ -4,6 +4,7 @@
 <?import com.leewyatt.rxcontrols.controls.RXPasswordField?>
 <?import com.leewyatt.rxcontrols.controls.RXTextField?>
 <?import com.leewyatt.rxcontrols.controls.RXTranslationButton?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -13,11 +14,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<HBox id="root" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.LoginController">
-    <VBox id="left" alignment="TOP_CENTER" prefHeight="400.0" prefWidth="250.0">
+<HBox prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.LoginController">
+    <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="250.0" styleClass="left">
         <Label text="Welcome" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="22.0" />
@@ -40,16 +41,45 @@
             </VBox.margin>
         </Label>
     </VBox>
-    <AnchorPane id="right" prefHeight="400.0" prefWidth="350.0">
-        <RXTextField fx:id="tfUsername" focusTraversable="false" layoutX="45.0" layoutY="76.0" onClickButton="#clearUsername" prefHeight="30.0" prefWidth="250.0" promptText="username" styleClass="input" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="80.0" />
-        <RXPasswordField fx:id="tfPassword" focusTraversable="false" layoutX="73.0" layoutY="33.0" prefHeight="30.0" prefWidth="250.0" promptText="password" styleClass="input" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="130.0" />
-        <RXTextField fx:id="tfCaptcha" focusTraversable="false" layoutX="45.0" layoutY="185.0" onClickButton="#clearCaptcha" prefHeight="30.0" prefWidth="125.0" promptText="captcha" styleClass="input" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="180.0" />
-        <JFXCheckBox fx:id="cbRemember" checkedColor="#66cccc" focusTraversable="false" layoutX="94.0" layoutY="231.0" text="记住密码" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="230.0">
+    <AnchorPane prefHeight="400.0" prefWidth="350.0" styleClass="right">
+        <HBox alignment="CENTER_RIGHT" layoutX="8.0" onMouseDragged="#dragWindow" onMousePressed="#getOffset" prefHeight="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Button focusTraversable="false" mnemonicParsing="false" onAction="#exitWindow" textAlignment="RIGHT">
+                <cursor>
+                    <Cursor fx:constant="HAND" />
+                </cursor>
+                <graphic>
+                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="" textAlignment="CENTER" />
+                </graphic>
+                <styleClass>
+                    <String fx:value="btn-exit" />
+                </styleClass>
+            </Button>
+        </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="17.98046875" layoutY="80.0" spacing="5.0" styleClass="input-box">
+         <children>
+              <Text fx:id="iconUsername" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="" />
+              <RXTextField fx:id="tfUsername" focusTraversable="false" onAction="#login" onClickButton="#clearUsername" prefHeight="30.0" prefWidth="250.0" promptText="username" styleClass="input" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="130.0" spacing="5.0" styleClass="input-box">
+         <children>
+              <Text fx:id="iconPassword" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="" />
+              <RXPasswordField fx:id="tfPassword" focusTraversable="false" onAction="#login" prefHeight="30.0" prefWidth="250.0" promptText="password" styleClass="input" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="18.0" layoutY="180.0" spacing="5.0" styleClass="input-box">
+         <children>
+              <Text fx:id="iconCaptcha" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon" text="" />
+              <RXTextField fx:id="tfCaptcha" focusTraversable="false" onAction="#login" onClickButton="#clearCaptcha" prefHeight="30.0" prefWidth="125.0" promptText="captcha" styleClass="input" />
+         </children>
+      </HBox>
+        <Label alignment="CENTER" layoutX="175.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: rgba(102, 204, 204, 0.8);" text="验证码(待实现)" />
+        <JFXCheckBox fx:id="cbRemember" checkedColor="#66cccc" focusTraversable="false" layoutX="94.0" layoutY="231.0" text="记住密码" AnchorPane.leftAnchor="45.0" AnchorPane.topAnchor="240.0">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
         </JFXCheckBox>
-        <RXTranslationButton id="btn-login" layoutX="81.0" layoutY="268.0" onAction="#login" prefHeight="40.0" prefWidth="180.0" text="login" translationDir="RIGHT_TO_LEFT" AnchorPane.topAnchor="270.0">
+        <RXTranslationButton id="btn-login" fx:id="btnLogin" disable="true" layoutX="81.0" layoutY="278.0" onAction="#login" prefHeight="40.0" prefWidth="180.0" text="login" translationDir="RIGHT_TO_LEFT" AnchorPane.topAnchor="280.0">
             <cursor>
                 <Cursor fx:constant="HAND" />
             </cursor>
@@ -59,13 +89,11 @@
                 </ImageView>
             </graphic>
         </RXTranslationButton>
-        <HBox alignment="CENTER_RIGHT" layoutX="8.0" onMouseDragged="#dragWindow" onMousePressed="#getOffset" prefHeight="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-            <Button id="btn-exit" mnemonicParsing="false" onAction="#exitWindow" prefHeight="30.0" prefWidth="30.0">
-                <graphic>
-                    <SVGPath content="M10.8,0.2c0.3,0.3,0.3,0.8,0,1.1l-9.5,9.5c-0.3,0.3-0.8,                             0.3-1.1,0c-0.3-0.3-0.3-0.8,0-1.1l9.5-9.5C10-0.1,10.5-0.1,10.8,                             0.2zM0.4,0.4c0.3-0.3,0.8-0.3,1,0l9.2,9.2c0.3,0.3,0.3,0.8,0,                             1c-0.3,0.3-0.8,0.3-1,0L0.4,1.4C0.1,1.1,0.1,0.6,0.4,0.4z" fill="#66cccc" stroke="BLACK" strokeWidth="0.0" />
-                </graphic>
-            </Button>
-        </HBox>
-        <Label alignment="CENTER" layoutX="175.0" layoutY="180.0" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: rgba(102, 204, 204, 0.8);" text="验证码(待实现)" />
+        <VBox alignment="CENTER" layoutX="95.0" layoutY="320.0" prefHeight="70.0" prefWidth="150.0" spacing="5.0">
+            <Text fx:id="txtPrompt" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="提示" visible="false" />
+            <ImageView fx:id="ivLoading" fitHeight="32.0" fitWidth="32.0" opacity="0.8" pickOnBounds="true" preserveRatio="true" visible="false">
+                <Image url="@../../../../images/loading.png" />
+            </ImageView>
+        </VBox>
     </AnchorPane>
 </HBox>

@@ -11,11 +11,21 @@ import java.util.Map;
  * @date 2022/9/29 12:07
  */
 public class Context {
-    public static Operation operation = new Operation();
 
+    /** 常用操作 */
+    public static final Operation OPERATION = new Operation();
     /** 存储已创建的控制器，key为对应的控制器名称 */
-    public static Map<String, Object> controllerMap = new HashMap<>();
-
+    private static final Map<String, Object> CONTROLLER_MAP = new HashMap<>();
     /** 存储已创建的窗口，key为对应的窗口名称 */
-    public static Map<String, Stage> stageMap = new HashMap<>();
+    private static final Map<String, Stage> STAGE_MAP = new HashMap<>();
+
+    private Context() {}
+
+    public static Map<String, Object> getControllerMap() {
+        return CONTROLLER_MAP;
+    }
+
+    public static Map<String, Stage> getStageMap() {
+        return STAGE_MAP;
+    }
 }

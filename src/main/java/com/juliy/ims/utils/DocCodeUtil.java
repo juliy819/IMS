@@ -25,16 +25,21 @@ public class DocCodeUtil {
     /** 用户id和随机数总长度 */
     private static final int MAX_LENGTH = 14;
 
+    private static final Random RANDOM = new Random();
+
+    private DocCodeUtil() {}
+
+
     /**
      * 更具id进行加密+加随机数组成固定长度编码
      */
     private static String toCode(Long id) {
         String idStr = id.toString();
-        StringBuilder idsbs = new StringBuilder();
+        StringBuilder idSb = new StringBuilder();
         for (int i = idStr.length() - 1; i >= 0; i--) {
-            idsbs.append(RANDOM_ARRAY[idStr.charAt(i) - '0']);
+            idSb.append(RANDOM_ARRAY[idStr.charAt(i) - '0']);
         }
-        return idsbs.append(getRandom(MAX_LENGTH - idStr.length())).toString();
+        return idSb.append(getRandom((long) MAX_LENGTH - idStr.length())).toString();
     }
 
     /**
@@ -50,18 +55,18 @@ public class DocCodeUtil {
      * @param n 长度
      */
     private static long getRandom(long n) {
-        long min = 1, max = 9;
+        long min = 1;
+        long max = 9;
         for (int i = 1; i < n; i++) {
             min *= 10;
             max *= 10;
         }
-        long rangeLong = (((long) (new Random().nextDouble() * (max - min)))) + min;
-        return rangeLong;
+        return ((long) (RANDOM.nextDouble() * (max - min))) + min;
     }
 
     /**
      * 生成不带类别标头的编码
-     * @param userId
+     * @param userId 用户id
      */
     private static synchronized String getCode(Long userId) {
         userId = userId == null ? 10000 : userId;
@@ -70,7 +75,7 @@ public class DocCodeUtil {
 
     /**
      * 生成订单单号编码
-     * @param userId
+     * @param userId 用户id
      */
     public static String getOrderCode(Long userId) {
         return ORDER_CODE + getCode(userId);
@@ -78,7 +83,7 @@ public class DocCodeUtil {
 
     /**
      * 生成退货单号编码
-     * @param userId
+     * @param userId 用户id
      */
     public static String getReturnCode(Long userId) {
         return RETURN_ORDER + getCode(userId);
@@ -86,7 +91,7 @@ public class DocCodeUtil {
 
     /**
      * 生成退款单号编码
-     * @param userId
+     * @param userId 用户id
      */
     public static String getRefundCode(Long userId) {
         return REFUND_ORDER + getCode(userId);
@@ -94,7 +99,7 @@ public class DocCodeUtil {
 
     /**
      * 未付款重新支付
-     * @param userId
+     * @param userId 用户id
      */
     public static String getAgainCode(Long userId) {
         return AGAIN_ORDER + getCode(userId);

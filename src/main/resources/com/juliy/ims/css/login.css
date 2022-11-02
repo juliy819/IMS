@@ -1,13 +1,21 @@
-#root {
+@import "font.css";
+
+.root {
     -fx-background-color: rgba(0, 0, 0, 0);
 }
 
-#left {
-    -fx-background-color: rgba(102, 204, 204, 0.8);
+.left {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 0.0%, #AEEDFECC 0.0%, #66CCCCFF 100.0%);
 }
 
-#right {
+.right {
     -fx-background-color: white;
+}
+
+.icon {
+    -fx-font-family: "MyIcon";
+    -fx-font-size: 20;
+    -fx-fill: gray;
 }
 
 .input {
@@ -16,15 +24,19 @@
     -fx-border-color: lightgray;
 }
 
+.input:focused {
+    -fx-border-color: #66CCCC;
+}
+
 #btn-login {
     -fx-background-radius: 40;
     -fx-background-color: #66CCCC;
 }
 
-#btn-exit {
+.btn-exit {
     -fx-background-color: TRANSPARENT;
 }
 
-#btn-exit:hover SVGPath {
+.btn-exit:hover .icon {
     -fx-fill: red;
 }

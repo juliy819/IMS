@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXDrawer?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-      minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0"
-      style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx/18"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.juliy.ims.controller.MainController">
-    <MenuBar onMouseDragged="#dragWindow"
-             onMousePressed="#getOffset">
-        <Menu mnemonicParsing="false" text="Test">
-            <MenuItem mnemonicParsing="false" onAction="#showPage1"
-                      text="Page 1"/>
-            <MenuItem mnemonicParsing="false" onAction="#showPage2"
-                      text="Page 2"/>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-            <MenuItem mnemonicParsing="false" text="About"/>
-        </Menu>
-    </MenuBar>
-    <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-        <JFXDrawer fx:id="drawer" defaultDrawerSize="200.0"
-                   onDrawerClosed="#onDrawerClosed" overLayVisible="false"
-                   prefHeight="374.0" prefWidth="200.0"
-                   style="-fx-border-width: 0 1 0 0; -fx-border-color: #e2e2e2;"/>
-        <AnchorPane fx:id="rootPane" prefHeight="200.0" prefWidth="200.0"
-                    HBox.hgrow="ALWAYS"/>
-    </HBox>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<VBox id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1200.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.MainController">
+   <children>
+      <HBox id="top" alignment="TOP_RIGHT" prefHeight="30.0" prefWidth="1200.0">
+         <children>
+            <Button id="btn-min" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <SVGPath content="M10.8,0.2c0.3,0.3,0.3,0.8,0,1.1l-9.5,9.5c-0.3,0.3-0.8,                             0.3-1.1,0c-0.3-0.3-0.3-0.8,0-1.1l9.5-9.5C10-0.1,10.5-0.1,10.8,                             0.2zM0.4,0.4c0.3-0.3,0.8-0.3,1,0l9.2,9.2c0.3,0.3,0.3,0.8,0,                             1c-0.3,0.3-0.8,0.3-1,0L0.4,1.4C0.1,1.1,0.1,0.6,0.4,0.4z" fill="#66cccc" strokeWidth="0.0" />
+               </graphic>
+            </Button>
+            <Button id="btn-max" layoutX="1180.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <SVGPath content="M10.8,0.2c0.3,0.3,0.3,0.8,0,1.1l-9.5,9.5c-0.3,0.3-0.8,                             0.3-1.1,0c-0.3-0.3-0.3-0.8,0-1.1l9.5-9.5C10-0.1,10.5-0.1,10.8,                             0.2zM0.4,0.4c0.3-0.3,0.8-0.3,1,0l9.2,9.2c0.3,0.3,0.3,0.8,0,                             1c-0.3,0.3-0.8,0.3-1,0L0.4,1.4C0.1,1.1,0.1,0.6,0.4,0.4z" fill="#66cccc" strokeWidth="0.0" />
+               </graphic>
+            </Button>
+            <Button id="btn-exit" layoutX="1180.0" layoutY="10.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+               <graphic>
+                  <SVGPath content="M10.8,0.2c0.3,0.3,0.3,0.8,0,1.1l-9.5,9.5c-0.3,0.3-0.8,                             0.3-1.1,0c-0.3-0.3-0.3-0.8,0-1.1l9.5-9.5C10-0.1,10.5-0.1,10.8,                             0.2zM0.4,0.4c0.3-0.3,0.8-0.3,1,0l9.2,9.2c0.3,0.3,0.3,0.8,0,                             1c-0.3,0.3-0.8,0.3-1,0L0.4,1.4C0.1,1.1,0.1,0.6,0.4,0.4z" fill="#66cccc" strokeWidth="0.0" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </children>
 </VBox>

@@ -34,14 +34,12 @@ public class GoodsListController extends RootController {
     public ScrollPane scrollPane;
     @FXML
     public Pane testPane;
-
+    Pattern pattern = Pattern.compile("\\d*");
     private MainController mainController;
-
-    Pattern pattern = Pattern.compile("[0-9]*");
 
     @FXML
     private void initialize() {
-        mainController = (MainController) Context.controllerMap.get(MainController.class.getSimpleName());
+        mainController = (MainController) Context.getControllerMap().get(MainController.class.getSimpleName());
         initImage();
         pageJumpFieldInputCheck();
     }
@@ -95,7 +93,7 @@ public class GoodsListController extends RootController {
     public void jumpPage() {
         String page = pageJumpField.getText();
         if ("".equals(page)) {
-            Context.operation.showAlert(Alert.AlertType.ERROR, "错误", "页数不能为空！");
+            Context.OPERATION.showAlert(Alert.AlertType.ERROR, "错误", "页数不能为空！");
             return;
         }
         int targetPage = Integer.parseInt(page);

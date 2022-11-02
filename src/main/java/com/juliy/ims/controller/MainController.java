@@ -27,20 +27,19 @@ public class MainController extends RootController {
     @FXML
     public AnchorPane rootPane;
     public TreeView<String> treeView;
-
-    private double offsetX, offsetY;
-
     public String[] functionList = {
             "报表统计", "货品列表", "当前库存查询", "出入库流水账", "收发存汇总", "库存预警分析",
             "基础设置", "新增仓库", "新增货品类别", "新增货品", "新增供应商", "新增客户",
             "入库管理", "采购入库单", "退料入库单", "生产入库单", "销售退货入库单", "其他入库单",
             "出库管理", "采购退货出库单", "领料出库单", "销售出库单", "其他出库单",
             "库存管理", "库存调拨单", "库存盘点单", "库存调拨记录", "库存盘点记录"};
+    double offsetX;
+    double offsetY;
 
     @FXML
     private void initialize() throws IOException {
         initTreeView();
-        Context.operation.loadPage("goodsList", rootPane);
+        //Context.OPERATION.loadPage("goodsList", rootPane);
     }
 
     /** 初始化功能菜单数据 */
@@ -101,12 +100,12 @@ public class MainController extends RootController {
 
     @FXML
     public void showPage1() throws IOException {
-        Context.operation.loadPage("goodsList", rootPane);
+        Context.OPERATION.loadPage("goodsList", rootPane);
     }
 
     @FXML
     public void showPage2() throws IOException {
-        Context.operation.loadPage("inventoryInquiry", rootPane);
+        Context.OPERATION.loadPage("inventoryInquiry", rootPane);
     }
 
     /**
@@ -117,7 +116,7 @@ public class MainController extends RootController {
      */
     @FXML
     public void dragWindow(MouseEvent mouseEvent) {
-        Stage stage = Context.stageMap.get("main");
+        Stage stage = Context.getStageMap().get("main");
         stage.setX(mouseEvent.getScreenX() - offsetX);
         stage.setY(mouseEvent.getScreenY() - offsetY);
     }

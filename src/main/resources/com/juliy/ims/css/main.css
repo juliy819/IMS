@@ -1,0 +1,11 @@
+#root {
+    -fx-background-color: #f4f6f9;
+}
+
+#btn-exit {
+    -fx-background-color: TRANSPARENT;
+}
+
+#btn-exit:hover SVGPath {
+    -fx-fill: red;
+}

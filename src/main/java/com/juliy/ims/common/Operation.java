@@ -38,7 +38,7 @@ public class Operation {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.getIcons().add(new Image("images/logo.png"));
         stage.setResizable(isResizeable);
-        Context.stageMap.put(fxmlName, stage);
+        Context.getStageMap().put(fxmlName, stage);
         return stage;
     }
 
@@ -61,8 +61,8 @@ public class Operation {
      * @param targetStageName  目标窗口名
      */
     public void jump(String currentStageName, String targetStageName) {
-        Context.stageMap.get(currentStageName).close();
-        Context.stageMap.get(targetStageName).show();
+        Context.getStageMap().get(currentStageName).close();
+        Context.getStageMap().get(targetStageName).show();
     }
 
     /**

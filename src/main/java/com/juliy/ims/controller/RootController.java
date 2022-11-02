@@ -10,6 +10,6 @@ import com.juliy.ims.common.Context;
 public class RootController {
     /** 初始化时将当前Controller实例存至Context中 */
     public RootController() {
-        Context.controllerMap.put(this.getClass().getSimpleName(), this);
+        Context.getControllerMap().put(this.getClass().getSimpleName(), this);
     }
 }

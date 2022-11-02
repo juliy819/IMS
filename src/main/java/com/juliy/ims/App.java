@@ -12,13 +12,13 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    @Override
-    public void start(Stage primaryStage) throws IOException {
-        primaryStage = Context.operation.createStage("login", "", true);
-        primaryStage.show();
-    }
-
     public static void main(String[] args) {
         launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws IOException {
+        Context.OPERATION.createStage("login", "", true).show();
+
     }
 }
