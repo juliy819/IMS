@@ -228,6 +228,16 @@ public class LoginController extends RootController {
     }
 
     /**
+     * 跳转到gitee本项目地址
+     * @触发组件 linkSource
+     * @触发事件 鼠标点击
+     */
+    @FXML
+    public void toGitee() {
+        Context.getHost().showDocument("https://gitee.com/juliyang/IMS");
+    }
+
+    /**
      * 清空用户名输入框内容
      * @触发组件 tfUsername.button
      * @触发事件 鼠标点击按钮
