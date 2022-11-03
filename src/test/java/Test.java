@@ -1,5 +1,3 @@
-package test;
-
 import com.juliy.ims.common.Context;
 import com.juliy.ims.utils.DocCodeUtil;
 import javafx.application.Application;

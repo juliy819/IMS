@@ -7,6 +7,7 @@ import com.juliy.ims.service.impl.LoginServiceImpl;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.controls.RXTranslationButton;
+import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -18,6 +19,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -34,10 +37,6 @@ import java.util.concurrent.*;
  */
 public class LoginController extends RootController {
 
-    /** 选中某输入框对应图标的颜色 */
-    static final String SELECTED_ICON_COLOR = "-fx-fill: #66cccc";
-    /** 未选中某输入框对应图标的颜色 */
-    static final String NONE_SELECTED_ICON_COLOR = "-fx-fill: gray";
     private static final Logger log = Logger.getLogger(LoginController.class);
     /** 用户名输入框文本内容 */
     final SimpleStringProperty username = new SimpleStringProperty();
@@ -51,7 +50,6 @@ public class LoginController extends RootController {
     /** 线程池 */
     ExecutorService threadPool;
 
-    /** 鼠标按下位置相对于应用程序左上角的偏移值 */
     double offsetX;
     double offsetY;
     @FXML
@@ -61,22 +59,25 @@ public class LoginController extends RootController {
     @FXML
     private RXTextField tfCaptcha;
     @FXML
+    private Region iconUsername;
+    @FXML
+    private Region iconPassword;
+    @FXML
+    private Region iconCaptcha;
+    @FXML
     private JFXCheckBox cbRemember;
     @FXML
     private RXTranslationButton btnLogin;
     @FXML
-    private Text txtPrompt;
+    private HBox coverBtnLogin;
     @FXML
     private ImageView ivLoading;
     @FXML
-    private Text iconUsername;
-    @FXML
-    private Text iconPassword;
-    @FXML
-    private Text iconCaptcha;
+    private Text txtPrompt;
 
 
-    public void initialize() {
+    @FXML
+    void initialize() {
         bindData();
         loadProperties();
         initComponents();
@@ -89,7 +90,6 @@ public class LoginController extends RootController {
         password.bindBidirectional(tfPassword.textProperty());
         captcha.bindBidirectional(tfCaptcha.textProperty());
         remember.bindBidirectional(cbRemember.selectedProperty());
-
     }
 
     /** 读取保存的设置，并判断是否自动填入用户名和密码 */
@@ -113,7 +113,7 @@ public class LoginController extends RootController {
     }
 
     /** 设置组件监听 */
-    public void initComponents() {
+    private void initComponents() {
         //有输入框为空时，登录按钮不可点击
         ChangeListener<String> disableLogin = (ob, ov, nv) -> {
             boolean isInputEmpty = "".equals(username.get()) || "".equals(password.get()) || "".equals(captcha.get());
@@ -125,7 +125,7 @@ public class LoginController extends RootController {
 
         class ChangeIconColor implements ChangeListener<Boolean> {
             final String name;
-            final Text icon;
+            final Region icon;
 
             public ChangeIconColor(String name) {
                 this.name = name;
@@ -140,9 +140,9 @@ public class LoginController extends RootController {
             public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
                 clearErrorPrompt();
                 if (newValue.equals(Boolean.TRUE)) {
-                    icon.setStyle(SELECTED_ICON_COLOR);
+                    icon.setStyle("-fx-background-color: #66cccc");
                 } else {
-                    icon.setStyle(NONE_SELECTED_ICON_COLOR);
+                    icon.setStyle("-fx-background-color: gray");
                 }
             }
         }
@@ -166,7 +166,7 @@ public class LoginController extends RootController {
      * @触发事件 输入框回车、鼠标点击按钮
      */
     @FXML
-    public void login() {
+    void login() {
         //用来处理有输入框内容为空时输入回车的情况
         if (btnLogin.isDisable()) {
             return;
@@ -198,12 +198,12 @@ public class LoginController extends RootController {
             Context.OPERATION.showAlert(Alert.AlertType.ERROR, "错误", "账号信息保存失败");
         }
 
-        //延迟1s后跳转至主页面
+        //延迟2s后跳转至主页面
         threadPool.execute(new Task<>() {
             @Override
             protected Object call() throws InterruptedException {
                 //延迟1s
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(2);
                 return null;
             }
 
@@ -212,12 +212,8 @@ public class LoginController extends RootController {
                 super.updateValue(value);
                 //跳转到登录页面
                 try {
-                    TimeUnit.SECONDS.sleep(1);
                     Context.OPERATION.createStage("main", "main", true);
                     Context.OPERATION.jump("login", "main");
-                } catch (InterruptedException e) {
-                    log.error(e.getMessage());
-                    Thread.currentThread().interrupt();
                 } catch (IOException e) {
                     String msg = "主页面加载失败";
                     log.error(msg);
@@ -233,7 +229,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标点击
      */
     @FXML
-    public void toGitee() {
+    void toGitee() {
         Context.getHost().showDocument("https://gitee.com/juliyang/IMS");
     }
 
@@ -243,7 +239,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标点击按钮
      */
     @FXML
-    public void clearUsername() {
+    void clearUsername() {
         username.set("");
     }
 
@@ -253,7 +249,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标点击按钮
      */
     @FXML
-    public void clearCaptcha() {
+    void clearCaptcha() {
         captcha.set("");
     }
 
@@ -264,7 +260,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标拖动
      */
     @FXML
-    public void dragWindow(MouseEvent mouseEvent) {
+    void dragWindow(MouseEvent mouseEvent) {
         Stage stage = Context.getStageMap().get("login");
         stage.setX(mouseEvent.getScreenX() - offsetX);
         stage.setY(mouseEvent.getScreenY() - offsetY);
@@ -277,7 +273,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标按下
      */
     @FXML
-    public void getOffset(MouseEvent mouseEvent) {
+    void getOffset(MouseEvent mouseEvent) {
         offsetX = mouseEvent.getSceneX();
         offsetY = mouseEvent.getSceneY();
     }
@@ -288,7 +284,7 @@ public class LoginController extends RootController {
      * @触发事件 鼠标点击
      */
     @FXML
-    public void exitWindow() {
+    void exitWindow() {
         Platform.exit();
         System.exit(0);
     }
@@ -298,6 +294,7 @@ public class LoginController extends RootController {
      * @param msg 提示消息
      */
     private void showErrorPrompt(String msg) {
+        txtPrompt.setFill(Paint.valueOf("red"));
         txtPrompt.setText(msg);
         txtPrompt.setVisible(true);
     }
@@ -307,19 +304,19 @@ public class LoginController extends RootController {
         txtPrompt.setFill(Paint.valueOf("green"));
         txtPrompt.setText("登陆成功，请稍后...");
         txtPrompt.setVisible(true);
-        ivLoading.setVisible(true);
+        coverBtnLogin.setVisible(true);
         //设置loading旋转动画
         RotateTransition rotation = new RotateTransition(Duration.seconds(1), ivLoading);
         rotation.setFromAngle(0);
         rotation.setToAngle(360);
         rotation.setByAngle(90);
-        rotation.setCycleCount(5);
+        rotation.setCycleCount(Animation.INDEFINITE);
         rotation.play();
     }
 
-    /** 清除错误提示 */
+    /** 清除提示 */
     private void clearErrorPrompt() {
         txtPrompt.setVisible(false);
-        ivLoading.setVisible(false);
+        coverBtnLogin.setVisible(false);
     }
 }

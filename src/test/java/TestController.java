@@ -1,5 +1,3 @@
-package com.juliy.ims.controller;
-
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;

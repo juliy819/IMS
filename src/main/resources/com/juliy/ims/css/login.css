@@ -1,8 +1,13 @@
-@import "font.css";
+@import "icon.css";
 
-.root {
-    -fx-background-color: rgba(0, 0, 0, 0);
+/*-------------------- 根 --------------------*/
+
+.root, .content {
+    -fx-background-color: TRANSPARENT;
+    -color-main: #66CCCC;
 }
+
+/*-------------------- 左边区域 --------------------*/
 
 .left {
     -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 50.0%, #AEEDFECC 0.0%, #66CCCCFF 100.0%);
@@ -12,14 +17,47 @@
     -fx-border-width: 0;
 }
 
+/*-------------------- 右边区域 --------------------*/
+
 .right {
     -fx-background-color: white;
 }
 
+/*---------- 右-顶部 ----------*/
+
+.btn-exit {
+    -fx-background-color: TRANSPARENT;
+}
+
+.btn-exit Region {
+    -fx-shape: -icon-close;
+    -fx-background-color: -color-main;
+    -fx-pref-width: 15;
+    -fx-pref-height: 15;
+}
+
+.btn-exit:hover Region {
+    -fx-background-color: red;
+}
+
+/*---------- 右-中间 ----------*/
+
 .icon {
-    -fx-font-family: "MyIcon";
-    -fx-font-size: 20;
-    -fx-fill: gray;
+    -fx-background-color: gray;
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+}
+
+.icon-username {
+    -fx-shape: -icon-username;
+}
+
+.icon-password {
+    -fx-shape: -icon-password;
+}
+
+.icon-captcha {
+    -fx-shape: -icon-captcha;
 }
 
 .input {
@@ -29,18 +67,12 @@
 }
 
 .input:focused {
-    -fx-border-color: #66CCCC;
+    -fx-border-color: -color-main;
 }
 
-#btn-login {
+/*---------- 右-底部 ----------*/
+
+.btn-login {
     -fx-background-radius: 40;
-    -fx-background-color: #66CCCC;
-}
-
-.btn-exit {
-    -fx-background-color: TRANSPARENT;
-}
-
-.btn-exit:hover .icon {
-    -fx-fill: red;
+    -fx-background-color: -color-main;
 }

@@ -7,10 +7,10 @@
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane fx:id="basePane" prefHeight="528.0" prefWidth="753.0"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:id="basePane" prefHeight="528.0"
+            prefWidth="753.0"
             xmlns="http://javafx.com/javafx/18"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.juliy.ims.controller.TestController">
+            fx:controller="TestController">
     <!--        <ComboBox fx:id="cbBox" layoutX="293.0" layoutY="126.0"-->
     <!--                  onAction="#cbBox" prefWidth="150.0"/>-->
     <TextField fx:id="field" layoutX="293.0" layoutY="103.0" prefHeight="23.0"
