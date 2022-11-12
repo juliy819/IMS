@@ -1,14 +1,16 @@
+package test;
+
 import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
-import com.juliy.ims.model.CheckCbBoxModel;
+import com.jfoenix.skins.JFXComboBoxListViewSkin;
+import com.juliy.ims.model.CcbBoxModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
 
@@ -30,28 +32,28 @@ public class TestController {
     public TextField listViewSearch;
 
     @FXML
-    public JFXListView<CheckCbBoxModel> listView;
+    public JFXListView<CcbBoxModel> listView;
 
     @FXML
     TitledPane titledPane;
 
-    ObservableList<CheckCbBoxModel> obList = FXCollections.observableArrayList();
+    ObservableList<CcbBoxModel> obList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
-        obList.addAll(new CheckCbBoxModel("不选择"),
-                      new CheckCbBoxModel("a"),
-                      new CheckCbBoxModel("aa"),
-                      new CheckCbBoxModel("aaa"),
-                      new CheckCbBoxModel("a1"),
-                      new CheckCbBoxModel("a12"),
-                      new CheckCbBoxModel("a123"));
+        obList.addAll(new CcbBoxModel("不选择"),
+                      new CcbBoxModel("a"),
+                      new CcbBoxModel("aa"),
+                      new CcbBoxModel("aaa"),
+                      new CcbBoxModel("a1"),
+                      new CcbBoxModel("a12"),
+                      new CcbBoxModel("a123"));
 
         listView.setItems(obList);
 
         listView.setCellFactory(new Callback<>() {
             @Override
-            public ListCell<CheckCbBoxModel> call(ListView<CheckCbBoxModel> param) {
+            public ListCell<CcbBoxModel> call(ListView<CcbBoxModel> param) {
                 return new ListCell<>() {
                     private final JFXCheckBox cb = new JFXCheckBox();
                     private BooleanProperty booleanProperty;
@@ -62,8 +64,8 @@ public class TestController {
                             getListView().getSelectionModel().clearSelection();
                             String selected = param.getItems()
                                     .stream()
-                                    .filter(CheckCbBoxModel::isSelected)
-                                    .map(CheckCbBoxModel::getValue)
+                                    .filter(CcbBoxModel::isSelected)
+                                    .map(CcbBoxModel::getValue)
                                     .sorted()
                                     .map(i -> i + "")
                                     .collect(Collectors.joining(","));
@@ -72,7 +74,7 @@ public class TestController {
                     }
 
                     @Override
-                    protected void updateItem(CheckCbBoxModel item, boolean empty) {
+                    protected void updateItem(CcbBoxModel item, boolean empty) {
                         super.updateItem(item, empty);
                         if (!empty) {
 
@@ -97,16 +99,16 @@ public class TestController {
                 listView.setItems(null);
                 return;
             }
-            FilteredList<CheckCbBoxModel> newList = obList.filtered(s -> s.getValue().contains(newValue));
+            FilteredList<CcbBoxModel> newList = obList.filtered(s -> s.getValue().contains(newValue));
             listView.setItems(newList);
             listView.refresh();
         });
 
 
-        JFXComboBox<CheckCbBoxModel> cbBox = new JFXComboBox<>() {
+        JFXComboBox<CcbBoxModel> cbBox = new JFXComboBox<>() {
             @Override
             protected Skin<?> createDefaultSkin() {
-                ComboBoxListViewSkin<CheckCbBoxModel> skin = new ComboBoxListViewSkin<>(this);
+                JFXComboBoxListViewSkin<CcbBoxModel> skin = new JFXComboBoxListViewSkin<>(this);
                 skin.setHideOnClick(false);
                 return skin;
             }
@@ -123,7 +125,7 @@ public class TestController {
 
         cbBox.setCellFactory(new Callback<>() {
             @Override
-            public ListCell<CheckCbBoxModel> call(ListView<CheckCbBoxModel> checkCbBoxModelListView) {
+            public ListCell<CcbBoxModel> call(ListView<CcbBoxModel> checkCbBoxModelListView) {
                 return new ListCell<>() {
                     private final CheckBox cb = new CheckBox();
                     private BooleanProperty booleanProperty;
@@ -136,16 +138,16 @@ public class TestController {
                     }
 
                     @Override
-                    protected void updateItem(CheckCbBoxModel checkCbBoxModel, boolean empty) {
-                        super.updateItem(checkCbBoxModel, empty);
+                    protected void updateItem(CcbBoxModel ccbBoxModel, boolean empty) {
+                        super.updateItem(ccbBoxModel, empty);
                         if (!empty) {
                             if (booleanProperty != null) {
                                 cb.selectedProperty().unbindBidirectional(booleanProperty);
                             }
-                            booleanProperty = checkCbBoxModel.selectedProperty();
+                            booleanProperty = ccbBoxModel.selectedProperty();
                             cb.selectedProperty().bindBidirectional(booleanProperty);
                             setGraphic(cb);
-                            setText(checkCbBoxModel.getValue() + "");
+                            setText(ccbBoxModel.getValue() + "");
                         } else {
                             setGraphic(null);
                             setText(null);
@@ -157,12 +159,12 @@ public class TestController {
 
         cbBox.setButtonCell(new ListCell<>() {
             @Override
-            protected void updateItem(CheckCbBoxModel checkCbBoxModel, boolean empty) {
-                super.updateItem(checkCbBoxModel, empty);
+            protected void updateItem(CcbBoxModel ccbBoxModel, boolean empty) {
+                super.updateItem(ccbBoxModel, empty);
                 String selected = cbBox.getItems()
                         .stream()
-                        .filter(CheckCbBoxModel::isSelected)
-                        .map(CheckCbBoxModel::getValue).sorted()
+                        .filter(CcbBoxModel::isSelected)
+                        .map(CcbBoxModel::getValue).sorted()
                         .map(i -> i + "")
                         .collect(Collectors.joining(","));
                 setText(selected);
@@ -175,7 +177,7 @@ public class TestController {
                 return;
             }
             System.out.println("'" + newValue + "'");
-            FilteredList<CheckCbBoxModel> newList = obList.filtered(s -> s.getValue().contains(newValue));
+            FilteredList<CcbBoxModel> newList = obList.filtered(s -> s.getValue().contains(newValue));
             cbBox.setItems(newList);
             cbBox.hide();
             cbBox.show();

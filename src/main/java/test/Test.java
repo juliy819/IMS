@@ -1,4 +1,6 @@
-import com.juliy.ims.common.Context;
+package test;
+
+import com.juliy.ims.utils.CommonUtil;
 import com.juliy.ims.utils.DocCodeUtil;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -17,7 +19,7 @@ public class Test extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Context.OPERATION.createStage("test", "test", true).show();
+        CommonUtil.createStage("test", "test", true).show();
         System.out.println(DocCodeUtil.getReturnCode(1L));
         System.out.println(DocCodeUtil.getAgainCode(1L));
         System.out.println(DocCodeUtil.getOrderCode(1L));

@@ -1,9 +1,9 @@
 package com.juliy.ims.controller;
 
 import com.jfoenix.controls.JFXCheckBox;
-import com.juliy.ims.common.Context;
 import com.juliy.ims.service.LoginService;
 import com.juliy.ims.service.impl.LoginServiceImpl;
+import com.juliy.ims.utils.CommonUtil;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import com.leewyatt.rxcontrols.controls.RXTranslationButton;
@@ -30,6 +30,8 @@ import org.apache.log4j.Logger;
 import java.io.IOException;
 import java.util.concurrent.*;
 
+import static com.juliy.ims.common.Context.getContext;
+
 /**
  * 登录页面控制器
  * @author JuLiy
@@ -49,7 +51,6 @@ public class LoginController extends RootController {
     private final LoginService loginService = new LoginServiceImpl();
     /** 线程池 */
     ExecutorService threadPool;
-
     double offsetX;
     double offsetY;
     @FXML
@@ -78,14 +79,14 @@ public class LoginController extends RootController {
 
     @FXML
     void initialize() {
-        bindData();
-        loadProperties();
+        bindProperties();
+        loadSettings();
         initComponents();
         initThreadPool();
     }
 
     /** 将各property与对应的输入框内容绑定 */
-    private void bindData() {
+    private void bindProperties() {
         username.bindBidirectional(tfUsername.textProperty());
         password.bindBidirectional(tfPassword.textProperty());
         captcha.bindBidirectional(tfCaptcha.textProperty());
@@ -93,14 +94,14 @@ public class LoginController extends RootController {
     }
 
     /** 读取保存的设置，并判断是否自动填入用户名和密码 */
-    private void loadProperties() {
+    private void loadSettings() {
         //读取配置文件
         try {
-            loginService.loadProperties();
+            loginService.loadSettings();
         } catch (IOException e) {
             String msg = "读取配置文件失败，请检查文件位置";
             log.error(msg);
-            Context.OPERATION.createAlert(Alert.AlertType.ERROR, "错误", msg);
+            CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", msg);
         }
 
         //若上次勾选了记住密码，则自动填入上次登录账号信息
@@ -195,7 +196,7 @@ public class LoginController extends RootController {
             loginService.saveLoginInfo(loginUsername, loginPassword, String.valueOf(remember.get()));
         } catch (IOException e) {
             log.error("写入info.properties文件失败，请确认文件位置是否正确");
-            Context.OPERATION.showAlert(Alert.AlertType.ERROR, "错误", "账号信息保存失败");
+            CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "账号信息保存失败");
         }
 
         //延迟2s后跳转至主页面
@@ -212,12 +213,12 @@ public class LoginController extends RootController {
                 super.updateValue(value);
                 //跳转到登录页面
                 try {
-                    Context.OPERATION.createStage("main", "main", true);
-                    Context.OPERATION.jump("login", "main");
+                    CommonUtil.createStage("main", "main", true);
+                    CommonUtil.jump("login", "main");
                 } catch (IOException e) {
                     String msg = "主页面加载失败";
                     log.error(msg);
-                    Context.OPERATION.showAlert(Alert.AlertType.ERROR, "系统错误", msg);
+                    CommonUtil.showAlert(Alert.AlertType.ERROR, "系统错误", msg);
                 }
             }
         });
@@ -230,7 +231,7 @@ public class LoginController extends RootController {
      */
     @FXML
     void toGitee() {
-        Context.getHost().showDocument("https://gitee.com/juliyang/IMS");
+        getContext().getHost().showDocument("https://gitee.com/juliyang/IMS");
     }
 
     /**
@@ -261,7 +262,7 @@ public class LoginController extends RootController {
      */
     @FXML
     void dragWindow(MouseEvent mouseEvent) {
-        Stage stage = Context.getStageMap().get("login");
+        Stage stage = getContext().getStageMap().get("login");
         stage.setX(mouseEvent.getScreenX() - offsetX);
         stage.setY(mouseEvent.getScreenY() - offsetY);
     }

@@ -1,5 +1,6 @@
 package com.juliy.ims.service.impl;
 
+import com.juliy.ims.common.CustomException;
 import com.juliy.ims.dao.UserDao;
 import com.juliy.ims.dao.impl.UserDaoImpl;
 import com.juliy.ims.entity.User;
@@ -28,9 +29,11 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public void loadProperties() throws IOException {
+    public void loadSettings() throws IOException {
         try (InputStream in = new FileInputStream(PROPERTIES_PATH)) {
             infoProps.load(in);
+        } catch (Exception e) {
+            throw new CustomException("配置文件加载失败");
         }
     }
 

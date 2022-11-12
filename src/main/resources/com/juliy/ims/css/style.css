@@ -1,21 +1,303 @@
-.floatPane {
-    -fx-background-color: white;
+@import "icon.css";
+
+/*---------------------------------------- 通用 ----------------------------------------*/
+
+.root {
+    color-main: #66CCCC;
+    color-hover: derive(color-main, 80%);
+    color-border: lightgray;
+    color-background: white;
+    color-background-dark: #f4f6f9;
+    color-shadow: #afafaf;
 }
 
-.floatPane:hover {
-    -fx-effect: dropshadow(two-pass-box, #afafaf, 10.0, 0, 2, 2);
+/*---------- 图标按钮 ----------*/
+
+.btn-common {
+    -fx-background-color: TRANSPARENT;
 }
 
-.filter-cbBox:hover {
-    /*-fx-border-color: #0db3a6;*/
-    /*-fx-border-width: 1 1 0 1;*/
-    /*-fx-border-radius: 2;*/
+.btn-common Region {
+    -fx-background-color: color-main;
 }
 
-.ctrl-imageView-container {
-    -fx-border-color: #ededed;
+/*---------- 浮动面板 ----------*/
+
+.pane-float {
+    -fx-background-color: color-background;
+    -fx-background-radius: 10;
 }
 
-.ctrl-imageView-container:hover {
-    -fx-background-color: #f0f2f5;
+.pane-float:hover {
+    -fx-effect: dropshadow(three-pass-box, color-shadow, 10.0, 0, 2, 2);
+}
+
+/*---------- 输入框 ----------*/
+
+.rx-text-field:focused {
+    -fx-border-color: color-main;
+    -fx-background-color: TRANSPARENT;
+}
+
+.tf-search {
+    -fx-background-color: TRANSPARENT;
+    -fx-border-color: color-border;
+    -fx-border-radius: 10;
+}
+
+.tf-search:focused {
+
+}
+
+/*---------- 下拉框 ----------*/
+
+.combo-box-base {
+    -fx-background-color: null;
+    -fx-border-color: color-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.combo-box-base:showing {
+    -fx-border-color: color-main;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+}
+
+.combo-box-popup .list-view .list-cell:hover,
+.combo-box-popup .list-view .list-cell:focused {
+    -fx-background-color: color-main;
+}
+
+.table-view > .virtual-flow > .scroll-bar .thumb,
+.combo-box-popup .list-view .scroll-bar .thumb {
+    -fx-background-color: #cdcdcd;
+}
+
+.table-view > .virtual-flow > .scroll-bar .thumb:hover,
+.combo-box-popup .list-view .scroll-bar .thumb:hover {
+    -fx-background-color: #a6a6a6;
+}
+
+.table-view .scroll-bar .thumb:pressed,
+.combo-box-popup .list-view .scroll-bar .thumb:pressed {
+    -fx-background-color: #606060;
+}
+
+/*打算修改下拉框中的复选框样式，但不知道如何选择到该复选框*/
+/*.combo-box .list-view .check-box-list-cell .check-box {*/
+/*    -fx-background-color: red;*/
+/*}*/
+
+.combo-box .check-box .box {
+    -fx-background-color: TRANSPARENT;
+    -fx-border-color: color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+
+/*---------- 表格 ----------*/
+
+.table-view {
+    -fx-background-insets: 0 1 1 1;
+    -fx-focus-color: TRANSPARENT;
+    -fx-faint-focus-color: TRANSPARENT;
+    -fx-border-width: 0;
+}
+
+/*.table-view .column-header-background {*/
+/*    !*-fx-background-color: color-border;*!*/
+/*    -fx-border-color: color-border;*/
+/*    -fx-border-width: 1;*/
+/*}*/
+
+/*.table-view .table-column {*/
+/*    -fx-background-color: null;*/
+/*}*/
+
+.table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:hover,
+.table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:focused {
+    -fx-background-color: derive(color-main, 80%);
+}
+
+
+/*---------------------------------------- 登录页面 ----------------------------------------*/
+
+.login-root,
+.login-content {
+    -fx-background-color: TRANSPARENT;
+}
+
+/*-------------------- 左边区域 --------------------*/
+.login-left {
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 50.0%, #AEEDFECC 0.0%, #66CCCCFF 100.0%);
+}
+
+.link {
+    -fx-border-width: 0;
+}
+
+/*-------------------- 右边区域 --------------------*/
+
+.login-right {
+    -fx-background-color: color-background;
+}
+
+/*---------- 右-顶部 ----------*/
+
+.btn-exit Region {
+    -fx-shape: icon-close;
+}
+
+.btn-exit:hover Region {
+    -fx-background-color: red;
+}
+
+/*---------- 右-中间 ----------*/
+
+.icon {
+    -fx-background-color: gray;
+    -fx-pref-height: 20;
+    -fx-pref-width: 20;
+}
+
+.icon-username {
+    -fx-shape: icon-username;
+}
+
+.icon-password {
+    -fx-shape: icon-password;
+}
+
+.icon-captcha {
+    -fx-shape: icon-captcha;
+}
+
+.tf-login {
+    -fx-background-color: TRANSPARENT;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: color-border;
+}
+
+.tf-login:focused {
+    -fx-border-color: color-main;
+    -fx-border-radius: 0;
+}
+
+/*---------- 右-底部 ----------*/
+
+.btn-login {
+    -fx-background-radius: 40;
+    -fx-background-color: color-main;
+}
+
+/*---------------------------------------- 主页面 ----------------------------------------*/
+
+.main-content {
+    -fx-background-color: color-background;
+    -fx-border-color: color-border;
+}
+
+/*-------------------- 顶部区域 --------------------*/
+
+.main-top {
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: color-border;
+}
+
+.menu-bar {
+    -fx-background-color: null;
+}
+
+
+.btn-minimize Region {
+    -fx-shape: icon-minimize;
+}
+
+.btn-maximize Region {
+    -fx-shape: icon-maximize;
+}
+
+.btn-maximize:selected Region {
+    -fx-shape: icon-unmaximize;
+}
+
+.btn-minimize:hover,
+.btn-maximize:hover {
+    -fx-background-color: color-hover;
+}
+
+.btn-exit Region {
+    -fx-shape: icon-close;
+}
+
+.btn-exit:hover Region {
+    -fx-background-color: red;
+}
+
+/*-------------------- 左边区域 --------------------*/
+
+.tree-view {
+    -fx-focus-color: TRANSPARENT;
+    -fx-faint-focus-color: TRANSPARENT;
+    -fx-background-color: TRANSPARENT;
+}
+
+.tree-cell:selected {
+    -fx-background-color: color-main;
+}
+
+.tree-cell > .tree-disclosure-node > .arrow {
+    -fx-padding: 0;
+}
+
+/*-------------------- 右边区域 --------------------*/
+
+.btn-side-control Region {
+    -fx-shape: icon-collapse;
+}
+
+.btn-side-control:selected Region {
+    -fx-rotate: 180;
+}
+
+.btn-side-control:hover {
+    -fx-background-color: color-hover;
+}
+
+/*---------------------------------------- 货品列表页面 ----------------------------------------*/
+
+.goods-list-content {
+    -fx-background-color: color-background-dark;
+}
+
+/*-------------------- 顶部区域 --------------------*/
+
+
+/*-------------------- 左边区域 --------------------*/
+/*-------------------- 右边区域 --------------------*/
+/*---------- 右-底部 ----------*/
+
+.page-rule, .page-rule:focused {
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.page-cur {
+    -fx-background-color: null;
+    -fx-border-color: color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.btn-last Region {
+    -fx-shape: icon-left-arrow;
+}
+
+.btn-next Region {
+    -fx-shape: icon-right-arrow;
+}
+
+.btn-last:hover, .btn-next:hover {
+    -fx-background-color: color-hover;
 }

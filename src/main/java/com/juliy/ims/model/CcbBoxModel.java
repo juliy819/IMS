@@ -10,35 +10,35 @@ import javafx.beans.property.StringProperty;
  * @author JuLiy
  * @date 2022/10/11 8:51
  */
-public class CheckCbBoxModel {
+public class CcbBoxModel {
     private final StringProperty value = new SimpleStringProperty();
     private final BooleanProperty selected = new SimpleBooleanProperty();
 
-    public CheckCbBoxModel(String value) {
+    public CcbBoxModel(String value) {
         setValue(value);
     }
-    
+
     public String getValue() {
         return value.get();
-    }
-
-    public StringProperty valueProperty() {
-        return value;
     }
 
     public void setValue(String value) {
         this.value.set(value);
     }
 
+    public StringProperty valueProperty() {
+        return value;
+    }
+
     public boolean isSelected() {
         return selected.get();
     }
 
-    public BooleanProperty selectedProperty() {
-        return selected;
-    }
-
     public void setSelected(boolean selected) {
         this.selected.set(selected);
+    }
+
+    public BooleanProperty selectedProperty() {
+        return selected;
     }
 }

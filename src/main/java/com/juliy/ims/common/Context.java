@@ -7,50 +7,58 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 上下文类，用于管理stage、controller等
+ * 上下文类，单例模式
  * @author JuLiy
  * @date 2022/9/29 12:07
  */
 public class Context {
-
-    /** 常用操作 */
-    public static final Operation OPERATION = new Operation();
-    /** 存储已创建的控制器，key为对应的控制器名称 */
-    private static final Map<String, Object> CONTROLLER_MAP = new HashMap<>();
-    /** 存储已创建的窗口，key为对应的窗口名称 */
-    private static final Map<String, Stage> STAGE_MAP = new HashMap<>();
-
+    private static Context context;
+    /** 存储控制器，key为对应的控制器名称 例:login */
+    private final HashMap<String, Object> controllerMap = new HashMap<>();
+    /** 存储已创建的窗口，key为对应的窗口名称 例:login */
+    private final HashMap<String, Stage> stageMap = new HashMap<>();
     /** Application类中获取的host对象 */
-    private static HostServices host;
+    private HostServices host;
 
     private Context() {}
+
+    /**
+     * 获取Context类实例
+     * @return 返回本类的实例；若不存在，则先创建
+     */
+    public static Context getContext() {
+        if (context == null) {
+            context = new Context();
+        }
+        return context;
+    }
 
     /**
      * 获取controller集合
      * @return controller集合
      */
-    public static Map<String, Object> getControllerMap() {
-        return CONTROLLER_MAP;
+    public Map<String, Object> getControllerMap() {
+        return controllerMap;
     }
 
     /**
      * 获取stage集合
      * @return stage集合
      */
-    public static Map<String, Stage> getStageMap() {
-        return STAGE_MAP;
+    public Map<String, Stage> getStageMap() {
+        return stageMap;
     }
 
     /**
      * 获取host
      * @return host
      */
-    public static HostServices getHost() {
+    public HostServices getHost() {
         return host;
     }
 
     /** 设置host */
-    public static void setHost(HostServices host) {
-        Context.host = host;
+    public void setHost(HostServices host) {
+        this.host = host;
     }
 }

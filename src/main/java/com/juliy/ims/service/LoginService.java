@@ -20,7 +20,7 @@ public interface LoginService {
      * 加载配置文件
      * @throws IOException 若配置文件位置有误
      */
-    void loadProperties() throws IOException;
+    void loadSettings() throws IOException;
 
     /**
      * 判断上次是否勾选了记住密码

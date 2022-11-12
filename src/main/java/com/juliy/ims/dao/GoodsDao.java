@@ -21,5 +21,5 @@ public interface GoodsDao {
      * @param id 货品编号
      * @return 指定货品对象；查询失败情况：对象为null
      */
-    Goods queryGoodsById(Integer id);
+    Goods queryGoods(Integer id);
 }

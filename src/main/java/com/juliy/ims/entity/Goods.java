@@ -17,6 +17,8 @@ public class Goods {
     private Integer goodsId;
     /** 货品类别编号 */
     private Integer goodsTypeId;
+    /** 货品类别名称 */
+    private String goodsTypeName;
     /** 货品名称 */
     private String goodsName;
     /** 货品规格 */
@@ -29,7 +31,7 @@ public class Goods {
     private BigDecimal refSellPrice;
     /** 最高库存 */
     private Integer maxQty;
-    /** 最高库存 */
+    /** 最低库存 */
     private Integer minQty;
     /** 备注 */
     private String goodsComment;
