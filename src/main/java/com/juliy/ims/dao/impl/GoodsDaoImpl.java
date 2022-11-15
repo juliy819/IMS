@@ -23,10 +23,15 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public List<Goods> queryAllGoods() {
+        String sql = "select a.*, b.goods_type_name from t_goods a, t_goods_type b " +
+                "where a.goods_type_id = b.goods_type_id and a.is_deleted != 1";
+        return queryGoods(sql);
+    }
+
+    @Override
+    public List<Goods> queryGoods(String sql) {
         List<Goods> list = new ArrayList<>();
         conn = JdbcUtil.getConnection();
-        String sql = "select a.*, b.goods_type_name  from t_goods a, t_goods_type b " +
-                "where a.goods_type_id = b.goods_type_id";
         try {
             pStatement = conn.prepareStatement(sql);
             rs = pStatement.executeQuery();
@@ -41,28 +46,6 @@ public class GoodsDaoImpl implements GoodsDao {
             JdbcUtil.release(rs, pStatement, conn);
         }
         return list;
-    }
-
-    @Override
-    public Goods queryGoods(Integer id) {
-        Goods goods = null;
-        conn = JdbcUtil.getConnection();
-        String sql = "select a.*, b.goods_type_name from t_goods a, t_goods_type b " +
-                "where goods_id = ? and a.goods_type_id = b.goods_type_id ";
-        try {
-            pStatement = conn.prepareStatement(sql);
-            pStatement.setInt(1, id);
-            rs = pStatement.executeQuery();
-            while (rs.next()) {
-                goods = new Goods();
-                wrapGoods(goods);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            JdbcUtil.release(rs, pStatement, conn);
-        }
-        return goods;
     }
 
     /** 将结果集中的数据封装到对象中 */

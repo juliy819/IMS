@@ -12,11 +12,14 @@ import java.util.Map;
  * @date 2022/9/29 12:07
  */
 public class Context {
-    private static Context context;
+    private static final Context context = new Context();
+
     /** 存储控制器，key为对应的控制器名称 例:login */
     private final HashMap<String, Object> controllerMap = new HashMap<>();
+
     /** 存储已创建的窗口，key为对应的窗口名称 例:login */
     private final HashMap<String, Stage> stageMap = new HashMap<>();
+
     /** Application类中获取的host对象 */
     private HostServices host;
 
@@ -27,9 +30,6 @@ public class Context {
      * @return 返回本类的实例；若不存在，则先创建
      */
     public static Context getContext() {
-        if (context == null) {
-            context = new Context();
-        }
         return context;
     }
 

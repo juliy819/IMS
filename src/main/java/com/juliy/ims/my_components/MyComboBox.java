@@ -1,6 +1,5 @@
 package com.juliy.ims.my_components;
 
-import com.juliy.ims.model.CcbBoxModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;

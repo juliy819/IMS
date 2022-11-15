@@ -1,6 +1,5 @@
 package com.juliy.ims.my_components;
 
-import com.juliy.ims.model.CcbBoxModel;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -43,8 +42,9 @@ public class CbBoxSearcher implements ChangeListener<String> {
             };
             task.valueProperty().addListener((ob, ov, nv) -> {
                 FilteredList<CcbBoxModel> newList = list.filtered(s -> s.getValue().contains(nv));
-                cbBox.setItems(newList);
                 cbBox.hide();
+                cbBox.setVisibleRowCount(newList.size());
+                cbBox.setItems(newList);
                 cbBox.show();
             });
             Thread t = new Thread(task);

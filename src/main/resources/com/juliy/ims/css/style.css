@@ -68,6 +68,10 @@
     -fx-background-color: color-main;
 }
 
+.combo-box-popup .list-view .list-cell:empty {
+    -fx-background-color: TRANSPARENT;
+}
+
 .table-view > .virtual-flow > .scroll-bar .thumb,
 .combo-box-popup .list-view .scroll-bar .thumb {
     -fx-background-color: #cdcdcd;

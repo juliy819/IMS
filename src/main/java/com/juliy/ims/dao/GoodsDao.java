@@ -12,14 +12,14 @@ import java.util.List;
 public interface GoodsDao {
     /**
      * 查询所有货品信息
-     * @return 货品列表；查询失败情况：列表长度为0
+     * @return 货品列表；若不存在则列表长度为0
      */
     List<Goods> queryAllGoods();
 
     /**
-     * 根据货品编号查询指定货品信息
-     * @param id 货品编号
-     * @return 指定货品对象；查询失败情况：对象为null
+     * 查询指定货品
+     * @param sql 查询语句
+     * @return 符合要求的货品列表；若不存在则列表长度为0
      */
-    Goods queryGoods(Integer id);
+    List<Goods> queryGoods(String sql);
 }

@@ -1,4 +1,4 @@
-package com.juliy.ims.model;
+package com.juliy.ims.my_components;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -26,17 +26,11 @@ public class CcbBoxModel {
         this.value.set(value);
     }
 
-    public StringProperty valueProperty() {
-        return value;
-    }
 
     public boolean isSelected() {
         return selected.get();
     }
 
-    public void setSelected(boolean selected) {
-        this.selected.set(selected);
-    }
 
     public BooleanProperty selectedProperty() {
         return selected;

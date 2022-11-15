@@ -1,8 +1,8 @@
 package com.juliy.ims.controller;
 
 import com.juliy.ims.entity.Goods;
-import com.juliy.ims.model.CcbBoxModel;
 import com.juliy.ims.my_components.CbBoxSearcher;
+import com.juliy.ims.my_components.CcbBoxModel;
 import com.juliy.ims.my_components.MyComboBox;
 import com.juliy.ims.my_components.MyTableCell;
 import com.juliy.ims.service.GoodsListService;
@@ -21,7 +21,6 @@ import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,11 +30,12 @@ import java.util.Map;
  */
 public class GoodsListController extends RootController {
 
-    private static final Logger log = Logger.getLogger(GoodsListController.class);
     final SimpleStringProperty totalGoodsNum = new SimpleStringProperty();
     final SimpleStringProperty curPage = new SimpleStringProperty();
     final SimpleStringProperty totalPage = new SimpleStringProperty();
-    final SimpleIntegerProperty pageSize = new SimpleIntegerProperty();
+    final SimpleIntegerProperty pageSize = new SimpleIntegerProperty(20);
+
+    private final Logger log = Logger.getLogger(GoodsListController.class);
     private final GoodsListService service = new GoodsListServiceImpl();
     private final MyComboBox cbbGoodsType = new MyComboBox();
     private final MyComboBox cbbGoodsId = new MyComboBox();
@@ -46,7 +46,7 @@ public class GoodsListController extends RootController {
     ObservableList<CcbBoxModel> goodsNameList;
     ObservableList<CcbBoxModel> goodsSpecList;
     ObservableList<Goods> showList;
-    private List<Goods> goodsList;
+    ObservableList<Goods> goodsList;
     @FXML
     private AnchorPane paneGoodsType;
     @FXML
@@ -98,11 +98,10 @@ public class GoodsListController extends RootController {
 
     @FXML
     private void initialize() {
-        goodsList = service.getGoodsList();
-
         bindProperties();
         initComponents();
         initData();
+        log.info("货品列表页面加载完成");
     }
 
     /** 将各property与对应的输入框内容绑定 */
@@ -118,18 +117,6 @@ public class GoodsListController extends RootController {
         curPage.bindBidirectional(tfCurPage.textProperty());
     }
 
-    /** 将从数据库获取的数据加载到各个组件中 */
-    private void initData() {
-        goodsTypeList.addAll(goodsList.stream().map(Goods::getGoodsTypeName).distinct().map(CcbBoxModel::new).toList());
-        goodsIdList.addAll(goodsList.stream().map(Goods::getGoodsId).map(String::valueOf).map(CcbBoxModel::new).toList());
-        goodsNameList.addAll(goodsList.stream().map(Goods::getGoodsName).map(CcbBoxModel::new).toList());
-        goodsSpecList.addAll(goodsList.stream().map(Goods::getGoodsSpec).distinct().map(CcbBoxModel::new).toList());
-
-        totalGoodsNum.set(String.valueOf(goodsList.size()));
-        pageSize.set(20);
-        showList.addAll(goodsList.stream().limit(pageSize.get()).toList());
-    }
-
     /** 初始化各组件，如设置位置、监听等 */
     private void initComponents() {
         addCustomComponents();
@@ -141,14 +128,17 @@ public class GoodsListController extends RootController {
         cbbPageRule.getSelectionModel().select(0);
         cbbPageRule.getSelectionModel()
                 .selectedItemProperty()
-                .addListener((ob, ov, nv) -> pageSize.set(Integer.parseInt(nv.split("条")[0])));
+                .addListener((ob, ov, nv) -> {
+                    pageSize.set(Integer.parseInt(nv.split("条")[0]));
+                    curPage.set("1");
+                    updateTableView();
+                    updateFilteredGoodsNum();
+                });
 
-        pageSize.addListener((ob, ov, nv) -> {
-            int totalCount = Integer.parseInt(totalGoodsNum.get());
-            int size = nv.intValue();
-            int pageNum = totalCount % size == 0 ? totalCount / size : totalCount / size + 1;
-            totalPage.set(String.valueOf(pageNum));
-        });
+        cbbGoodsType.setOnHidden(event -> filterGoods());
+        cbbGoodsId.setOnHidden(event -> filterGoods());
+        cbbGoodsName.setOnHidden(event -> filterGoods());
+        cbbGoodsSpec.setOnHidden(event -> filterGoods());
     }
 
     /** 添加自定义组件 */
@@ -210,9 +200,20 @@ public class GoodsListController extends RootController {
         });
     }
 
+    /** 将从数据库获取的数据加载到各个组件中 */
+    private void initData() {
+        filterGoods();
+        totalGoodsNum.set(String.valueOf(goodsList.size()));
+
+        goodsTypeList.addAll(goodsList.stream().map(Goods::getGoodsTypeName).distinct().map(CcbBoxModel::new).toList());
+        goodsIdList.addAll(goodsList.stream().map(Goods::getGoodsId).map(String::valueOf).map(CcbBoxModel::new).toList());
+        goodsNameList.addAll(goodsList.stream().map(Goods::getGoodsName).map(CcbBoxModel::new).toList());
+        goodsSpecList.addAll(goodsList.stream().map(Goods::getGoodsSpec).distinct().map(CcbBoxModel::new).toList());
+    }
+
     /**
      * 表格跳转至指定页
-     * @触发组件 pageJumpField
+     * @触发组件 tfPageJump
      * @触发事件 回车
      */
     @FXML
@@ -221,7 +222,7 @@ public class GoodsListController extends RootController {
             CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页数不能为空！");
             return;
         }
-        changeShowList();
+        updateTableView();
     }
 
     /**
@@ -235,8 +236,7 @@ public class GoodsListController extends RootController {
             return;
         }
         curPage.set(String.valueOf(Integer.parseInt(curPage.get()) - 1));
-        changeShowList();
-        log.debug("toLastPage");
+        updateTableView();
     }
 
     /**
@@ -250,15 +250,32 @@ public class GoodsListController extends RootController {
             return;
         }
         curPage.set(String.valueOf(Integer.parseInt(curPage.get()) + 1));
-        changeShowList();
-        log.debug("toNextPage");
+        updateTableView();
     }
 
-    private void changeShowList() {
+    /** 更新表格显示的页面 */
+    private void updateTableView() {
         int targetPage = Integer.parseInt(curPage.get());
         long skipNum = (long) (targetPage - 1) * pageSize.get();
         showList.clear();
         showList.addAll(goodsList.stream().skip(skipNum).limit(pageSize.get()).toList());
-        log.debug("表格跳转至:" + targetPage + "页");
+    }
+
+    private void updateFilteredGoodsNum() {
+        int totalCount = goodsList.size();
+        int size = pageSize.get();
+        int pageNum = totalCount % size == 0 ? totalCount / size : totalCount / size + 1;
+        totalPage.set(String.valueOf(pageNum));
+    }
+
+    private void filterGoods() {
+        String typeStr = cbbGoodsType.getButtonCell().getText();
+        String idStr = cbbGoodsId.getButtonCell().getText();
+        String nameStr = cbbGoodsName.getButtonCell().getText();
+        String specStr = cbbGoodsSpec.getButtonCell().getText();
+        goodsList = service.getGoodsList(typeStr, idStr, nameStr, specStr);
+        curPage.set("1");
+        updateTableView();
+        updateFilteredGoodsNum();
     }
 }

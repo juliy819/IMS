@@ -35,7 +35,7 @@
                         <Font size="14.0" />
                     </font>
                 </Text>
-                <RXTextField fx:id="tfGoodsType" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                <RXTextField fx:id="tfGoodsType" accessibleText="goodsType" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
             <CheckComboBox layoutX="91.0" layoutY="40.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -51,7 +51,7 @@
                         <Font size="14.0" />
                     </font>
                 </Text>
-                <RXTextField fx:id="tfGoodsId" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                <RXTextField fx:id="tfGoodsId" accessibleText="goodsId" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
                 <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -67,7 +67,7 @@
                         <Font size="14.0" />
                     </font>
                 </Text>
-                <RXTextField fx:id="tfGoodsName" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                <RXTextField fx:id="tfGoodsName" accessibleText="goodsName" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
                 <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -83,7 +83,7 @@
                         <Font size="14.0" />
                     </font>
                 </Text>
-                <RXTextField fx:id="tfGoodsSpec" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                <RXTextField fx:id="tfGoodsSpec" accessibleText="goodsSpec" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
                 <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
@@ -100,7 +100,7 @@
                     <center>
                         <Text fx:id="txtTotalGoods" strokeType="OUTSIDE" strokeWidth="0.0" text="N">
                             <font>
-                                <Font size="96.0" />
+                                <Font size="50.0" />
                             </font>
                         </Text>
                     </center>

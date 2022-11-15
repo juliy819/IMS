@@ -4,7 +4,7 @@ import com.jfoenix.controls.JFXCheckBox;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.skins.JFXComboBoxListViewSkin;
-import com.juliy.ims.model.CcbBoxModel;
+import com.juliy.ims.my_components.CcbBoxModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
