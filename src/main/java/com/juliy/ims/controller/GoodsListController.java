@@ -12,15 +12,21 @@ import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -95,13 +101,52 @@ public class GoodsListController extends RootController {
     private Text txtTotalGoods;
     @FXML
     private Text txtTotalPage;
+    @FXML
+    private BorderPane paneChart;
+    @FXML
+    private VBox paneTable;
+    @FXML
+    private AnchorPane paneContent;
+    @FXML
+    private StackPane paneFull;
 
     @FXML
     private void initialize() {
         bindProperties();
         initComponents();
         initData();
+        initChart();
+
         log.info("货品列表页面加载完成");
+    }
+
+    /** 初始化图表 */
+    private void initChart() {
+        //统计每个货品类别对应的货品数量
+        HashMap<String, Integer> typeMap = new HashMap<>();
+        goodsTypeList.forEach(model -> typeMap.put(model.getValue(), 0));
+        goodsList.forEach(goods -> {
+            Integer num = typeMap.get(goods.getGoodsTypeName());
+            num++;
+            typeMap.put(goods.getGoodsTypeName(), num);
+        });
+
+        //将数据添加进图表中
+        ObservableList<PieChart.Data> pieList = pieGoodsType.getData();
+        double total = Double.parseDouble(totalGoodsNum.get());
+        typeMap.forEach((typeName, num) -> {
+            double percentage = num / total;
+            String percentageStr = String.format("%.2f", percentage * 100) + "%";
+            PieChart.Data data = new PieChart.Data(typeName + "-" + percentageStr, percentage);
+            //要先添加进图表中才能调用getNode方法
+            pieList.add(data);
+            Tooltip tip = new Tooltip(percentageStr);
+            Tooltip.install(data.getNode(), tip);
+        });
+
+        //设置图表过小时不显示标签，变大后再显示  300是选的大概值
+        pieGoodsType.widthProperty()
+                .addListener((ob, ov, nv) -> pieGoodsType.setLabelsVisible(nv.intValue() >= 300));
     }
 
     /** 将各property与对应的输入框内容绑定 */
@@ -217,7 +262,7 @@ public class GoodsListController extends RootController {
      * @触发事件 回车
      */
     @FXML
-    public void jumpPage() {
+    void jumpPage() {
         if ("".equals(curPage.get())) {
             CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页数不能为空！");
             return;
@@ -231,7 +276,7 @@ public class GoodsListController extends RootController {
      * @触发事件 点击
      */
     @FXML
-    public void toLastPage() {
+    void toLastPage() {
         if (Integer.parseInt(curPage.get()) == 1) {
             return;
         }
@@ -245,7 +290,7 @@ public class GoodsListController extends RootController {
      * @触发事件 点击
      */
     @FXML
-    public void toNextPage() {
+    void toNextPage() {
         if (curPage.get().equals(totalPage.get())) {
             return;
         }
@@ -253,12 +298,31 @@ public class GoodsListController extends RootController {
         updateTableView();
     }
 
+    /**
+     * 设置组件全屏显示
+     * @param event 点击事件
+     * @触发组件 btnTableFullScreen, btnChartFullScreen
+     * @触发事件 点击
+     */
+    @FXML
+    void setFullScreen(Event event) {
+        Node btn = (Node) event.getSource();
+        Node pane = btn.getParent().getParent();
+        if (!paneFull.getChildren().contains(pane)) {
+            paneFull.getChildren().add(pane);
+        } else {
+            paneContent.getChildren().add(pane);
+        }
+    }
+
+
     /** 更新表格显示的页面 */
     private void updateTableView() {
         int targetPage = Integer.parseInt(curPage.get());
         long skipNum = (long) (targetPage - 1) * pageSize.get();
         showList.clear();
         showList.addAll(goodsList.stream().skip(skipNum).limit(pageSize.get()).toList());
+        tableGoodsList.refresh();
     }
 
     private void updateFilteredGoodsNum() {

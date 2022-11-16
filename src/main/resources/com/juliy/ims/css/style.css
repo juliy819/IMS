@@ -21,7 +21,31 @@
     -fx-background-color: color-main;
 }
 
-/*---------- 浮动面板 ----------*/
+.btn-last Region {
+    -fx-shape: icon-left-arrow;
+}
+
+.btn-next Region {
+    -fx-shape: icon-right-arrow;
+}
+
+.btn-last:hover, .btn-next:hover {
+    -fx-background-color: color-hover;
+}
+
+.btn-full-screen Region {
+    -fx-shape: icon-full-screen;
+}
+
+.btn-full-screen:selected Region {
+    -fx-shape: icon-un-full-screen;
+}
+
+.btn-full-screen:hover {
+    -fx-background-color: color-hover;
+}
+
+/*---------- 面板 ----------*/
 
 .pane-float {
     -fx-background-color: color-background;
@@ -30,6 +54,14 @@
 
 .pane-float:hover {
     -fx-effect: dropshadow(three-pass-box, color-shadow, 10.0, 0, 2, 2);
+}
+
+.pane-full-screen .btn-full-screen {
+    visibility: hidden;
+}
+
+.pane-full-screen:hover .btn-full-screen {
+    visibility: visible;
 }
 
 /*---------- 输入框 ----------*/
@@ -45,8 +77,11 @@
     -fx-border-radius: 10;
 }
 
-.tf-search:focused {
-
+.tf-page-cur {
+    -fx-background-color: null;
+    -fx-border-color: color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
 }
 
 /*---------- 下拉框 ----------*/
@@ -87,14 +122,14 @@
     -fx-background-color: #606060;
 }
 
-/*打算修改下拉框中的复选框样式，但不知道如何选择到该复选框*/
-/*.combo-box .list-view .check-box-list-cell .check-box {*/
-/*    -fx-background-color: red;*/
-/*}*/
-
 .combo-box .check-box .box {
     -fx-background-color: TRANSPARENT;
     -fx-border-color: color-border;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.page-rule, .page-rule:focused {
     -fx-border-width: 1;
     -fx-border-radius: 5;
 }
@@ -124,6 +159,10 @@
     -fx-background-color: derive(color-main, 80%);
 }
 
+.table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:empty:hover {
+    -fx-graphic: null;
+}
+
 
 /*---------------------------------------- 登录页面 ----------------------------------------*/
 
@@ -134,7 +173,7 @@
 
 /*-------------------- 左边区域 --------------------*/
 .login-left {
-    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 50.0%, #AEEDFECC 0.0%, #66CCCCFF 100.0%);
+    -fx-background-color: linear-gradient(from 0.0% 0.0% to 100.0% 100.0%, #66ddddaa 0.0%, #66ccccff 100.0%);
 }
 
 .link {
@@ -280,28 +319,4 @@
 
 /*-------------------- 左边区域 --------------------*/
 /*-------------------- 右边区域 --------------------*/
-/*---------- 右-底部 ----------*/
 
-.page-rule, .page-rule:focused {
-    -fx-border-width: 1;
-    -fx-border-radius: 5;
-}
-
-.page-cur {
-    -fx-background-color: null;
-    -fx-border-color: color-border;
-    -fx-border-width: 1;
-    -fx-border-radius: 5;
-}
-
-.btn-last Region {
-    -fx-shape: icon-left-arrow;
-}
-
-.btn-next Region {
-    -fx-shape: icon-right-arrow;
-}
-
-.btn-last:hover, .btn-next:hover {
-    -fx-background-color: color-hover;
-}

@@ -30,21 +30,20 @@ public class MainController extends RootController {
     private static final Logger log = Logger.getLogger(MainController.class);
     double offsetX;
     double offsetY;
+    TranslateTransition hideSidePaneTransition;
+    TranslateTransition showSidePaneTransition;
     @FXML
-    private VBox sidePane;
+    private VBox paneSide;
     @FXML
-    private AnchorPane mainPane;
+    private AnchorPane paneMain;
     @FXML
     private TreeView<String> treeFunctions;
     @FXML
-    private StackPane carouselPane;
+    private StackPane paneCarousel;
     @FXML
     private ToggleButton btnSideCtrl;
     @FXML
-    private Text pageName;
-    private TranslateTransition hideSidePaneTransition;
-    private TranslateTransition showSidePaneTransition;
-
+    private Text txtPageName;
 
     @FXML
     private void initialize() {
@@ -57,20 +56,20 @@ public class MainController extends RootController {
 
     /** 初始化动画 */
     private void initAnimation() {
-        hideSidePaneTransition = new TranslateTransition(Duration.millis(300), sidePane);
+        hideSidePaneTransition = new TranslateTransition(Duration.millis(300), paneSide);
         hideSidePaneTransition.setByX(0);
         hideSidePaneTransition.setToX(-210);
         hideSidePaneTransition.setOnFinished(event -> {
-            sidePane.setVisible(false);
-            AnchorPane.setLeftAnchor(mainPane, 0.0);
+            paneSide.setVisible(false);
+            AnchorPane.setLeftAnchor(paneMain, 0.0);
         });
 
-        showSidePaneTransition = new TranslateTransition(Duration.millis(300), sidePane);
+        showSidePaneTransition = new TranslateTransition(Duration.millis(300), paneSide);
         showSidePaneTransition.setByX(-210);
         showSidePaneTransition.setToX(0);
     }
 
-    /** 初始化功能菜单数据 */
+    /** 初始化左侧功能菜单数据 */
     private void initTreeView() {
         TreeItem<String> root = new TreeItem<>();
         TreeItem<String> reportStat = new TreeItem<>("报表统计");
@@ -91,6 +90,7 @@ public class MainController extends RootController {
         setItems(invMgt, invMgtImg, "库存调拨单", "库存盘点单", "库存调拨记录", "库存盘点记录");
 
         treeFunctions.setRoot(root);
+        reportStat.setExpanded(true);
     }
 
     /** 初始化页面 */
@@ -106,21 +106,22 @@ public class MainController extends RootController {
             log.error(e.getMessage(), e);
             CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页面加载出现问题");
         }
-        carouselPane.getChildren().add(goodsList);
+        paneCarousel.getChildren().add(goodsList);
 
         treeFunctions.getSelectionModel().selectedItemProperty().addListener((ob, ov, nv) -> {
             if (nv.getChildren().isEmpty()) {
                 //若不是根节点，则设置页面标题并加载页面内容
-                pageName.setText(nv.getValue());
+                txtPageName.setText(nv.getValue());
                 switch (nv.getValue()) {
                     case "货品列表" ->
-                            carouselPane.getChildren().set(0, goodsList);
+                            paneCarousel.getChildren().set(0, goodsList);
                     case "当前库存查询" ->
-                            carouselPane.getChildren().set(0, invQuery);
-                    default -> carouselPane.getChildren().set(0, blankPage);
+                            paneCarousel.getChildren().set(0, invQuery);
+                    default -> paneCarousel.getChildren().set(0, blankPage);
                 }
             }
         });
+        treeFunctions.getSelectionModel().select(1);
     }
 
     /**
@@ -220,13 +221,13 @@ public class MainController extends RootController {
      */
     @FXML
     void controlSidePane() {
-        if (sidePane.isVisible()) {
+        if (paneSide.isVisible()) {
             btnSideCtrl.getTooltip().setText("展开");
             hideSidePaneTransition.play();
         } else {
             btnSideCtrl.getTooltip().setText("收起");
-            sidePane.setVisible(true);
-            AnchorPane.setLeftAnchor(mainPane, 200.0);
+            paneSide.setVisible(true);
+            AnchorPane.setLeftAnchor(paneMain, 200.0);
             showSidePaneTransition.play();
         }
     }
