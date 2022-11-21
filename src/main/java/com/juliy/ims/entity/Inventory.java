@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Inventory {
     /** 库存编号 */
-    private Integer inventoryId;
+    private Integer invId;
     /** 仓库编号 */
     private Integer whsId;
     /** 货品编号 */

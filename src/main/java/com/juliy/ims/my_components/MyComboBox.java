@@ -1,5 +1,6 @@
 package com.juliy.ims.my_components;
 
+import com.juliy.ims.model.CheckCbbUnitModel;
 import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.scene.Cursor;
@@ -16,10 +17,10 @@ import java.util.stream.Collectors;
  * @author JuLiy
  * @date 2022/11/8 22:06
  */
-public class MyComboBox extends ComboBox<CcbBoxModel> {
+public class MyComboBox extends ComboBox<CheckCbbUnitModel> {
 
     /** 原数据集合，用于buttonCell查询选择状态显示 */
-    private final ObservableList<CcbBoxModel> list;
+    private final ObservableList<CheckCbbUnitModel> list;
 
     public MyComboBox() {
         list = getItems();
@@ -34,11 +35,11 @@ public class MyComboBox extends ComboBox<CcbBoxModel> {
 
         this.setButtonCell(new ListCell<>() {
             @Override
-            protected void updateItem(CcbBoxModel ccbBoxModel, boolean empty) {
-                super.updateItem(ccbBoxModel, empty);
+            protected void updateItem(CheckCbbUnitModel checkCbbUnitModel, boolean empty) {
+                super.updateItem(checkCbbUnitModel, empty);
                 String selected = list.stream()
-                        .filter(CcbBoxModel::isSelected)
-                        .map(CcbBoxModel::getValue)
+                        .filter(CheckCbbUnitModel::isSelected)
+                        .map(CheckCbbUnitModel::getValue)
                         .collect(Collectors.joining(","));
                 setText(selected);
             }
@@ -53,12 +54,12 @@ public class MyComboBox extends ComboBox<CcbBoxModel> {
     //实现点击内部区域后不会隐藏显示
     @Override
     protected Skin<?> createDefaultSkin() {
-        ComboBoxListViewSkin<CcbBoxModel> skin = new ComboBoxListViewSkin<>(this);
+        ComboBoxListViewSkin<CheckCbbUnitModel> skin = new ComboBoxListViewSkin<>(this);
         skin.setHideOnClick(false);
         return skin;
     }
 
-    static class MyListCell extends ListCell<CcbBoxModel> {
+    static class MyListCell extends ListCell<CheckCbbUnitModel> {
 
         private final BorderPane cbPane = new BorderPane();
 
@@ -94,7 +95,7 @@ public class MyComboBox extends ComboBox<CcbBoxModel> {
         }
 
         @Override
-        public void updateItem(CcbBoxModel item, boolean empty) {
+        public void updateItem(CheckCbbUnitModel item, boolean empty) {
             super.updateItem(item, empty);
             if (!empty) {
                 if ("搜索中...".equals(item.getValue())) {

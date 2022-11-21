@@ -2,6 +2,7 @@
 
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
@@ -41,6 +42,9 @@
                 <String fx:value="btn-common" />
                 <String fx:value="btn-minimize" />
             </styleClass>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
         <ToggleButton layoutX="653.0" mnemonicParsing="false" onAction="#maximizeWindow" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
             <graphic>
@@ -50,6 +54,9 @@
                 <String fx:value="btn-common" />
                 <String fx:value="btn-maximize" />
             </styleClass>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </ToggleButton>
         <Button layoutX="679.0" layoutY="1.0" mnemonicParsing="false" onAction="#exitWindow" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <styleClass>
@@ -59,6 +66,9 @@
             <graphic>
                 <Region maxHeight="15.0" maxWidth="15.0" />
             </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
         </Button>
     </AnchorPane>
     <AnchorPane VBox.vgrow="ALWAYS">

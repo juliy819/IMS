@@ -48,6 +48,29 @@ public class GoodsDaoImpl implements GoodsDao {
         return list;
     }
 
+    @Override
+    public int queryGoodsCount() {
+        String sql = "select count(*) from t_goods";
+        return queryGoodsCount(sql);
+    }
+
+    @Override
+    public int queryGoodsCount(String sql) {
+        conn = JdbcUtil.getConnection();
+        try {
+            pStatement = conn.prepareStatement(sql);
+            rs = pStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            JdbcUtil.release(rs, pStatement, conn);
+        }
+        return 0;
+    }
+
     /** 将结果集中的数据封装到对象中 */
     private void wrapGoods(Goods goods) throws SQLException {
         goods.setGoodsId(rs.getInt("goods_id"));

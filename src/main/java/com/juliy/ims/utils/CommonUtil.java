@@ -83,4 +83,20 @@ public class CommonUtil {
         alert.setContentText(text);
         alert.showAndWait();
     }
+
+    /**
+     * sql语句拼接<br>
+     * 拼接后格式为：(查询的内容)+空格+and+空格
+     * @param str  要拆分的关键词字符串，各关键词间以","分隔
+     * @param head 语句头;如goods_type_name
+     * @param sql  要拼接的sql语句
+     */
+    public static void spliceSql(String str, String head, StringBuilder sql) {
+        sql.append("(");
+        String[] arr = str.split(",");
+        for (String s : arr) {
+            sql.append(head).append(" = ").append("'").append(s).append("'").append(" or ");
+        }
+        sql.delete(sql.lastIndexOf("or") - 1, sql.length()).append(") and ");
+    }
 }

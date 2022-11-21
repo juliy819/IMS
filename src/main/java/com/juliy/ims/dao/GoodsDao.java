@@ -12,7 +12,7 @@ import java.util.List;
 public interface GoodsDao {
     /**
      * 查询所有货品信息
-     * @return 货品列表；若不存在则列表长度为0
+     * @return 货品列表
      */
     List<Goods> queryAllGoods();
 
@@ -22,4 +22,17 @@ public interface GoodsDao {
      * @return 符合要求的货品列表；若不存在则列表长度为0
      */
     List<Goods> queryGoods(String sql);
+
+    /**
+     * 查询货品总数
+     * @return 货品总数
+     */
+    int queryGoodsCount();
+
+    /**
+     * 查询指定货品总数
+     * @param sql 查询语句
+     * @return 满足条件的货品总数
+     */
+    int queryGoodsCount(String sql);
 }

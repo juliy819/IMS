@@ -1,4 +1,4 @@
-package com.juliy.ims.my_components;
+package com.juliy.ims.model;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,11 +10,11 @@ import javafx.beans.property.StringProperty;
  * @author JuLiy
  * @date 2022/10/11 8:51
  */
-public class CcbBoxModel {
+public class CheckCbbUnitModel {
     private final StringProperty value = new SimpleStringProperty();
     private final BooleanProperty selected = new SimpleBooleanProperty();
 
-    public CcbBoxModel(String value) {
+    public CheckCbbUnitModel(String value) {
         setValue(value);
     }
 

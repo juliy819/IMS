@@ -243,7 +243,7 @@
                         </cursor>
                     </ToggleButton>
                 </AnchorPane>
-                <TableView fx:id="tableGoodsList" fixedCellSize="30.0"
+                <TableView fx:id="tableGoods" fixedCellSize="30.0"
                            focusTraversable="false" VBox.vgrow="SOMETIMES">
                     <columns>
                         <TableColumn fx:id="tcType" maxWidth="120.0"
@@ -281,7 +281,7 @@
                     </VBox.margin>
                 </TableView>
                 <AnchorPane prefHeight="30.0">
-                    <ComboBox fx:id="cbbPageRule" layoutY="1.0"
+                    <ComboBox fx:id="cbbPageSize" layoutY="1.0"
                               prefHeight="23.0" prefWidth="100.0"
                               styleClass="page-rule"
                               AnchorPane.bottomAnchor="2.5"

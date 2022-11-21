@@ -26,7 +26,7 @@ public class MyTableCell<S, T> extends TableCell<S, T> {
     @Override
     protected void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
-        if (!empty) {
+        if (!empty && item != null) {
             label.setText(item.toString());
             setGraphic(pane);
         } else {

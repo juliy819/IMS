@@ -1,18 +1,17 @@
 package com.juliy.ims.controller;
 
 import com.juliy.ims.entity.Goods;
-import com.juliy.ims.my_components.CbBoxSearcher;
-import com.juliy.ims.my_components.CcbBoxModel;
+import com.juliy.ims.model.CheckCbbUnitModel;
+import com.juliy.ims.model.SearchCbBoxModel;
+import com.juliy.ims.model.TableModel;
 import com.juliy.ims.my_components.MyComboBox;
 import com.juliy.ims.my_components.MyTableCell;
 import com.juliy.ims.service.GoodsListService;
 import com.juliy.ims.service.impl.GoodsListServiceImpl;
-import com.juliy.ims.utils.CommonUtil;
 import com.leewyatt.rxcontrols.controls.RXTextField;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.chart.PieChart;
@@ -27,6 +26,7 @@ import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -35,24 +35,18 @@ import java.util.Map;
  * @date 2022/9/29 16:20
  */
 public class GoodsListController extends RootController {
-
     final SimpleStringProperty totalGoodsNum = new SimpleStringProperty();
-    final SimpleStringProperty curPage = new SimpleStringProperty();
-    final SimpleStringProperty totalPage = new SimpleStringProperty();
-    final SimpleIntegerProperty pageSize = new SimpleIntegerProperty(20);
-
     private final Logger log = Logger.getLogger(GoodsListController.class);
     private final GoodsListService service = new GoodsListServiceImpl();
     private final MyComboBox cbbGoodsType = new MyComboBox();
     private final MyComboBox cbbGoodsId = new MyComboBox();
     private final MyComboBox cbbGoodsName = new MyComboBox();
     private final MyComboBox cbbGoodsSpec = new MyComboBox();
-    ObservableList<CcbBoxModel> goodsTypeList;
-    ObservableList<CcbBoxModel> goodsIdList;
-    ObservableList<CcbBoxModel> goodsNameList;
-    ObservableList<CcbBoxModel> goodsSpecList;
-    ObservableList<Goods> showList;
-    ObservableList<Goods> goodsList;
+    private TableModel<Goods> tableModel;
+    private SearchCbBoxModel goodsTypeModel;
+    private SearchCbBoxModel goodsIdModel;
+    private SearchCbBoxModel goodsNameModel;
+    private SearchCbBoxModel goodsSpecModel;
     @FXML
     private AnchorPane paneGoodsType;
     @FXML
@@ -62,11 +56,11 @@ public class GoodsListController extends RootController {
     @FXML
     private AnchorPane paneGoodsSpec;
     @FXML
-    private ComboBox<String> cbbPageRule;
+    private ComboBox<String> cbbPageSize;
     @FXML
     private PieChart pieGoodsType;
     @FXML
-    private TableView<Goods> tableGoodsList;
+    private TableView<Goods> tableGoods;
     @FXML
     private TableColumn<Goods, String> tcComment;
     @FXML
@@ -112,78 +106,38 @@ public class GoodsListController extends RootController {
 
     @FXML
     private void initialize() {
-        bindProperties();
+        initModel();
         initComponents();
         initData();
-        initChart();
 
         log.info("货品列表页面加载完成");
     }
 
-    /** 初始化图表 */
-    private void initChart() {
-        //统计每个货品类别对应的货品数量
-        HashMap<String, Integer> typeMap = new HashMap<>();
-        goodsTypeList.forEach(model -> typeMap.put(model.getValue(), 0));
-        goodsList.forEach(goods -> {
-            Integer num = typeMap.get(goods.getGoodsTypeName());
-            num++;
-            typeMap.put(goods.getGoodsTypeName(), num);
-        });
-
-        //将数据添加进图表中
-        ObservableList<PieChart.Data> pieList = pieGoodsType.getData();
-        double total = Double.parseDouble(totalGoodsNum.get());
-        typeMap.forEach((typeName, num) -> {
-            double percentage = num / total;
-            String percentageStr = String.format("%.2f", percentage * 100) + "%";
-            PieChart.Data data = new PieChart.Data(typeName + "-" + percentageStr, percentage);
-            //要先添加进图表中才能调用getNode方法
-            pieList.add(data);
-            Tooltip tip = new Tooltip(percentageStr);
-            Tooltip.install(data.getNode(), tip);
-        });
-
-        //设置图表过小时不显示标签，变大后再显示  300是选的大概值
-        pieGoodsType.widthProperty()
-                .addListener((ob, ov, nv) -> pieGoodsType.setLabelsVisible(nv.intValue() >= 300));
-    }
-
-    /** 将各property与对应的输入框内容绑定 */
-    private void bindProperties() {
-        goodsTypeList = cbbGoodsType.getItems();
-        goodsIdList = cbbGoodsId.getItems();
-        goodsNameList = cbbGoodsName.getItems();
-        goodsSpecList = cbbGoodsSpec.getItems();
-        showList = tableGoodsList.getItems();
+    /** 初始化model，并将model的属性与组件进行绑定 */
+    private void initModel() {
+        tableModel = new TableModel<>(tableGoods, cbbPageSize);
+        goodsTypeModel = new SearchCbBoxModel(tfGoodsType, cbbGoodsType);
+        goodsIdModel = new SearchCbBoxModel(tfGoodsId, cbbGoodsId);
+        goodsNameModel = new SearchCbBoxModel(tfGoodsName, cbbGoodsName);
+        goodsSpecModel = new SearchCbBoxModel(tfGoodsSpec, cbbGoodsSpec);
 
         txtTotalGoods.textProperty().bind(totalGoodsNum);
-        txtTotalPage.textProperty().bind(totalPage);
-        curPage.bindBidirectional(tfCurPage.textProperty());
+        tfCurPage.textProperty().bindBidirectional(tableModel.curPageProperty());
+        txtTotalPage.textProperty().bind(tableModel.totalPageProperty());
     }
 
     /** 初始化各组件，如设置位置、监听等 */
     private void initComponents() {
         addCustomComponents();
-        initTextField();
         initTableColumn();
 
-        //初始化行数下拉框
-        cbbPageRule.getItems().addAll("20条/页", "50条/页", "100条/页");
-        cbbPageRule.getSelectionModel().select(0);
-        cbbPageRule.getSelectionModel()
-                .selectedItemProperty()
-                .addListener((ob, ov, nv) -> {
-                    pageSize.set(Integer.parseInt(nv.split("条")[0]));
-                    curPage.set("1");
-                    updateTableView();
-                    updateFilteredGoodsNum();
-                });
+        goodsTypeModel.setOnCbBoxHidden(event -> filterGoods());
+        goodsIdModel.setOnCbBoxHidden(event -> filterGoods());
+        goodsNameModel.setOnCbBoxHidden(event -> filterGoods());
+        goodsSpecModel.setOnCbBoxHidden(event -> filterGoods());
 
-        cbbGoodsType.setOnHidden(event -> filterGoods());
-        cbbGoodsId.setOnHidden(event -> filterGoods());
-        cbbGoodsName.setOnHidden(event -> filterGoods());
-        cbbGoodsSpec.setOnHidden(event -> filterGoods());
+        tfCurPage.textProperty().addListener(tableModel.getCurPageLimit());
+        tableModel.pageSizeProperty().addListener((ob, ov, nv) -> filterGoods());
     }
 
     /** 添加自定义组件 */
@@ -192,39 +146,6 @@ public class GoodsListController extends RootController {
         paneGoodsId.getChildren().add(cbbGoodsId);
         paneGoodsName.getChildren().add(cbbGoodsName);
         paneGoodsSpec.getChildren().add(cbbGoodsSpec);
-    }
-
-    /** 初始化输入框 */
-    private void initTextField() {
-        Map.of(tfGoodsType, cbbGoodsType,
-               tfGoodsId, cbbGoodsId,
-               tfGoodsName, cbbGoodsName,
-               tfGoodsSpec, cbbGoodsSpec
-        ).forEach((tf, cbb) -> {
-            //点击输入框右侧按钮清空文本
-            tf.setOnClickButton(event -> tf.clear());
-            //输入框内容变化时在对应下拉框中进行模糊搜索
-            tf.textProperty().addListener(new CbBoxSearcher(tf, cbb));
-        });
-
-        tfCurPage.textProperty().addListener((ob, ov, nv) -> {
-            //清空输入框时，不进行其余操作
-            if ("".equals(nv)) {
-                return;
-            }
-            //若输入的不是数字，将值置为oldValue，即不更新输入框内容
-            if (!nv.matches("\\d*")) {
-                curPage.set(ov);
-                return;
-            }
-            int target = Integer.parseInt(nv);
-            int total = Integer.parseInt(totalPage.get());
-            if (target < 1 || target > total) {
-                curPage.set(ov);
-            }
-        });
-
-
     }
 
     /** 初始化表格列 */
@@ -248,12 +169,45 @@ public class GoodsListController extends RootController {
     /** 将从数据库获取的数据加载到各个组件中 */
     private void initData() {
         filterGoods();
-        totalGoodsNum.set(String.valueOf(goodsList.size()));
 
-        goodsTypeList.addAll(goodsList.stream().map(Goods::getGoodsTypeName).distinct().map(CcbBoxModel::new).toList());
-        goodsIdList.addAll(goodsList.stream().map(Goods::getGoodsId).map(String::valueOf).map(CcbBoxModel::new).toList());
-        goodsNameList.addAll(goodsList.stream().map(Goods::getGoodsName).map(CcbBoxModel::new).toList());
-        goodsSpecList.addAll(goodsList.stream().map(Goods::getGoodsSpec).distinct().map(CcbBoxModel::new).toList());
+        List<Goods> goodsList = service.getAllGoods();
+
+        cbbGoodsType.getItems().addAll(goodsList.stream().map(Goods::getGoodsTypeName).distinct().map(CheckCbbUnitModel::new).toList());
+        cbbGoodsId.getItems().addAll(goodsList.stream().map(Goods::getGoodsId).map(String::valueOf).map(CheckCbbUnitModel::new).toList());
+        cbbGoodsName.getItems().addAll(goodsList.stream().map(Goods::getGoodsName).map(CheckCbbUnitModel::new).toList());
+        cbbGoodsSpec.getItems().addAll(goodsList.stream().map(Goods::getGoodsSpec).distinct().map(CheckCbbUnitModel::new).toList());
+
+        totalGoodsNum.set(String.valueOf(service.getTotalCount()));
+        initChart(goodsList);
+    }
+
+    /** 初始化图表 */
+    private void initChart(List<Goods> goodsList) {
+        //统计每个货品类别对应的货品数量
+        HashMap<String, Integer> typeMap = new HashMap<>();
+        cbbGoodsType.getItems().forEach(model -> typeMap.put(model.getValue(), 0));
+        goodsList.forEach(goods -> {
+            Integer num = typeMap.get(goods.getGoodsTypeName());
+            num++;
+            typeMap.put(goods.getGoodsTypeName(), num);
+        });
+
+        //将数据添加进图表中
+        ObservableList<PieChart.Data> pieList = pieGoodsType.getData();
+        double total = Double.parseDouble(totalGoodsNum.get());
+        typeMap.forEach((typeName, num) -> {
+            double percentage = num / total;
+            String percentageStr = String.format("%.2f", percentage * 100) + "%";
+            PieChart.Data data = new PieChart.Data(typeName + "-" + percentageStr, percentage);
+            //要先添加进图表中才能调用getNode方法
+            pieList.add(data);
+            Tooltip tip = new Tooltip(typeName + "-" + percentageStr);
+            Tooltip.install(data.getNode(), tip);
+        });
+
+        //设置图表过小时不显示标签，变大后再显示  300是选的大概值
+        pieGoodsType.widthProperty()
+                .addListener((ob, ov, nv) -> pieGoodsType.setLabelsVisible(nv.intValue() >= 300));
     }
 
     /**
@@ -263,10 +217,7 @@ public class GoodsListController extends RootController {
      */
     @FXML
     void jumpPage() {
-        if ("".equals(curPage.get())) {
-            CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页数不能为空！");
-            return;
-        }
+        tableModel.jumpPage();
         updateTableView();
     }
 
@@ -277,10 +228,7 @@ public class GoodsListController extends RootController {
      */
     @FXML
     void toLastPage() {
-        if (Integer.parseInt(curPage.get()) == 1) {
-            return;
-        }
-        curPage.set(String.valueOf(Integer.parseInt(curPage.get()) - 1));
+        tableModel.toLastPage();
         updateTableView();
     }
 
@@ -291,10 +239,7 @@ public class GoodsListController extends RootController {
      */
     @FXML
     void toNextPage() {
-        if (curPage.get().equals(totalPage.get())) {
-            return;
-        }
-        curPage.set(String.valueOf(Integer.parseInt(curPage.get()) + 1));
+        tableModel.toNextPage();
         updateTableView();
     }
 
@@ -305,7 +250,7 @@ public class GoodsListController extends RootController {
      * @触发事件 点击
      */
     @FXML
-    void setFullScreen(Event event) {
+    void setFullScreen(ActionEvent event) {
         Node btn = (Node) event.getSource();
         Node pane = btn.getParent().getParent();
         if (!paneFull.getChildren().contains(pane)) {
@@ -315,31 +260,22 @@ public class GoodsListController extends RootController {
         }
     }
 
-
-    /** 更新表格显示的页面 */
-    private void updateTableView() {
-        int targetPage = Integer.parseInt(curPage.get());
-        long skipNum = (long) (targetPage - 1) * pageSize.get();
-        showList.clear();
-        showList.addAll(goodsList.stream().skip(skipNum).limit(pageSize.get()).toList());
-        tableGoodsList.refresh();
-    }
-
-    private void updateFilteredGoodsNum() {
-        int totalCount = goodsList.size();
-        int size = pageSize.get();
-        int pageNum = totalCount % size == 0 ? totalCount / size : totalCount / size + 1;
-        totalPage.set(String.valueOf(pageNum));
-    }
-
     private void filterGoods() {
-        String typeStr = cbbGoodsType.getButtonCell().getText();
-        String idStr = cbbGoodsId.getButtonCell().getText();
-        String nameStr = cbbGoodsName.getButtonCell().getText();
-        String specStr = cbbGoodsSpec.getButtonCell().getText();
-        goodsList = service.getGoodsList(typeStr, idStr, nameStr, specStr);
-        curPage.set("1");
+        String typeStr = goodsTypeModel.getButtonCellText();
+        String idStr = goodsIdModel.getButtonCellText();
+        String nameStr = goodsNameModel.getButtonCellText();
+        String specStr = goodsSpecModel.getButtonCellText();
+        tableModel.updateTotalPage(service.getFilterCount(typeStr, idStr, nameStr, specStr));
+        tableModel.setCurPage(1);
         updateTableView();
-        updateFilteredGoodsNum();
+    }
+
+    /** 更新表格内容 */
+    private void updateTableView() {
+        String typeStr = goodsTypeModel.getButtonCellText();
+        String idStr = goodsIdModel.getButtonCellText();
+        String nameStr = goodsNameModel.getButtonCellText();
+        String specStr = goodsSpecModel.getButtonCellText();
+        tableModel.updateTableView(service.filterGoodsByPage(typeStr, idStr, nameStr, specStr, tableModel.getCurPage(), tableModel.getPageSize()));
     }
 }
