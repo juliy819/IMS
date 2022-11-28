@@ -21,19 +21,19 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     @Override
     public List<Goods> getAllGoods() {
-        return goodsDao.queryAllGoods();
+        return goodsDao.queryAll();
     }
 
     @Override
     public int getTotalCount() {
-        return goodsDao.queryGoodsCount();
+        return goodsDao.queryCount();
     }
 
     @Override
     public int getFilterCount(String goodsTypeName, String goodsId, String goodsName, String goodsSpec) {
         StringBuilder sql = generateSql(goodsTypeName, goodsId, goodsName, goodsSpec);
         sql.delete(7, sql.indexOf("from") - 1).insert(7, "count(*)");
-        return goodsDao.queryGoodsCount(String.valueOf(sql));
+        return goodsDao.queryCount(String.valueOf(sql));
     }
 
     @Override
@@ -41,7 +41,7 @@ public class GoodsListServiceImpl implements GoodsListService {
         StringBuilder sql = generateSql(goodsTypeName, goodsId, goodsName, goodsSpec);
         int start = (page - 1) * pageSize;
         sql.append("limit ").append(start).append(",").append(pageSize);
-        List<Goods> list = goodsDao.queryGoods(String.valueOf(sql));
+        List<Goods> list = goodsDao.query(String.valueOf(sql));
         return FXCollections.observableArrayList(list);
     }
 

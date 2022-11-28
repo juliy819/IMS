@@ -45,6 +45,22 @@
     -fx-background-color: color-hover;
 }
 
+.btn-add {
+    -fx-background-color: color-main;
+    -fx-pref-width: 80;
+    -fx-pref-height: 30;
+    -fx-cursor: hand;
+    -fx-text-fill: white;
+}
+
+.btn-add:hover {
+    -fx-background-color: derive(color-main, 20%);
+}
+
+.btn-add:hover:pressed {
+    -fx-background-color: derive(color-main, -20%);
+}
+
 /*---------- 面板 ----------*/
 
 .pane-float {
@@ -82,6 +98,16 @@
     -fx-border-color: color-border;
     -fx-border-width: 1;
     -fx-border-radius: 5;
+}
+
+.tf-add, .ta-add {
+    -fx-background-color: white;
+    -fx-border-color: color-border;
+    -fx-border-width: 1;
+}
+
+.tf-add:focused, .ta-add:focused {
+    -fx-background-color: white;
 }
 
 /*---------- 下拉框 ----------*/

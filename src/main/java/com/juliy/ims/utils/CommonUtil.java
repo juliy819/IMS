@@ -1,6 +1,7 @@
 package com.juliy.ims.utils;
 
 import com.juliy.ims.App;
+import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -98,5 +100,77 @@ public class CommonUtil {
             sql.append(head).append(" = ").append("'").append(s).append("'").append(" or ");
         }
         sql.delete(sql.lastIndexOf("or") - 1, sql.length()).append(") and ");
+    }
+
+    /**
+     * 初始化添加页面中的RXTextField<br>
+     * 点击按钮时清空输入框<br>
+     * 失去焦点时若文本为空则提示<br>
+     * 获取焦点时清除提示
+     * @param tf  输入框
+     * @param txt 对应的提示文本
+     */
+    public static void initAddTextField(RXTextField tf, Text txt) {
+        //点击按钮清空输入框
+        tf.setOnClickButton(event -> tf.clear());
+        //失去焦点时，若文本为空则提示;获取焦点时，清除提示
+        tf.focusedProperty().addListener((ob, ov, nv) -> {
+            if (nv.equals(Boolean.FALSE) && ("".equals(tf.getText()))) {
+                txt.setText("内容不能为空！");
+                txt.setVisible(true);
+            } else {
+                txt.setVisible(false);
+            }
+        });
+    }
+
+    /**
+     * 判断输入内容是否为空
+     * @param str      输入内容
+     * @param txtError 对应的错误提示文本
+     * @return 为空返回true，不为空返回false
+     */
+    public static boolean isInputEmpty(String str, Text txtError) {
+        if ("".equals(str)) {
+            txtError.setText("不能为空！");
+            txtError.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 判断输入内容长度是否超出限制
+     * @param str      输入内容
+     * @param length   长度
+     * @param txtError 对应的错误提示文本
+     * @return 超出限制返回true，不超出返回false
+     */
+    public static boolean isLengthExceed(String str, int length, Text txtError) {
+        if (str.length() > length) {
+            txtError.setText("长度不能超过" + length + "个字符！");
+            txtError.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 判断输入内容格式是否非法
+     * @param str      输入内容
+     * @param regex    正则表达式
+     * @param txtError 对应的错误提示文本
+     * @return 非法返回true，合法返回false
+     */
+    public static boolean isFormatIllegal(String str, String regex, Text txtError) {
+        if (!str.matches(regex)) {
+            txtError.setText("格式有误！");
+            txtError.setVisible(true);
+            return true;
+        } else {
+            return false;
+        }
     }
 }

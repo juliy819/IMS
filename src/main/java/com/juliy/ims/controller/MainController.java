@@ -96,12 +96,8 @@ public class MainController extends RootController {
     /** 初始化页面 */
     private void initPage() {
         AnchorPane goodsList = new AnchorPane();
-        AnchorPane invQuery = new AnchorPane();
-        AnchorPane blankPage = new AnchorPane();
-        //提前加载好页面，切换时再加载会有延迟
         try {
             CommonUtil.loadPage("goodsList", goodsList);
-            CommonUtil.loadPage("invQuery", invQuery);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页面加载出现问题");
@@ -112,13 +108,26 @@ public class MainController extends RootController {
             if (nv.getChildren().isEmpty()) {
                 //若不是根节点，则设置页面标题并加载页面内容
                 txtPageName.setText(nv.getValue());
-                switch (nv.getValue()) {
-                    case "货品列表" ->
-                            paneCarousel.getChildren().set(0, goodsList);
-                    case "当前库存查询" ->
-                            paneCarousel.getChildren().set(0, invQuery);
-                    default -> paneCarousel.getChildren().set(0, blankPage);
+                AnchorPane pane = new AnchorPane();
+                try {
+                    switch (nv.getValue()) {
+                        case "货品列表" ->
+                                CommonUtil.loadPage("GoodsList", pane);
+                        case "当前库存查询" ->
+                                CommonUtil.loadPage("InvQuery", pane);
+                        case "新增仓库" -> CommonUtil.loadPage("AddWhs", pane);
+                        case "新增货品类别" ->
+                                CommonUtil.loadPage("AddGoodsType", pane);
+                        case "新增货品" ->
+                                CommonUtil.loadPage("AddGoods", pane);
+                        default -> log.info("该页面尚未开发");
+                    }
+                } catch (IOException e) {
+                    log.error(e.getMessage(), e);
+                    CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "页面加载出现问题");
                 }
+                paneCarousel.getChildren().set(0, pane);
+
             }
         });
         treeFunctions.getSelectionModel().select(1);
