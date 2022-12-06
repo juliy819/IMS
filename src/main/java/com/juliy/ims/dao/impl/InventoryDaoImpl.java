@@ -18,18 +18,18 @@ import java.util.List;
 public class InventoryDaoImpl extends BaseDao implements InventoryDao {
 
     @Override
-    public List<InvDO> queryAllInv() {
+    public List<InvDO> queryAll() {
         String sql = "select a.goods_qty, b.goods_id, b.goods_name, b.goods_spec, b.goods_unit, c.goods_type_name, d.whs_name " +
                 "from t_inventory a " +
                 "left join t_goods b on a.goods_id = b.goods_id " +
                 "left join t_goods_type c on b.goods_type_id = c.goods_type_id " +
                 "left join t_warehouse d on a.whs_id = d.whs_id " +
                 "where a.is_deleted != 1";
-        return queryInv(sql);
+        return query(sql);
     }
 
     @Override
-    public List<InvDO> queryInv(String sql) {
+    public List<InvDO> query(String sql) {
         List<InvDO> list = new ArrayList<>();
         conn = JdbcUtil.getConnection();
         try {
@@ -72,17 +72,6 @@ public class InventoryDaoImpl extends BaseDao implements InventoryDao {
             JdbcUtil.release(rs, pStatement, conn);
         }
         return 0;
-    }
-
-    @Override
-    public int queryInvCount() {
-        String sql = "select count(*) from t_inventory";
-        return queryInvCount(sql);
-    }
-
-    @Override
-    public int queryInvCount(String sql) {
-        return super.queryCount(sql);
     }
 
     @Override

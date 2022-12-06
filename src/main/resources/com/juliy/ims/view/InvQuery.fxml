@@ -8,7 +8,7 @@
 <?import javafx.scene.text.*?>
 <?import org.controlsfx.control.*?>
 <?import java.lang.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" styleClass="inv-query-content"
+<fx:root xmlns:fx="http://javafx.com/fxml/1" styleClass="content"
          stylesheets="@../css/style.css" type="AnchorPane"
          xmlns="http://javafx.com/javafx/18"
          fx:controller="com.juliy.ims.controller.InvQueryController">

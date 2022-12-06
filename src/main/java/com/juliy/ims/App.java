@@ -21,7 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         getContext().setHost(getHostServices());
-        Stage stage = CommonUtil.createStage("main", "main", true);
+        Stage stage = CommonUtil.createStage("login", "main", true);
         stage.show();
     }
 }

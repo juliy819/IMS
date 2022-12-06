@@ -12,7 +12,7 @@ import java.util.List;
  * @author JuLiy
  * @date 2022/12/2 19:59
  */
-public interface RecordService {
+public interface CreateRecordService {
 
     /**
      * 添加入库单据

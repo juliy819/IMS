@@ -1,108 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ToggleButton?>
-<?import javafx.scene.control.TreeView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.MainController">
+<?import java.lang.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity"
+      minHeight="-Infinity" minWidth="-Infinity"
+      stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18"
+      fx:controller="com.juliy.ims.controller.MainController">
     <styleClass>
-        <String fx:value="root" />
-        <String fx:value="main-content" />
+        <String fx:value="main-content"/>
     </styleClass>
-    <AnchorPane onMouseDragged="#dragWindow" onMousePressed="#getOffset" prefHeight="30.0" styleClass="main-top">
-        <MenuBar layoutY="2.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <AnchorPane onMouseDragged="#dragWindow" onMousePressed="#getOffset"
+                prefHeight="30.0" styleClass="main-top">
+        <MenuBar layoutY="2.0" AnchorPane.bottomAnchor="0.0"
+                 AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Menu mnemonicParsing="false" text="File">
-                <MenuItem mnemonicParsing="false" text="Close" />
+                <MenuItem mnemonicParsing="false" text="Close"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Edit">
-                <MenuItem mnemonicParsing="false" text="Delete" />
+                <MenuItem mnemonicParsing="false" text="Delete"/>
             </Menu>
             <Menu mnemonicParsing="false" text="Help">
-                <MenuItem mnemonicParsing="false" text="About" />
+                <MenuItem mnemonicParsing="false" text="About"/>
             </Menu>
         </MenuBar>
-        <Button layoutX="598.0" layoutY="1.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0">
+        <Button layoutX="598.0" layoutY="1.0" mnemonicParsing="false"
+                onAction="#minimizeWindow" prefHeight="30.0" prefWidth="30.0"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="60.0"
+                AnchorPane.topAnchor="0.0">
             <graphic>
-                <Region maxHeight="3.0" maxWidth="15.0" />
+                <Region maxHeight="3.0" maxWidth="15.0"/>
             </graphic>
             <styleClass>
-                <String fx:value="btn-common" />
-                <String fx:value="btn-minimize" />
+                <String fx:value="btn-common"/>
+                <String fx:value="btn-minimize"/>
             </styleClass>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </Button>
-        <ToggleButton layoutX="653.0" mnemonicParsing="false" onAction="#maximizeWindow" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
+        <ToggleButton layoutX="653.0" mnemonicParsing="false"
+                      onAction="#maximizeWindow" prefHeight="30.0"
+                      prefWidth="30.0" AnchorPane.bottomAnchor="0.0"
+                      AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="0.0">
             <graphic>
-                <Region maxHeight="15.0" maxWidth="15.0" />
+                <Region maxHeight="15.0" maxWidth="15.0"/>
             </graphic>
             <styleClass>
-                <String fx:value="btn-common" />
-                <String fx:value="btn-maximize" />
+                <String fx:value="btn-common"/>
+                <String fx:value="btn-maximize"/>
             </styleClass>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </ToggleButton>
-        <Button layoutX="679.0" layoutY="1.0" mnemonicParsing="false" onAction="#exitWindow" prefHeight="30.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Button layoutX="679.0" layoutY="1.0" mnemonicParsing="false"
+                onAction="#exitWindow" prefHeight="30.0" prefWidth="30.0"
+                AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                AnchorPane.topAnchor="0.0">
             <styleClass>
-                <String fx:value="btn-common" />
-                <String fx:value="btn-exit" />
+                <String fx:value="btn-common"/>
+                <String fx:value="btn-exit"/>
             </styleClass>
             <graphic>
-                <Region maxHeight="15.0" maxWidth="15.0" />
+                <Region maxHeight="15.0" maxWidth="15.0"/>
             </graphic>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
+            <cursor>
+                <Cursor fx:constant="HAND"/>
+            </cursor>
         </Button>
     </AnchorPane>
     <AnchorPane VBox.vgrow="ALWAYS">
-        <VBox fx:id="paneSide" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <TreeView fx:id="treeFunctions" fixedCellSize="40.0" showRoot="false" VBox.vgrow="ALWAYS">
+        <VBox fx:id="paneSide" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+              AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TreeView fx:id="treeFunctions" fixedCellSize="40.0"
+                      showRoot="false" VBox.vgrow="ALWAYS">
                 <VBox.margin>
-                    <Insets bottom="2.0" />
+                    <Insets bottom="2.0"/>
                 </VBox.margin>
             </TreeView>
         </VBox>
-        <AnchorPane fx:id="paneMain" layoutX="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <HBox alignment="CENTER_LEFT" prefHeight="40.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                <ToggleButton fx:id="btnSideCtrl" mnemonicParsing="false" onAction="#controlSidePane" prefHeight="30.0" prefWidth="30.0">
+        <AnchorPane fx:id="paneMain" layoutX="200.0"
+                    AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="200.0"
+                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="40.0"
+                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                  AnchorPane.topAnchor="0.0">
+                <ToggleButton fx:id="btnSideCtrl" mnemonicParsing="false"
+                              onAction="#controlSidePane" prefHeight="30.0"
+                              prefWidth="30.0">
                     <graphic>
-                        <Region maxHeight="15.0" maxWidth="15.0" />
+                        <Region maxHeight="15.0" maxWidth="15.0"/>
                     </graphic>
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <styleClass>
-                        <String fx:value="btn-common" />
-                        <String fx:value="btn-side-control" />
+                        <String fx:value="btn-common"/>
+                        <String fx:value="btn-side-control"/>
                     </styleClass>
                 </ToggleButton>
-                <Text fx:id="txtPageName" strokeType="OUTSIDE" strokeWidth="0.0" text="页面名称">
+                <Text fx:id="txtPageName" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="页面名称">
                     <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="16.0"/>
                     </font>
                     <HBox.margin>
-                        <Insets left="10.0" />
+                        <Insets left="10.0"/>
                     </HBox.margin>
                 </Text>
             </HBox>
-            <StackPane fx:id="paneCarousel" layoutY="30.0" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" />
+            <StackPane fx:id="paneCarousel" layoutY="30.0" prefHeight="600.0"
+                       prefWidth="900.0" AnchorPane.bottomAnchor="0.0"
+                       AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                       AnchorPane.topAnchor="40.0"/>
         </AnchorPane>
     </AnchorPane>
 </VBox>

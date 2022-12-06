@@ -2,7 +2,7 @@ package com.juliy.ims.model;
 
 import com.juliy.ims.entity.Goods;
 import com.juliy.ims.entity.model.RecordDO;
-import com.juliy.ims.service.RecordService;
+import com.juliy.ims.service.CreateRecordService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.Cursor;
@@ -24,11 +24,11 @@ public class VariableTableModel {
     final int type;
     private final TableView<RecordDO> table;
     private final List<Integer> goodsIdList;
-    private final RecordService service;
+    private final CreateRecordService service;
     private final StringProperty totalAmount = new SimpleStringProperty("0");
 
 
-    public VariableTableModel(TableView<RecordDO> table, RecordService service, int type) {
+    public VariableTableModel(TableView<RecordDO> table, CreateRecordService service, int type) {
         this.table = table;
         this.service = service;
         this.type = type;

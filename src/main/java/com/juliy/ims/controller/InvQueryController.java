@@ -116,6 +116,7 @@ public class InvQueryController extends RootController {
         txtTotalPage.textProperty().bind(tableModel.totalPageProperty());
     }
 
+    /** 初始化组件 */
     private void initComponents() {
         addCustomComponents();
         initTableColumn();
@@ -130,6 +131,7 @@ public class InvQueryController extends RootController {
         tableModel.pageSizeProperty().addListener((ob, ov, nv) -> filterInv());
     }
 
+    /** 添加自定义组件 */
     private void addCustomComponents() {
         paneWhsName.getChildren().add(cbbWhsName);
         paneGoodsId.getChildren().add(cbbGoodsId);
@@ -138,6 +140,7 @@ public class InvQueryController extends RootController {
         paneGoodsSpec.getChildren().add(cbbGoodsSpec);
     }
 
+    /** 初始化表格列 */
     private void initTableColumn() {
         Map.of(tcWhsName, "whsName",
                tcId, "goodsId",
@@ -152,6 +155,7 @@ public class InvQueryController extends RootController {
         });
     }
 
+    /** 加载数据 */
     private void initData() {
         filterInv();
 

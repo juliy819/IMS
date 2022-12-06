@@ -16,14 +16,14 @@ public interface InventoryDao {
      * 查询所有库存信息
      * @return 库存信息列表
      */
-    List<InvDO> queryAllInv();
+    List<InvDO> queryAll();
 
     /**
      * 查询指定库存信息
      * @param sql 查询语句
      * @return 符合要求的库存信息列表；若不存在则列表长度为0
      */
-    List<InvDO> queryInv(String sql);
+    List<InvDO> query(String sql);
 
     /**
      * 查找指定仓库中某一种货品的数量
@@ -34,17 +34,11 @@ public interface InventoryDao {
     int queryQty(int whsId, int goodsId);
 
     /**
-     * 查询库存信息
-     * @return 库存信息总数
-     */
-    int queryInvCount();
-
-    /**
      * 查询指定库存信息
      * @param sql 查询语句
      * @return 满足条件的库存信息总数
      */
-    int queryInvCount(String sql);
+    int queryCount(String sql);
 
     /**
      * 插入库存信息，若存在则更新数量

@@ -19,12 +19,6 @@ public interface InvQueryService {
     List<InvDO> getAllInv();
 
     /**
-     * 获取库存总数
-     * @return 库存总数
-     */
-    int getTotalCount();
-
-    /**
      * 获取符合筛选要求的库存记录数量
      * @return 符合要求的库存记录数量
      */

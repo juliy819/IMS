@@ -20,19 +20,14 @@ public class InvQueryServiceImpl implements InvQueryService {
 
     @Override
     public List<InvDO> getAllInv() {
-        return inventoryDao.queryAllInv();
-    }
-
-    @Override
-    public int getTotalCount() {
-        return inventoryDao.queryInvCount();
+        return inventoryDao.queryAll();
     }
 
     @Override
     public int getFilterCount(String whsName, String id, String type, String name, String spec) {
         StringBuilder sql = generateSql(whsName, id, type, name, spec);
         sql.delete(7, sql.indexOf("from") - 1).insert(7, "count(*)");
-        return inventoryDao.queryInvCount(String.valueOf(sql));
+        return inventoryDao.queryCount(String.valueOf(sql));
     }
 
     @Override
@@ -40,7 +35,7 @@ public class InvQueryServiceImpl implements InvQueryService {
         StringBuilder sql = generateSql(whsName, id, type, name, spec);
         int start = (page - 1) * pageSize;
         sql.append("limit ").append(start).append(",").append(pageSize);
-        List<InvDO> list = inventoryDao.queryInv(String.valueOf(sql));
+        List<InvDO> list = inventoryDao.query(String.valueOf(sql));
         return FXCollections.observableArrayList(list);
     }
 

@@ -5,7 +5,7 @@ import com.juliy.ims.dao.impl.*;
 import com.juliy.ims.entity.Record;
 import com.juliy.ims.entity.*;
 import com.juliy.ims.entity.model.RecordDO;
-import com.juliy.ims.service.RecordService;
+import com.juliy.ims.service.CreateRecordService;
 
 import java.util.List;
 
@@ -14,13 +14,13 @@ import java.util.List;
  * @author JuLiy
  * @date 2022/12/2 20:00
  */
-public class RecordServiceImpl implements RecordService {
+public class CreateRecordServiceImpl implements CreateRecordService {
 
-    RecordDao recordDao = new RecordDaoImpl();
-    CompanyDao companyDao = new CompanyDaoImpl();
-    WarehouseDao warehouseDao = new WarehouseDaoImpl();
-    GoodsDao goodsDao = new GoodsDaoImpl();
-    InventoryDao invDao = new InventoryDaoImpl();
+    private final RecordDao recordDao = new RecordDaoImpl();
+    private final CompanyDao companyDao = new CompanyDaoImpl();
+    private final WarehouseDao warehouseDao = new WarehouseDaoImpl();
+    private final GoodsDao goodsDao = new GoodsDaoImpl();
+    private final InventoryDao invDao = new InventoryDaoImpl();
 
     @Override
     public void addEntryReceipt(List<RecordDO> recList) {

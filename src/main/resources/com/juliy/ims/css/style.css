@@ -11,6 +11,10 @@
     color-shadow: #afafaf;
 }
 
+.content {
+    -fx-background-color: color-background-dark;
+}
+
 /*---------- 图标按钮 ----------*/
 
 .btn-common {
@@ -335,12 +339,12 @@
     -fx-background-color: TRANSPARENT;
 }
 
-.tree-cell:selected, .tree-cell:selected:hover {
-    -fx-background-color: derive(color-main, 50%);
+.tree-cell:filled:hover {
+    -fx-background-color: derive(color-main, 90%);
 }
 
-.tree-cell:hover {
-    -fx-background-color: derive(color-main, 90%);
+.tree-cell:selected, .tree-cell:selected:hover {
+    -fx-background-color: derive(color-main, 40%);
 }
 
 .tree-cell > .tree-disclosure-node > .arrow {
@@ -359,13 +363,6 @@
 
 .btn-side-control:hover {
     -fx-background-color: color-hover;
-}
-
-/*---------------------------------------- 货品列表页面 ----------------------------------------*/
-
-.goods-list-content,
-.inv-query-content {
-    -fx-background-color: color-background-dark;
 }
 
 

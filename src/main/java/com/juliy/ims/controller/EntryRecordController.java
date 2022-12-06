@@ -4,8 +4,8 @@ import com.juliy.ims.entity.Company;
 import com.juliy.ims.entity.Warehouse;
 import com.juliy.ims.entity.model.RecordDO;
 import com.juliy.ims.model.VariableTableModel;
-import com.juliy.ims.service.RecordService;
-import com.juliy.ims.service.impl.RecordServiceImpl;
+import com.juliy.ims.service.CreateRecordService;
+import com.juliy.ims.service.impl.CreateRecordServiceImpl;
 import com.juliy.ims.utils.RecIdUtil;
 import com.leewyatt.rxcontrols.controls.RXTextField;
 import javafx.fxml.FXML;
@@ -60,7 +60,7 @@ public class EntryRecordController {
     };
     private static final Logger log = Logger.getLogger(EntryRecordController.class);
     private static final String RECEIPT_TYPE = "采购入库";
-    private final RecordService service = new RecordServiceImpl();
+    private final CreateRecordService service = new CreateRecordServiceImpl();
     private String receiptId;
     private VariableTableModel tableModel;
     @FXML

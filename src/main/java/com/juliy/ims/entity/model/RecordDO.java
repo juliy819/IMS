@@ -3,6 +3,7 @@ package com.juliy.ims.entity.model;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * @author JuLiy
@@ -16,6 +17,8 @@ public class RecordDO {
     private Integer companyId;
     /** 仓库编号 */
     private Integer whsId;
+    /** 仓库名称 */
+    private String whsName;
     /** 单据类型 */
     private String receiptType;
     /** 单据编号 */
@@ -40,4 +43,6 @@ public class RecordDO {
     private Integer outQty;
     /** 出库金额 */
     private BigDecimal outAmt;
+    /** 业务日期 */
+    private Date bizDate;
 }

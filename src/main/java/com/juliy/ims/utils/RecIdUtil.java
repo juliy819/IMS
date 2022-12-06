@@ -34,7 +34,7 @@ public class RecIdUtil {
 
 
     enum Head {
-        ENTRY("H"),
+        ENTRY("E"),
         OUT("O"),
         ALLOCATION("A");
 

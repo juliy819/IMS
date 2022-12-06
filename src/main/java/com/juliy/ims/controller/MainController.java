@@ -81,7 +81,7 @@ public class MainController extends RootController {
         Image basicSettingsImg = new Image("images/新增.png");
         Image invMgtImg = new Image("images/表单.png");
         setItems(root, rootImg, reportStat, basicSettings, invMgt);
-        setItems(reportStat, reportStatImg, "货品列表", "当前库存查询", "出入库流水账", "收发存汇总", "库存预警分析");
+        setItems(reportStat, reportStatImg, "货品列表", "当前库存查询", "出入库流水账", "库存预警分析");
         setItems(basicSettings, basicSettingsImg, "新增仓库", "新增货品类别", "新增货品", "新增供应商/客户");
         setItems(invMgt, invMgtImg, "入库单", "出库单", "调拨单");
 
@@ -111,6 +111,8 @@ public class MainController extends RootController {
                                 CommonUtil.loadPage("GoodsList", pane);
                         case "当前库存查询" ->
                                 CommonUtil.loadPage("InvQuery", pane);
+                        case "出入库流水账" ->
+                                CommonUtil.loadPage("RecordQuery", pane);
                         case "新增仓库" -> CommonUtil.loadPage("AddWhs", pane);
                         case "新增货品类别" ->
                                 CommonUtil.loadPage("AddGoodsType", pane);

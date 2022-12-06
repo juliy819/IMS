@@ -103,6 +103,11 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
         return super.isNameExist(name, "t_goods", "goods_name");
     }
 
+    @Override
+    public int queryCount(String sql) {
+        return super.queryCount(sql);
+    }
+
     /** 将结果集中的数据封装到对象中并返回 */
     private Goods wrapGoods() throws SQLException {
         Goods goods = new Goods();

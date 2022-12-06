@@ -16,10 +16,7 @@ public interface LoginService {
      */
     boolean loginCheck(String username, String password);
 
-    /**
-     * 加载配置文件
-     * @throws IOException 若配置文件位置有误
-     */
+    /** 加载配置文件 */
     void loadSettings() throws IOException;
 
     /**
