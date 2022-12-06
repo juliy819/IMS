@@ -1,11 +1,14 @@
 package com.juliy.ims.service.impl;
 
+import com.juliy.ims.dao.CompanyDao;
 import com.juliy.ims.dao.GoodsDao;
 import com.juliy.ims.dao.GoodsTypeDao;
 import com.juliy.ims.dao.WarehouseDao;
+import com.juliy.ims.dao.impl.CompanyDaoImpl;
 import com.juliy.ims.dao.impl.GoodsDaoImpl;
 import com.juliy.ims.dao.impl.GoodsTypeDaoImpl;
 import com.juliy.ims.dao.impl.WarehouseDaoImpl;
+import com.juliy.ims.entity.Company;
 import com.juliy.ims.entity.Goods;
 import com.juliy.ims.entity.GoodsType;
 import com.juliy.ims.entity.Warehouse;
@@ -24,6 +27,7 @@ public class AddNewServiceImpl implements AddNewService {
     private final WarehouseDao warehouseDao = new WarehouseDaoImpl();
     private final GoodsTypeDao goodsTypeDao = new GoodsTypeDaoImpl();
     private final GoodsDao goodsDao = new GoodsDaoImpl();
+    private final CompanyDao companyDao = new CompanyDaoImpl();
 
 
     @Override
@@ -41,6 +45,11 @@ public class AddNewServiceImpl implements AddNewService {
         goodsDao.insert(goods);
     }
 
+    @Override
+    public void addNew(Company company) {
+        companyDao.insert(company);
+    }
+
 
     @Override
     public boolean isNameExist(String name, String tableName) {
@@ -53,6 +62,9 @@ public class AddNewServiceImpl implements AddNewService {
             }
             case "t_goods" -> {
                 return goodsDao.isNameExist(name);
+            }
+            case "t_company" -> {
+                return companyDao.isNameExist(name);
             }
             default -> throw new SwitchErrorException();
         }

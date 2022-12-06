@@ -61,6 +61,11 @@
     -fx-background-color: derive(color-main, -20%);
 }
 
+.btn-delete Region {
+    -fx-shape: icon-close;
+    -fx-background-color: red;
+}
+
 /*---------- 面板 ----------*/
 
 .pane-float {
@@ -78,6 +83,22 @@
 
 .pane-full-screen:hover .btn-full-screen {
     visibility: visible;
+}
+
+.pane-split {
+    -fx-background-color: derive(color-main, 70%);
+    -fx-alignment: center-left;
+    -fx-background-radius: 15 0 0 0;
+}
+
+.pane-split .label {
+    -fx-background-color: color-main;
+    -fx-background-radius: 15 0 15 0;
+    -fx-alignment: center;
+    -fx-pref-width: 100;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
 }
 
 /*---------- 输入框 ----------*/
@@ -106,6 +127,10 @@
     -fx-border-width: 1;
 }
 
+.tf-add {
+    -fx-pref-width: 200;
+}
+
 .tf-add:focused, .ta-add:focused {
     -fx-background-color: white;
 }
@@ -116,6 +141,10 @@
     -fx-background-color: null;
     -fx-border-color: color-border;
     -fx-border-width: 0 0 1 0;
+}
+
+.combo-box-base:hover {
+    -fx-border-color: color-main;
 }
 
 .combo-box-base:showing {
@@ -170,15 +199,9 @@
     -fx-border-width: 0;
 }
 
-/*.table-view .column-header-background {*/
-/*    !*-fx-background-color: color-border;*!*/
-/*    -fx-border-color: color-border;*/
-/*    -fx-border-width: 1;*/
-/*}*/
-
-/*.table-view .table-column {*/
-/*    -fx-background-color: null;*/
-/*}*/
+.table-view:focused > .virtual-flow > .clipped-container > .sheet > .table-row-cell .table-cell:selected {
+    -fx-background: null;
+}
 
 .table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:hover,
 .table-view:row-selection > .virtual-flow > .clipped-container > .sheet > .table-row-cell:focused {
@@ -312,8 +335,12 @@
     -fx-background-color: TRANSPARENT;
 }
 
-.tree-cell:selected {
-    -fx-background-color: color-main;
+.tree-cell:selected, .tree-cell:selected:hover {
+    -fx-background-color: derive(color-main, 50%);
+}
+
+.tree-cell:hover {
+    -fx-background-color: derive(color-main, 90%);
 }
 
 .tree-cell > .tree-disclosure-node > .arrow {

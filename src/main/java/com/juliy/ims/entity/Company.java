@@ -4,25 +4,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 供应商
+ * 公司
  * @author JuLiy
  * @date 2022/10/1 17:20
  */
 @Data
 @NoArgsConstructor
-public class Supplier {
-    /** 供应商编号 */
-    private Integer supplierId;
-    /** 供应商名称 */
-    private String supplierName;
-    /** 供应商地址 */
-    private String supplierAdd;
-    /** 供应商银行名称 */
-    private String supplierBankName;
-    /** 供应商银行账户 */
-    private String supplierBankAcct;
-    /** 供应商税号 */
-    private String supplierTaxId;
+public class Company {
+    /** 公司编号 */
+    private Integer companyId;
+    /** 类别，客户/供应商 */
+    private String companyType;
+    /** 公司名称 */
+    private String companyName;
+    /** 公司地址 */
+    private String companyAdd;
+    /** 银行名称 */
+    private String bankName;
+    /** 银行账户 */
+    private String bankAcct;
+    /** 税号 */
+    private String taxId;
     /** 联系人名称 */
     private String contactName;
     /** 联系人职位 */
@@ -32,7 +34,7 @@ public class Supplier {
     /** 联系人邮箱 */
     private String contactEmail;
     /** 备注 */
-    private String supplierComment;
+    private String companyComment;
     /** 是否删除 */
     private Boolean deleted;
 }

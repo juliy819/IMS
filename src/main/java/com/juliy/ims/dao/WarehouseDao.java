@@ -2,12 +2,20 @@ package com.juliy.ims.dao;
 
 import com.juliy.ims.entity.Warehouse;
 
+import java.util.List;
+
 /**
  * warehouse表数据库操作接口
  * @author JuLiy
  * @date 2022/10/9 22:57
  */
 public interface WarehouseDao {
+
+    /**
+     * 查询所有仓库
+     * @return 仓库列表
+     */
+    List<Warehouse> queryAll();
 
     /**
      * 添加新仓库

@@ -84,6 +84,7 @@ public class CommonUtil {
         alert.setHeaderText(null);
         alert.setContentText(text);
         alert.showAndWait();
+
     }
 
     /**

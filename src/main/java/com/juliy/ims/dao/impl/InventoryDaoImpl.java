@@ -1,12 +1,11 @@
 package com.juliy.ims.dao.impl;
 
 import com.juliy.ims.dao.InventoryDao;
-import com.juliy.ims.entity.DO.InvDO;
+import com.juliy.ims.entity.Inventory;
+import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.exception.DaoException;
 import com.juliy.ims.utils.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,10 +15,7 @@ import java.util.List;
  * @author JuLiy
  * @date 2022/10/9 22:59
  */
-public class InventoryDaoImpl implements InventoryDao {
-    Connection conn;
-    PreparedStatement pStatement;
-    ResultSet rs;
+public class InventoryDaoImpl extends BaseDao implements InventoryDao {
 
     @Override
     public List<InvDO> queryAllInv() {
@@ -51,11 +47,31 @@ public class InventoryDaoImpl implements InventoryDao {
                 list.add(inv);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException(e.getMessage());
         } finally {
             JdbcUtil.release(rs, pStatement, conn);
         }
         return list;
+    }
+
+    @Override
+    public int queryQty(int whsId, int goodsId) {
+        String sql = "select goods_qty from t_inventory where whs_id = ? and goods_id = ?";
+        conn = JdbcUtil.getConnection();
+        try {
+            pStatement = conn.prepareStatement(sql);
+            pStatement.setInt(1, whsId);
+            pStatement.setInt(2, goodsId);
+            rs = pStatement.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("goods_qty");
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        } finally {
+            JdbcUtil.release(rs, pStatement, conn);
+        }
+        return 0;
     }
 
     @Override
@@ -66,18 +82,27 @@ public class InventoryDaoImpl implements InventoryDao {
 
     @Override
     public int queryInvCount(String sql) {
+        return super.queryCount(sql);
+    }
+
+    @Override
+    public void insertOrUpdate(Inventory inv) {
+        String sql = "insert into t_inventory (whs_id, goods_id, goods_qty) " +
+                "values (?, ?, ?) " +
+                "on duplicate key update goods_qty = goods_qty + ?";
         conn = JdbcUtil.getConnection();
         try {
             pStatement = conn.prepareStatement(sql);
-            rs = pStatement.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1);
-            }
+            pStatement.setInt(1, inv.getWhsId());
+            pStatement.setInt(2, inv.getGoodsId());
+            pStatement.setInt(3, inv.getGoodsQty());
+            pStatement.setInt(4, inv.getGoodsQty());
+
+            pStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new DaoException(e.getMessage());
         } finally {
             JdbcUtil.release(rs, pStatement, conn);
         }
-        return 0;
     }
 }

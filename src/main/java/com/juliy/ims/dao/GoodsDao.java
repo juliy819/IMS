@@ -24,6 +24,13 @@ public interface GoodsDao {
     List<Goods> query(String sql);
 
     /**
+     * 按编号查询货品信息
+     * @param id 货品编号
+     * @return 编号对应的货品，查询失败返回null
+     */
+    Goods query(int id);
+
+    /**
      * 查询货品总数
      * @return 货品总数
      */
@@ -35,7 +42,6 @@ public interface GoodsDao {
      * @return 满足条件的货品总数
      */
     int queryCount(String sql);
-
 
     /**
      * 添加新货品

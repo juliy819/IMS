@@ -56,7 +56,7 @@ public class SearchCbBoxModel {
             comboBox.show();
 
             //若在持续的输入内容，则每隔1秒进行一次搜索，以免输一个字符便搜索一次
-            //这里设计的不好，期望应该是输入间隔大于1s时再进行搜索，但在多线程和javafx多任务这块学的不好
+            //这里设计的不太行，期望应该是输入间隔大于1s时再进行搜索，但在多线程和javafx多任务这块学的不好
             if (!isSearching) {
                 Task<String> task = new Task<>() {
                     @Override
@@ -70,7 +70,7 @@ public class SearchCbBoxModel {
                 task.valueProperty().addListener((ob, ov, nv) -> {
                     FilteredList<CheckCbbUnitModel> newList = list.filtered(s -> s.getValue().contains(nv));
                     comboBox.hide();
-                    comboBox.setVisibleRowCount(newList.size());
+                    comboBox.setVisibleRowCount(Math.min(newList.size(), 10));
                     comboBox.setItems(newList);
                     comboBox.show();
                 });

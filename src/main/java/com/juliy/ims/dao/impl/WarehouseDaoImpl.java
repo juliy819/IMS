@@ -5,21 +5,38 @@ import com.juliy.ims.entity.Warehouse;
 import com.juliy.ims.exception.DaoException;
 import com.juliy.ims.utils.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * warehouse表数据库操作实现类
  * @author JuLiy
  * @date 2022/10/9 23:00
  */
-public class WarehouseDaoImpl implements WarehouseDao {
+public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
 
-    Connection conn;
-    PreparedStatement pStatement;
-    ResultSet rs;
+    @Override
+    public List<Warehouse> queryAll() {
+        List<Warehouse> list = new ArrayList<>();
+        String sql = "select whs_id, whs_name from t_warehouse where is_deleted != 1";
+        conn = JdbcUtil.getConnection();
+        try {
+            pStatement = conn.prepareStatement(sql);
+            rs = pStatement.executeQuery();
+            while (rs.next()) {
+                Warehouse warehouse = new Warehouse();
+                warehouse.setWhsId(rs.getInt("whs_id"));
+                warehouse.setWhsName(rs.getString("whs_name"));
+                list.add(warehouse);
+            }
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        } finally {
+            JdbcUtil.release(rs, pStatement, conn);
+        }
+        return list;
+    }
 
     @Override
     public boolean insert(Warehouse warehouse) {
@@ -43,18 +60,6 @@ public class WarehouseDaoImpl implements WarehouseDao {
 
     @Override
     public boolean isNameExist(String name) {
-        String sql = "select count(*) from t_warehouse where whs_name = ? limit 1";
-        conn = JdbcUtil.getConnection();
-        try {
-            pStatement = conn.prepareStatement(sql);
-            pStatement.setString(1, name);
-            rs = pStatement.executeQuery();
-            rs.next();
-            return rs.getInt("count(*)") != 0;
-        } catch (SQLException e) {
-            throw new DaoException(e.getMessage());
-        } finally {
-            JdbcUtil.release(rs, pStatement, conn);
-        }
+        return super.isNameExist(name, "t_warehouse", "whs_name");
     }
 }

@@ -1,4 +1,4 @@
-package com.juliy.ims.entity.DO;
+package com.juliy.ims.entity.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

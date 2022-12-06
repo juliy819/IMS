@@ -2,7 +2,7 @@ package com.juliy.ims.service.impl;
 
 import com.juliy.ims.dao.InventoryDao;
 import com.juliy.ims.dao.impl.InventoryDaoImpl;
-import com.juliy.ims.entity.DO.InvDO;
+import com.juliy.ims.entity.model.InvDO;
 import com.juliy.ims.service.InvQueryService;
 import com.juliy.ims.utils.CommonUtil;
 import javafx.collections.FXCollections;

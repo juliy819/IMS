@@ -16,6 +16,7 @@ import javafx.util.StringConverter;
 import org.apache.log4j.Logger;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import static com.juliy.ims.utils.CommonUtil.*;
@@ -37,7 +38,7 @@ public class AddGoodsController {
     private final StringProperty maxQty = new SimpleStringProperty("");
     private final StringProperty minQty = new SimpleStringProperty("");
     private final StringProperty comment = new SimpleStringProperty("");
-    
+
     @FXML
     private ComboBox<GoodsType> cbbType;
     @FXML
@@ -143,7 +144,7 @@ public class AddGoodsController {
         //检查复选框是否为空
         if (cbbType.getSelectionModel().isEmpty()) {
             txtTypeError.setText("货品类别不能为空！");
-            txtNameError.setVisible(true);
+            txtTypeError.setVisible(true);
             return false;
         }
 
@@ -199,15 +200,15 @@ public class AddGoodsController {
 
     /** 清空提示消息 */
     private void clearPrompt() {
-        txtTypeError.setVisible(false);
-        txtNameError.setVisible(false);
-        txtSpecError.setVisible(false);
-        txtUnitError.setVisible(false);
-        txtPurPriceError.setVisible(false);
-        txtSellPriceError.setVisible(false);
-        txtMaxQtyError.setVisible(false);
-        txtMinQtyError.setVisible(false);
-        txtSuccess.setVisible(false);
+        List.of(txtTypeError,
+                txtNameError,
+                txtSpecError,
+                txtUnitError,
+                txtPurPriceError,
+                txtSellPriceError,
+                txtMaxQtyError,
+                txtMinQtyError,
+                txtSuccess
+        ).forEach(text -> text.setVisible(false));
     }
-
 }

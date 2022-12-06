@@ -1,5 +1,6 @@
 package com.juliy.ims.service;
 
+import com.juliy.ims.entity.Company;
 import com.juliy.ims.entity.Goods;
 import com.juliy.ims.entity.GoodsType;
 import com.juliy.ims.entity.Warehouse;
@@ -30,6 +31,12 @@ public interface AddNewService {
      * @param goods 要添加的货品
      */
     void addNew(Goods goods);
+
+    /**
+     * 添加新公司
+     * @param company 公司
+     */
+    void addNew(Company company);
 
     /**
      * 判断名称是否已存在

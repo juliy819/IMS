@@ -2,8 +2,8 @@ package com.juliy.ims.controller;
 
 import com.juliy.ims.entity.Goods;
 import com.juliy.ims.model.CheckCbbUnitModel;
+import com.juliy.ims.model.PageTableModel;
 import com.juliy.ims.model.SearchCbBoxModel;
-import com.juliy.ims.model.TableModel;
 import com.juliy.ims.my_components.MyComboBox;
 import com.juliy.ims.my_components.MyTableCell;
 import com.juliy.ims.service.GoodsListService;
@@ -42,7 +42,7 @@ public class GoodsListController extends RootController {
     private final MyComboBox cbbGoodsId = new MyComboBox();
     private final MyComboBox cbbGoodsName = new MyComboBox();
     private final MyComboBox cbbGoodsSpec = new MyComboBox();
-    private TableModel<Goods> tableModel;
+    private PageTableModel<Goods> tableModel;
     private SearchCbBoxModel goodsTypeModel;
     private SearchCbBoxModel goodsIdModel;
     private SearchCbBoxModel goodsNameModel;
@@ -115,7 +115,7 @@ public class GoodsListController extends RootController {
 
     /** 初始化model，并将model的属性与组件进行绑定 */
     private void initModel() {
-        tableModel = new TableModel<>(tableGoods, cbbPageSize);
+        tableModel = new PageTableModel<>(tableGoods, cbbPageSize);
         goodsTypeModel = new SearchCbBoxModel(tfGoodsType, cbbGoodsType);
         goodsIdModel = new SearchCbBoxModel(tfGoodsId, cbbGoodsId);
         goodsNameModel = new SearchCbBoxModel(tfGoodsName, cbbGoodsName);

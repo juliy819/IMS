@@ -5,9 +5,6 @@ import com.juliy.ims.entity.GoodsType;
 import com.juliy.ims.exception.DaoException;
 import com.juliy.ims.utils.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +14,7 @@ import java.util.List;
  * @author JuLiy
  * @date 2022/10/9 22:59
  */
-public class GoodsTypeDaoImpl implements GoodsTypeDao {
-
-    Connection conn;
-    PreparedStatement pStatement;
-    ResultSet rs;
+public class GoodsTypeDaoImpl extends BaseDao implements GoodsTypeDao {
 
     @Override
     public List<GoodsType> queryAll() {
@@ -63,18 +56,6 @@ public class GoodsTypeDaoImpl implements GoodsTypeDao {
 
     @Override
     public boolean isNameExist(String name) {
-        String sql = "select count(*) from t_goods_type where goods_type_name = ? limit 1";
-        conn = JdbcUtil.getConnection();
-        try {
-            pStatement = conn.prepareStatement(sql);
-            pStatement.setString(1, name);
-            rs = pStatement.executeQuery();
-            rs.next();
-            return rs.getInt("count(*)") != 0;
-        } catch (SQLException e) {
-            throw new DaoException(e.getMessage());
-        } finally {
-            JdbcUtil.release(rs, pStatement, conn);
-        }
+        return super.isNameExist(name, "t_goods_type", "goods_type_name");
     }
 }

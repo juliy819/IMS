@@ -10,11 +10,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 
 /**
- * 翻页表格模型
+ * 分页表格模型
  * @author JuLiy
  * @date 2022/11/19 11:56
  */
-public class TableModel<T> {
+public class PageTableModel<T> {
     private final TableView<T> table;
     private final ComboBox<String> cbbPageSize;
     private final StringProperty curPage = new SimpleStringProperty("1");
@@ -41,7 +41,7 @@ public class TableModel<T> {
      * @param table       表格
      * @param cbbPageSize 行数选择下拉框
      */
-    public TableModel(TableView<T> table, ComboBox<String> cbbPageSize) {
+    public PageTableModel(TableView<T> table, ComboBox<String> cbbPageSize) {
         this.table = table;
         this.cbbPageSize = cbbPageSize;
         initCbbPageSize();

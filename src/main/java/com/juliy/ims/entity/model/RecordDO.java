@@ -1,23 +1,17 @@
-package com.juliy.ims.entity;
+package com.juliy.ims.entity.model;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 
 /**
- * 出入库记录
  * @author JuLiy
- * @date 2022/10/1 17:47
+ * @date 2022/12/4 15:29
  */
 @Data
-@NoArgsConstructor
-public class Record {
+public class RecordDO {
     /** 记录编号 */
     private Integer recordId;
-    /** 业务日期 */
-    private Date bizDate;
     /** 公司编号 */
     private Integer companyId;
     /** 仓库编号 */
@@ -26,8 +20,18 @@ public class Record {
     private String receiptType;
     /** 单据编号 */
     private String receiptId;
-    /** 货品 */
+    /** 货品编号 */
     private Integer goodsId;
+    /** 货品类别 */
+    private String goodsType;
+    /** 货品名称 */
+    private String goodsName;
+    /** 货品规格 */
+    private String goodsSpec;
+    /** 参考进价 */
+    private BigDecimal refPurPrice;
+    /** 参考售价 */
+    private BigDecimal refSellPrice;
     /** 入库数量 */
     private Integer entryQty;
     /** 入库金额 */
@@ -36,6 +40,4 @@ public class Record {
     private Integer outQty;
     /** 出库金额 */
     private BigDecimal outAmt;
-    /** 是否删除 */
-    private Boolean deleted;
 }

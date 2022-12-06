@@ -5,9 +5,6 @@ import com.juliy.ims.entity.Goods;
 import com.juliy.ims.exception.DaoException;
 import com.juliy.ims.utils.JdbcUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,15 +14,15 @@ import java.util.List;
  * @author JuLiy
  * @date 2022/10/9 22:58
  */
-public class GoodsDaoImpl implements GoodsDao {
-    Connection conn;
-    PreparedStatement pStatement;
-    ResultSet rs;
+public class GoodsDaoImpl extends BaseDao implements GoodsDao {
+
 
     @Override
     public List<Goods> queryAll() {
-        String sql = "select a.*, b.goods_type_name from t_goods a, t_goods_type b " +
-                "where a.goods_type_id = b.goods_type_id and a.is_deleted != 1";
+        String sql = "select a.*, b.goods_type_name " +
+                "from t_goods a " +
+                "left join t_goods_type b on a.goods_type_id = b.goods_type_id " +
+                "where a.is_deleted != 1";
         return query(sql);
     }
 
@@ -37,9 +34,7 @@ public class GoodsDaoImpl implements GoodsDao {
             pStatement = conn.prepareStatement(sql);
             rs = pStatement.executeQuery();
             while (rs.next()) {
-                Goods goods = new Goods();
-                wrapGoods(goods);
-                list.add(goods);
+                list.add(wrapGoods());
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
@@ -50,26 +45,31 @@ public class GoodsDaoImpl implements GoodsDao {
     }
 
     @Override
-    public int queryCount() {
-        String sql = "select count(*) from t_goods";
-        return queryCount(sql);
-    }
-
-    @Override
-    public int queryCount(String sql) {
+    public Goods query(int id) {
+        String sql = "select a.*, b.goods_type_name " +
+                "from t_goods a " +
+                "left join t_goods_type b on a.goods_type_id = b.goods_type_id " +
+                "where a.goods_id = ? and a.is_deleted != 1";
         conn = JdbcUtil.getConnection();
         try {
             pStatement = conn.prepareStatement(sql);
+            pStatement.setInt(1, id);
             rs = pStatement.executeQuery();
             if (rs.next()) {
-                return rs.getInt(1);
+                return wrapGoods();
             }
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {
             JdbcUtil.release(rs, pStatement, conn);
         }
-        return 0;
+        return null;
+    }
+
+    @Override
+    public int queryCount() {
+        String sql = "select count(*) from t_goods";
+        return queryCount(sql);
     }
 
     @Override
@@ -100,23 +100,12 @@ public class GoodsDaoImpl implements GoodsDao {
 
     @Override
     public boolean isNameExist(String name) {
-        String sql = "select count(*) from t_goods where goods_name = ? limit 1";
-        conn = JdbcUtil.getConnection();
-        try {
-            pStatement = conn.prepareStatement(sql);
-            pStatement.setString(1, name);
-            rs = pStatement.executeQuery();
-            rs.next();
-            return rs.getInt("count(*)") != 0;
-        } catch (SQLException e) {
-            throw new DaoException(e.getMessage());
-        } finally {
-            JdbcUtil.release(rs, pStatement, conn);
-        }
+        return super.isNameExist(name, "t_goods", "goods_name");
     }
 
-    /** 将结果集中的数据封装到对象中 */
-    private void wrapGoods(Goods goods) throws SQLException {
+    /** 将结果集中的数据封装到对象中并返回 */
+    private Goods wrapGoods() throws SQLException {
+        Goods goods = new Goods();
         goods.setGoodsId(rs.getInt("goods_id"));
         goods.setGoodsTypeId(rs.getInt("goods_type_id"));
         goods.setGoodsTypeName(rs.getString("goods_type_name"));
@@ -129,5 +118,7 @@ public class GoodsDaoImpl implements GoodsDao {
         goods.setMinQty(rs.getInt("min_qty"));
         goods.setGoodsComment(rs.getString("goods_comment"));
         goods.setDeleted(rs.getBoolean("is_deleted"));
+
+        return goods;
     }
 }

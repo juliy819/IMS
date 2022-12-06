@@ -1,9 +1,9 @@
 package com.juliy.ims.controller;
 
-import com.juliy.ims.entity.DO.InvDO;
+import com.juliy.ims.entity.model.InvDO;
 import com.juliy.ims.model.CheckCbbUnitModel;
+import com.juliy.ims.model.PageTableModel;
 import com.juliy.ims.model.SearchCbBoxModel;
-import com.juliy.ims.model.TableModel;
 import com.juliy.ims.my_components.MyComboBox;
 import com.juliy.ims.my_components.MyTableCell;
 import com.juliy.ims.service.InvQueryService;
@@ -39,7 +39,7 @@ public class InvQueryController extends RootController {
     private final MyComboBox cbbGoodsType = new MyComboBox();
     private final MyComboBox cbbGoodsName = new MyComboBox();
     private final MyComboBox cbbGoodsSpec = new MyComboBox();
-    private TableModel<InvDO> tableModel;
+    private PageTableModel<InvDO> tableModel;
     private SearchCbBoxModel whsNameModel;
     private SearchCbBoxModel goodsIdModel;
     private SearchCbBoxModel goodsTypeModel;
@@ -105,7 +105,7 @@ public class InvQueryController extends RootController {
 
     /** 初始化model，并将model的属性与组件进行绑定 */
     private void initModel() {
-        tableModel = new TableModel<>(tableInv, cbbPageSize);
+        tableModel = new PageTableModel<>(tableInv, cbbPageSize);
         whsNameModel = new SearchCbBoxModel(tfWhsName, cbbWhsName);
         goodsIdModel = new SearchCbBoxModel(tfGoodsId, cbbGoodsId);
         goodsTypeModel = new SearchCbBoxModel(tfGoodsType, cbbGoodsType);

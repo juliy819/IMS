@@ -74,20 +74,16 @@ public class MainController extends RootController {
         TreeItem<String> root = new TreeItem<>();
         TreeItem<String> reportStat = new TreeItem<>("报表统计");
         TreeItem<String> basicSettings = new TreeItem<>("基础设置");
-        TreeItem<String> entryMgt = new TreeItem<>("入库管理");
-        TreeItem<String> outMgt = new TreeItem<>("出库管理");
         TreeItem<String> invMgt = new TreeItem<>("库存管理");
 
         Image rootImg = new Image("images/功能.png");
         Image reportStatImg = new Image("images/数据.png");
         Image basicSettingsImg = new Image("images/新增.png");
         Image invMgtImg = new Image("images/表单.png");
-        setItems(root, rootImg, reportStat, basicSettings, entryMgt, outMgt, invMgt);
+        setItems(root, rootImg, reportStat, basicSettings, invMgt);
         setItems(reportStat, reportStatImg, "货品列表", "当前库存查询", "出入库流水账", "收发存汇总", "库存预警分析");
-        setItems(basicSettings, basicSettingsImg, "新增仓库", "新增货品类别", "新增货品", "新增供应商", "新增客户");
-        setItems(entryMgt, invMgtImg, "采购入库单", "退料入库单", "生产入库单", "销售退货入库单", "其他入库单");
-        setItems(outMgt, invMgtImg, "采购退货出库单", "领料出库单", "销售出库单", "其他出库单");
-        setItems(invMgt, invMgtImg, "库存调拨单", "库存盘点单", "库存调拨记录", "库存盘点记录");
+        setItems(basicSettings, basicSettingsImg, "新增仓库", "新增货品类别", "新增货品", "新增供应商/客户");
+        setItems(invMgt, invMgtImg, "入库单", "出库单", "调拨单");
 
         treeFunctions.setRoot(root);
         reportStat.setExpanded(true);
@@ -120,6 +116,14 @@ public class MainController extends RootController {
                                 CommonUtil.loadPage("AddGoodsType", pane);
                         case "新增货品" ->
                                 CommonUtil.loadPage("AddGoods", pane);
+                        case "新增供应商/客户" ->
+                                CommonUtil.loadPage("AddCompany", pane);
+                        case "入库单" ->
+                                CommonUtil.loadPage("EntryRecord", pane);
+                        case "出库单" -> CommonUtil.loadPage("OutRecord", pane);
+                        case "调拨单" ->
+                                CommonUtil.loadPage("AlocRecord", pane);
+
                         default -> log.info("该页面尚未开发");
                     }
                 } catch (IOException e) {
