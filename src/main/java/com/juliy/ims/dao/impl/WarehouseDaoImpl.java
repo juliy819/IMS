@@ -39,7 +39,7 @@ public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
     }
 
     @Override
-    public boolean insert(Warehouse warehouse) {
+    public void insert(Warehouse warehouse) {
         String sql = "insert into t_warehouse(whs_name, whs_add, manager_name, manager_Phone, whs_comment) " +
                 "values(?, ?, ?, ?, ?)";
         conn = JdbcUtil.getConnection();
@@ -50,7 +50,7 @@ public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
             pStatement.setString(3, warehouse.getManagerName());
             pStatement.setString(4, warehouse.getManagerPhone());
             pStatement.setString(5, warehouse.getWhsComment());
-            return pStatement.executeUpdate() != 0;
+            pStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {
@@ -60,6 +60,6 @@ public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_warehouse", "whs_name");
+        return !super.isNameExist(name, "t_warehouse", "whs_name");
     }
 }

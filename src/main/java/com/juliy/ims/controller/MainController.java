@@ -1,5 +1,6 @@
 package com.juliy.ims.controller;
 
+import com.juliy.ims.exception.SwitchErrorException;
 import com.juliy.ims.utils.CommonUtil;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
@@ -25,7 +26,7 @@ import static com.juliy.ims.common.Context.getContext;
  * @author JuLiy
  * @date 2022/9/26 23:09
  */
-public class MainController extends RootController {
+public class MainController {
 
     private static final Logger log = Logger.getLogger(MainController.class);
     double offsetX;
@@ -113,6 +114,8 @@ public class MainController extends RootController {
                                 CommonUtil.loadPage("InvQuery", pane);
                         case "出入库流水账" ->
                                 CommonUtil.loadPage("RecordQuery", pane);
+                        case "库存预警分析" ->
+                                CommonUtil.loadPage("InvAnalysis", pane);
                         case "新增仓库" -> CommonUtil.loadPage("AddWhs", pane);
                         case "新增货品类别" ->
                                 CommonUtil.loadPage("AddGoodsType", pane);
@@ -126,7 +129,7 @@ public class MainController extends RootController {
                         case "调拨单" ->
                                 CommonUtil.loadPage("AlocRecord", pane);
 
-                        default -> log.info("该页面尚未开发");
+                        default -> throw new SwitchErrorException();
                     }
                 } catch (IOException e) {
                     log.error(e.getMessage(), e);

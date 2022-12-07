@@ -39,13 +39,13 @@ public class GoodsTypeDaoImpl extends BaseDao implements GoodsTypeDao {
     }
 
     @Override
-    public boolean insert(GoodsType goodsType) {
+    public void insert(GoodsType goodsType) {
         String sql = "insert into t_goods_type(goods_type_name) values (?)";
         conn = JdbcUtil.getConnection();
         try {
             pStatement = conn.prepareStatement(sql);
             pStatement.setString(1, goodsType.getGoodsTypeName());
-            return pStatement.executeUpdate() != 0;
+            pStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {
@@ -56,6 +56,6 @@ public class GoodsTypeDaoImpl extends BaseDao implements GoodsTypeDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_goods_type", "goods_type_name");
+        return !super.isNameExist(name, "t_goods_type", "goods_type_name");
     }
 }

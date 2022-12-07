@@ -2,7 +2,7 @@ package com.juliy.ims.service.impl;
 
 import com.juliy.ims.dao.RecordDao;
 import com.juliy.ims.dao.impl.RecordDaoImpl;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.service.RecordQueryService;
 import com.juliy.ims.utils.CommonUtil;
 import javafx.collections.FXCollections;

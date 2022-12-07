@@ -19,6 +19,30 @@ public class GoodsListServiceImpl implements GoodsListService {
 
     private final GoodsDao goodsDao = new GoodsDaoImpl();
 
+    public static StringBuilder generateSql(String goodsTypeName, String goodsId, String goodsName, String goodsSpec) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("select a.*, b.goods_type_name " +
+                           "from t_goods a " +
+                           "left join t_goods_type b on a.goods_type_id = b.goods_type_id " +
+                           "where ");
+
+        if (goodsTypeName != null && !"".equals(goodsTypeName)) {
+            CommonUtil.spliceSql(goodsTypeName, "b.goods_type_name", sql);
+        }
+        if (goodsId != null && !"".equals(goodsId)) {
+            CommonUtil.spliceSql(goodsId, "a.goods_id", sql);
+        }
+        if (goodsName != null && !"".equals(goodsName)) {
+            CommonUtil.spliceSql(goodsName, "a.goods_name", sql);
+        }
+        if (goodsSpec != null && !"".equals(goodsSpec)) {
+            CommonUtil.spliceSql(goodsSpec, "a.goods_spec", sql);
+        }
+
+        sql.append("a.is_deleted != 1 ");
+        return sql;
+    }
+
     @Override
     public List<Goods> getAllGoods() {
         return goodsDao.queryAll();
@@ -43,29 +67,5 @@ public class GoodsListServiceImpl implements GoodsListService {
         sql.append("limit ").append(start).append(",").append(pageSize);
         List<Goods> list = goodsDao.query(String.valueOf(sql));
         return FXCollections.observableArrayList(list);
-    }
-
-    private StringBuilder generateSql(String goodsTypeName, String goodsId, String goodsName, String goodsSpec) {
-        StringBuilder sql = new StringBuilder();
-        sql.append("select a.*, b.goods_type_name " +
-                           "from t_goods a " +
-                           "left join t_goods_type b on a.goods_type_id = b.goods_type_id " +
-                           "where ");
-
-        if (goodsTypeName != null && !"".equals(goodsTypeName)) {
-            CommonUtil.spliceSql(goodsTypeName, "b.goods_type_name", sql);
-        }
-        if (goodsId != null && !"".equals(goodsId)) {
-            CommonUtil.spliceSql(goodsId, "a.goods_id", sql);
-        }
-        if (goodsName != null && !"".equals(goodsName)) {
-            CommonUtil.spliceSql(goodsName, "a.goods_name", sql);
-        }
-        if (goodsSpec != null && !"".equals(goodsSpec)) {
-            CommonUtil.spliceSql(goodsSpec, "a.goods_spec", sql);
-        }
-
-        sql.append("a.is_deleted != 1 ");
-        return sql;
     }
 }

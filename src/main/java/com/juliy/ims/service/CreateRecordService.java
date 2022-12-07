@@ -3,7 +3,7 @@ package com.juliy.ims.service;
 import com.juliy.ims.entity.Company;
 import com.juliy.ims.entity.Goods;
 import com.juliy.ims.entity.Warehouse;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 
 import java.util.List;
 

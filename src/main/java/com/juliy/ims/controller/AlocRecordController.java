@@ -1,7 +1,7 @@
 package com.juliy.ims.controller;
 
 import com.juliy.ims.entity.Warehouse;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.model.VariableTableModel;
 import com.juliy.ims.service.CreateRecordService;
 import com.juliy.ims.service.impl.CreateRecordServiceImpl;
@@ -143,6 +143,9 @@ public class AlocRecordController {
         int whsId = cbbOutWhs.getSelectionModel().getSelectedItem().getWhsId();
         for (int i = 0; i < table.getItems().size(); i++) {
             RecordDO rec = table.getItems().get(i);
+            if (rec.getOutQty() == null) {
+                continue;
+            }
             int qty = service.getGoodsQty(whsId, rec.getGoodsId());
             if (rec.getOutQty() > qty) {
                 txtTableError.setText("'" + rec.getGoodsName() + "'库存数量不足!  当前库存量为:" + qty);
@@ -159,7 +162,12 @@ public class AlocRecordController {
         receiptId = RecIdUtil.getAllocationCode();
         List<RecordDO> recList = new ArrayList<>();
 
-        table.getItems().forEach(rec -> {
+        for (int i = 0; i < table.getItems().size(); i++) {
+            RecordDO rec = table.getItems().get(i);
+            if (rec.getOutQty() == null) {
+                continue;
+            }
+
             rec.setReceiptId(receiptId);
             rec.setCompanyId(-1);
             rec.setEntryAmt(new BigDecimal(0));
@@ -169,7 +177,7 @@ public class AlocRecordController {
             rec.setCompanyId(cbbEntryWhs.getSelectionModel().getSelectedItem().getWhsId());
             rec.setWhsId(cbbOutWhs.getSelectionModel().getSelectedItem().getWhsId());
             recList.add(rec);
-        });
+        }
 
         return recList;
     }

@@ -2,7 +2,7 @@ package com.juliy.ims.controller;
 
 import com.juliy.ims.entity.Company;
 import com.juliy.ims.entity.Warehouse;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.model.VariableTableModel;
 import com.juliy.ims.service.CreateRecordService;
 import com.juliy.ims.service.impl.CreateRecordServiceImpl;

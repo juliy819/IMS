@@ -34,7 +34,7 @@ import java.util.Map;
  * @author JuLiy
  * @date 2022/9/29 16:20
  */
-public class GoodsListController extends RootController {
+public class GoodsListController {
     final SimpleStringProperty totalGoodsNum = new SimpleStringProperty();
     private final Logger log = Logger.getLogger(GoodsListController.class);
     private final GoodsListService service = new GoodsListServiceImpl();

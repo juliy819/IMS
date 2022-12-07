@@ -46,9 +46,8 @@ public interface GoodsDao {
     /**
      * 添加新货品
      * @param goods 货品
-     * @return 添加成功返回true，添加失败返回false
      */
-    boolean insert(Goods goods);
+    void insert(Goods goods);
 
     /**
      * 判断货品名称是否存在

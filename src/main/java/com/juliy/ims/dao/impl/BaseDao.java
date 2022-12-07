@@ -26,7 +26,7 @@ public class BaseDao {
             pStatement.setString(1, name);
             rs = pStatement.executeQuery();
             rs.next();
-            return rs.getInt("count(*)") != 0;
+            return rs.getInt("count(*)") == 0;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {

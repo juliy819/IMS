@@ -1,6 +1,6 @@
 package com.juliy.ims.utils;
 
-import org.apache.log4j.Logger;
+import com.juliy.ims.exception.DBFileException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +21,6 @@ public class JdbcUtil {
     private static final String USER;
     /** 数据库密码 */
     private static final String PASSWORD;
-
-    private static final Logger log = Logger.getLogger(JdbcUtil.class);
 
     static {
         try {
@@ -45,6 +43,8 @@ public class JdbcUtil {
         }
     }
 
+    private JdbcUtil() {}
+
     /**
      * 建立数据库连接
      * @return 数据库连接对象
@@ -53,7 +53,7 @@ public class JdbcUtil {
         try {
             return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (Exception e) {
-            throw new RuntimeException("链接数据库的url或用户名密码错误,请检查您的配置文件");
+            throw new DBFileException();
         }
     }
 

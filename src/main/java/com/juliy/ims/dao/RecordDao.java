@@ -1,7 +1,7 @@
 package com.juliy.ims.dao;
 
 import com.juliy.ims.entity.Record;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 
 import java.util.List;
 
@@ -35,7 +35,6 @@ public interface RecordDao {
     /**
      * 添加新记录
      * @param rec 记录
-     * @return 添加成功返回true，添加失败返回false
      */
-    boolean insert(Record rec);
+    void insert(Record rec);
 }

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.leewyatt.rxcontrols.controls.RXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import org.controlsfx.control.CheckComboBox?>
+
+<fx:root styleClass="content" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.InvAnalysisController">
+    <StackPane fx:id="paneFull" prefHeight="600.0" prefWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+        </padding>
+        <AnchorPane fx:id="paneContent" prefHeight="200.0" prefWidth="200.0">
+            <HBox alignment="CENTER" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane fx:id="paneGoodsId" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="200.0" styleClass="pane-float" HBox.hgrow="SOMETIMES">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <Text layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="货品编码" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Text>
+                    <RXTextField fx:id="tfGoodsId" accessibleText="goodsId" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                    <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </CheckComboBox>
+                </AnchorPane>
+                <AnchorPane fx:id="paneGoodsType" prefHeight="70.0" prefWidth="200.0" styleClass="pane-float" HBox.hgrow="SOMETIMES">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <Text layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="货品类别" AnchorPane.bottomAnchor="42.619726562500006" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Text>
+                    <RXTextField fx:id="tfGoodsType" accessibleText="goodsType" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                    <CheckComboBox layoutX="91.0" layoutY="40.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </CheckComboBox>
+                </AnchorPane>
+                <AnchorPane fx:id="paneGoodsName" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="200.0" styleClass="pane-float" HBox.hgrow="SOMETIMES">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <Text layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="货品名称" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Text>
+                    <RXTextField fx:id="tfGoodsName" accessibleText="goodsName" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                    <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </CheckComboBox>
+                </AnchorPane>
+                <AnchorPane fx:id="paneGoodsSpec" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="200.0" styleClass="pane-float" HBox.hgrow="SOMETIMES">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                    <Text layoutX="10.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="规格型号" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Text>
+                    <RXTextField fx:id="tfGoodsSpec" accessibleText="goodsSpec" layoutX="82.0" layoutY="8.0" minWidth="50.0" styleClass="tf-search" AnchorPane.leftAnchor="80.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="8.0" />
+                    <CheckComboBox layoutX="13.0" layoutY="35.0" opacity="0.2" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+                        <cursor>
+                            <Cursor fx:constant="HAND" />
+                        </cursor>
+                    </CheckComboBox>
+                </AnchorPane>
+            </HBox>
+             <VBox accessibleText="85/215" layoutY="85.0" prefHeight="485.0" prefWidth="655.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+                 <styleClass>
+                     <String fx:value="pane-float" />
+                     <String fx:value="pane-full-screen" />
+                 </styleClass>
+                 <AnchorPane focusTraversable="true" prefHeight="40.0">
+                     <opaqueInsets>
+                         <Insets />
+                     </opaqueInsets>
+                     <Label layoutX="14.0" layoutY="6.0" text="超储分析表" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                         <font>
+                             <Font name="System Bold" size="14.0" />
+                         </font>
+                     </Label>
+                     <ToggleButton accessibleText="123" layoutX="546.0" layoutY="9.0" mnemonicParsing="false" onAction="#setFullScreen" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-full-screen" />
+                         </styleClass>
+                         <graphic>
+                             <Region maxHeight="15.0" maxWidth="15.0" />
+                         </graphic>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </ToggleButton>
+                 </AnchorPane>
+                 <TableView fx:id="tableOver" fixedCellSize="30.0" focusTraversable="false" VBox.vgrow="SOMETIMES">
+                     <columns>
+                         <TableColumn fx:id="tcOverId" maxWidth="100.0" minWidth="60.0" text="货品编码" />
+                         <TableColumn fx:id="tcOverType" maxWidth="120.0" minWidth="60.0" prefWidth="100.0" text="货品类别" />
+                         <TableColumn fx:id="tcOverName" maxWidth="500.0" minWidth="60.0" prefWidth="185.0" text="货品名称" />
+                         <TableColumn fx:id="tcOverSpec" maxWidth="500.0" minWidth="60.0" prefWidth="185.0" text="规格型号" />
+                         <TableColumn fx:id="tcOverUnit" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" text="单位" />
+                         <TableColumn fx:id="tcOverCurQty" maxWidth="100.0" minWidth="80.0" text="当前库存量" />
+                         <TableColumn fx:id="tcMaxQty" maxWidth="100.0" minWidth="80.0" text="最高库存量" />
+                         <TableColumn fx:id="tcOverQty" maxWidth="100.0" minWidth="80.0" style="-fx-background-color: derive(red,99%);" text="超储量" />
+                     </columns>
+                     <VBox.margin>
+                         <Insets />
+                     </VBox.margin>
+                 </TableView>
+                 <AnchorPane prefHeight="30.0">
+                     <ComboBox fx:id="cbbOverPageSize" layoutY="1.0" prefHeight="23.0" prefWidth="100.0" styleClass="page-rule" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="2.5" AnchorPane.topAnchor="2.5">
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </ComboBox>
+                     <TextField fx:id="tfOverCurPage" alignment="CENTER" layoutX="574.0" layoutY="3.0" onAction="#jumpPage" prefHeight="23.0" prefWidth="30.0" styleClass="tf-page-cur" text="1" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="3.0" />
+                     <Text layoutX="611.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="8.0" />
+                     <Text fx:id="txtOverTotalPage" layoutX="616.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="8.0" />
+                     <Button accessibleText="over" layoutX="666.0" layoutY="-2.0" mnemonicParsing="false" onAction="#toLastPage" prefHeight="26.0" prefWidth="26.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="2.0">
+                         <graphic>
+                             <Region maxHeight="10.0" maxWidth="10.0" />
+                         </graphic>
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-last" />
+                         </styleClass>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </Button>
+                     <Button accessibleText="over" layoutX="458.0" layoutY="-1.0" mnemonicParsing="false" onAction="#toNextPage" prefHeight="26.0" prefWidth="26.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
+                         <graphic>
+                             <Region maxHeight="10.0" maxWidth="10.0">
+                                 <cursor>
+                                     <Cursor fx:constant="HAND" />
+                                 </cursor>
+                             </Region>
+                         </graphic>
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-next" />
+                         </styleClass>
+                     </Button>
+                 </AnchorPane>
+             </VBox>
+             <VBox accessibleText="85/215" layoutY="335.3999938964844" prefHeight="485.0" prefWidth="655.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="335.0">
+                 <styleClass>
+                     <String fx:value="pane-float" />
+                     <String fx:value="pane-full-screen" />
+                 </styleClass>
+                 <AnchorPane focusTraversable="true" prefHeight="40.0">
+                     <opaqueInsets>
+                         <Insets />
+                     </opaqueInsets>
+                     <Label layoutX="14.0" layoutY="6.0" text="短缺分析表" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                         <font>
+                             <Font name="System Bold" size="14.0" />
+                         </font>
+                     </Label>
+                     <ToggleButton accessibleText="123" layoutX="546.0" layoutY="9.0" mnemonicParsing="false" onAction="#setFullScreen" prefHeight="30.0" prefWidth="30.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-full-screen" />
+                         </styleClass>
+                         <graphic>
+                             <Region maxHeight="15.0" maxWidth="15.0" />
+                         </graphic>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </ToggleButton>
+                 </AnchorPane>
+                 <TableView fx:id="tableUnder" fixedCellSize="30.0" focusTraversable="false" VBox.vgrow="SOMETIMES">
+                     <columns>
+                         <TableColumn fx:id="tcUnderId" maxWidth="100.0" minWidth="60.0" text="货品编码" />
+                         <TableColumn fx:id="tcUnderType" maxWidth="120.0" minWidth="60.0" prefWidth="100.0" text="货品类别" />
+                         <TableColumn fx:id="tcUnderName" maxWidth="500.0" minWidth="60.0" prefWidth="180.0" text="货品名称" />
+                         <TableColumn fx:id="tcUnderSpec" maxWidth="500.0" minWidth="60.0" prefWidth="180.0" text="规格型号" />
+                         <TableColumn fx:id="tcUnderUnit" maxWidth="100.0" minWidth="60.0" prefWidth="60.0" text="单位" />
+                         <TableColumn fx:id="tcUnderCurQty" maxWidth="100.0" minWidth="80.0" text="当前库存量" />
+                         <TableColumn fx:id="tcMinQty" maxWidth="100.0" minWidth="80.0" text="最高库存量" />
+                         <TableColumn fx:id="tcUnderQty" maxWidth="100.0" minWidth="80.0" style="-fx-background-color: derive(red,99%);" text="短缺量" />
+                     </columns>
+                     <VBox.margin>
+                         <Insets />
+                     </VBox.margin>
+                 </TableView>
+                 <AnchorPane prefHeight="30.0">
+                     <ComboBox fx:id="cbbUnderPageSize" layoutY="1.0" prefHeight="23.0" prefWidth="100.0" styleClass="page-rule" AnchorPane.bottomAnchor="2.5" AnchorPane.leftAnchor="2.5" AnchorPane.topAnchor="2.5">
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </ComboBox>
+                     <TextField fx:id="tfUnderCurPage" alignment="CENTER" layoutX="574.0" layoutY="3.0" onAction="#jumpPage" prefHeight="23.0" prefWidth="30.0" styleClass="tf-page-cur" text="1" AnchorPane.bottomAnchor="3.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="3.0" />
+                     <Text layoutX="611.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" AnchorPane.rightAnchor="90.0" AnchorPane.topAnchor="8.0" />
+                     <Text fx:id="txtUnderTotalPage" layoutX="616.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" AnchorPane.rightAnchor="75.0" AnchorPane.topAnchor="8.0" />
+                     <Button accessibleText="under" layoutX="666.0" layoutY="-2.0" mnemonicParsing="false" onAction="#toLastPage" prefHeight="26.0" prefWidth="26.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="2.0">
+                         <graphic>
+                             <Region maxHeight="10.0" maxWidth="10.0" />
+                         </graphic>
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-last" />
+                         </styleClass>
+                         <cursor>
+                             <Cursor fx:constant="HAND" />
+                         </cursor>
+                     </Button>
+                     <Button accessibleText="under" layoutX="458.0" layoutY="-1.0" mnemonicParsing="false" onAction="#toNextPage" prefHeight="26.0" prefWidth="26.0" AnchorPane.bottomAnchor="2.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="2.0">
+                         <graphic>
+                             <Region maxHeight="10.0" maxWidth="10.0">
+                                 <cursor>
+                                     <Cursor fx:constant="HAND" />
+                                 </cursor>
+                             </Region>
+                         </graphic>
+                         <styleClass>
+                             <String fx:value="btn-common" />
+                             <String fx:value="btn-next" />
+                         </styleClass>
+                     </Button>
+                 </AnchorPane>
+             </VBox>
+        </AnchorPane>
+    </StackPane>
+</fx:root>

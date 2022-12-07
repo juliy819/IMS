@@ -1,7 +1,7 @@
 package com.juliy.ims.dao;
 
 import com.juliy.ims.entity.Inventory;
-import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.entity.table_unit.InvDO;
 
 import java.util.List;
 
@@ -32,6 +32,13 @@ public interface InventoryDao {
      * @return 若仓库中有对应的货品则返回其数量，否则返回0
      */
     int queryQty(int whsId, int goodsId);
+
+    /**
+     * 查询某一种货品的总库存量
+     * @param goodsId 货品编号
+     * @return 总库存量
+     */
+    int queryQty(int goodsId);
 
     /**
      * 查询指定库存信息

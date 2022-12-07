@@ -20,9 +20,8 @@ public interface GoodsTypeDao {
     /**
      * 添加新货品类别
      * @param goodsType 货品类别
-     * @return 添加成功返回true，添加失败返回false
      */
-    boolean insert(GoodsType goodsType);
+    void insert(GoodsType goodsType);
 
 
     /**

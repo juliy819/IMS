@@ -1,6 +1,6 @@
 package com.juliy.ims.controller;
 
-import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.entity.table_unit.InvDO;
 import com.juliy.ims.model.CheckCbbUnitModel;
 import com.juliy.ims.model.PageTableModel;
 import com.juliy.ims.model.SearchCbBoxModel;
@@ -31,7 +31,7 @@ import java.util.Map;
  * @author JuLiy
  * @date 2022/9/30 16:21
  */
-public class InvQueryController extends RootController {
+public class InvQueryController {
     private final Logger log = Logger.getLogger(InvQueryController.class);
     private final InvQueryService service = new InvQueryServiceImpl();
     private final MyComboBox cbbWhsName = new MyComboBox();
@@ -45,6 +45,7 @@ public class InvQueryController extends RootController {
     private SearchCbBoxModel goodsTypeModel;
     private SearchCbBoxModel goodsNameModel;
     private SearchCbBoxModel goodsSpecModel;
+
     @FXML
     private ComboBox<String> cbbPageSize;
     @FXML
@@ -121,13 +122,15 @@ public class InvQueryController extends RootController {
         addCustomComponents();
         initTableColumn();
 
+        //收起下拉框后刷新
         whsNameModel.setOnCbBoxHidden(event -> filterInv());
         goodsIdModel.setOnCbBoxHidden(event -> filterInv());
         goodsTypeModel.setOnCbBoxHidden(event -> filterInv());
         goodsNameModel.setOnCbBoxHidden(event -> filterInv());
         goodsSpecModel.setOnCbBoxHidden(event -> filterInv());
-
+        //设置输入框限制
         tfCurPage.textProperty().addListener(tableModel.getCurPageLimit());
+        //更改表格条数后刷新
         tableModel.pageSizeProperty().addListener((ob, ov, nv) -> filterInv());
     }
 

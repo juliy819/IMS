@@ -4,7 +4,7 @@ import com.juliy.ims.dao.*;
 import com.juliy.ims.dao.impl.*;
 import com.juliy.ims.entity.Record;
 import com.juliy.ims.entity.*;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.service.CreateRecordService;
 
 import java.util.List;

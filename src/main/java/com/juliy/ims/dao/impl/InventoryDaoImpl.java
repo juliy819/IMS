@@ -2,7 +2,7 @@ package com.juliy.ims.dao.impl;
 
 import com.juliy.ims.dao.InventoryDao;
 import com.juliy.ims.entity.Inventory;
-import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.entity.table_unit.InvDO;
 import com.juliy.ims.exception.DaoException;
 import com.juliy.ims.utils.JdbcUtil;
 
@@ -19,7 +19,8 @@ public class InventoryDaoImpl extends BaseDao implements InventoryDao {
 
     @Override
     public List<InvDO> queryAll() {
-        String sql = "select a.goods_qty, b.goods_id, b.goods_name, b.goods_spec, b.goods_unit, c.goods_type_name, d.whs_name " +
+        String sql = "select a.goods_qty, b.goods_id, b.goods_name, b.goods_spec, " +
+                "b.goods_unit, c.goods_type_name, d.whs_name " +
                 "from t_inventory a " +
                 "left join t_goods b on a.goods_id = b.goods_id " +
                 "left join t_goods_type c on b.goods_type_id = c.goods_type_id " +
@@ -72,6 +73,24 @@ public class InventoryDaoImpl extends BaseDao implements InventoryDao {
             JdbcUtil.release(rs, pStatement, conn);
         }
         return 0;
+    }
+
+    @Override
+    public int queryQty(int goodsId) {
+        String sql = "select ifnull(sum(goods_qty), 0) as count " +
+                "from t_inventory where goods_id = ? and is_deleted != 1";
+        conn = JdbcUtil.getConnection();
+        try {
+            pStatement = conn.prepareStatement(sql);
+            pStatement.setInt(1, goodsId);
+            rs = pStatement.executeQuery();
+            rs.next();
+            return rs.getInt("count");
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage());
+        } finally {
+            JdbcUtil.release(rs, pStatement, conn);
+        }
     }
 
     @Override

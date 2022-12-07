@@ -7,4 +7,5 @@ open module com.juliy.ims {
     requires lombok;
     requires java.sql;
     requires log4j;
+    requires java.desktop;
 }

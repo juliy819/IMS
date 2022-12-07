@@ -40,7 +40,7 @@ public class CompanyDaoImpl extends BaseDao implements CompanyDao {
     }
 
     @Override
-    public boolean insert(Company company) {
+    public void insert(Company company) {
         String sql = "insert into t_company(company_type, company_name, company_add, contact_name, contact_phone, " +
                 "contact_email, contact_post, bank_name, bank_acct, tax_id, supplier_comment) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -59,7 +59,7 @@ public class CompanyDaoImpl extends BaseDao implements CompanyDao {
             pStatement.setString(10, company.getTaxId());
             pStatement.setString(11, company.getCompanyComment());
 
-            return pStatement.executeUpdate() != 0;
+            pStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {
@@ -69,6 +69,6 @@ public class CompanyDaoImpl extends BaseDao implements CompanyDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_company", "company_name");
+        return !super.isNameExist(name, "t_company", "company_name");
     }
 }

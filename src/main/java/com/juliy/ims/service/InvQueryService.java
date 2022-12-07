@@ -1,6 +1,6 @@
 package com.juliy.ims.service;
 
-import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.entity.table_unit.InvDO;
 import javafx.collections.ObservableList;
 
 import java.util.List;

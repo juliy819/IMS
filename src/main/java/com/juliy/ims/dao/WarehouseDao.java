@@ -20,9 +20,8 @@ public interface WarehouseDao {
     /**
      * 添加新仓库
      * @param warehouse 仓库
-     * @return 添加成功返回true，添加失败返回false
      */
-    boolean insert(Warehouse warehouse);
+    void insert(Warehouse warehouse);
 
     /**
      * 判断仓库名是否存在

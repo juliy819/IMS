@@ -1,4 +1,4 @@
-package com.juliy.ims.entity.model;
+package com.juliy.ims.entity.table_unit;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

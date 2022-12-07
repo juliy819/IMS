@@ -27,7 +27,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
     }
 
     @Override
-    public List<Goods> query(String sql) {
+    public synchronized List<Goods> query(String sql) {
         List<Goods> list = new ArrayList<>();
         conn = JdbcUtil.getConnection();
         try {
@@ -73,7 +73,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
     }
 
     @Override
-    public boolean insert(Goods goods) {
+    public void insert(Goods goods) {
         String sql = "insert into t_goods(goods_type_id, goods_name, goods_spec, goods_unit, " +
                 "ref_pur_price, ref_sell_price, max_qty, min_qty, goods_comment) " +
                 "values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -90,7 +90,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
             pStatement.setInt(8, goods.getMinQty());
             pStatement.setString(9, goods.getGoodsComment());
 
-            return pStatement.executeUpdate() != 0;
+            pStatement.executeUpdate();
         } catch (SQLException e) {
             throw new DaoException(e.getMessage());
         } finally {
@@ -100,7 +100,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_goods", "goods_name");
+        return !super.isNameExist(name, "t_goods", "goods_name");
     }
 
     @Override

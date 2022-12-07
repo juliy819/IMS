@@ -3,6 +3,7 @@ package com.juliy.ims.controller;
 import com.jfoenix.controls.JFXCheckBox;
 import com.juliy.ims.service.LoginService;
 import com.juliy.ims.service.impl.LoginServiceImpl;
+import com.juliy.ims.utils.CaptchaUtil;
 import com.juliy.ims.utils.CommonUtil;
 import com.leewyatt.rxcontrols.controls.RXPasswordField;
 import com.leewyatt.rxcontrols.controls.RXTextField;
@@ -17,6 +18,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -27,6 +29,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.apache.log4j.Logger;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.concurrent.*;
 
@@ -37,7 +40,7 @@ import static com.juliy.ims.common.Context.getContext;
  * @author JuLiy
  * @date 2022/9/26 22:49
  */
-public class LoginController extends RootController {
+public class LoginController {
 
     private static final Logger log = Logger.getLogger(LoginController.class);
     /** 用户名输入框文本内容 */
@@ -51,6 +54,7 @@ public class LoginController extends RootController {
     private final LoginService loginService = new LoginServiceImpl();
     /** 线程池 */
     ExecutorService threadPool;
+    String captchaCode;
     double offsetX;
     double offsetY;
     @FXML
@@ -74,6 +78,8 @@ public class LoginController extends RootController {
     @FXML
     private ImageView ivLoading;
     @FXML
+    private ImageView ivCaptcha;
+    @FXML
     private Text txtPrompt;
 
 
@@ -83,6 +89,7 @@ public class LoginController extends RootController {
         loadSettings();
         initComponents();
         initThreadPool();
+        generateCaptcha();
     }
 
     /** 将各property与对应的输入框内容绑定 */
@@ -125,11 +132,9 @@ public class LoginController extends RootController {
         captcha.addListener(disableLogin);
 
         class ChangeIconColor implements ChangeListener<Boolean> {
-            final String name;
             final Region icon;
 
             public ChangeIconColor(String name) {
-                this.name = name;
                 switch (name) {
                     case "username" -> icon = iconUsername;
                     case "password" -> icon = iconPassword;
@@ -172,9 +177,8 @@ public class LoginController extends RootController {
         if (btnLogin.isDisable()) {
             return;
         }
-        //暂未实现验证码，先写死
-        String code = "123";
-        if (!captcha.get().equals(code)) {
+        //验证码 不区分大小写
+        if (!captcha.get().equalsIgnoreCase(captchaCode)) {
             showErrorPrompt("验证码错误");
             return;
         }
@@ -288,6 +292,25 @@ public class LoginController extends RootController {
     void exitWindow() {
         Platform.exit();
         System.exit(0);
+    }
+
+    /**
+     * 生成验证码
+     * @触发组件 ivCaptcha
+     * @触发事件 鼠标点击
+     */
+    @FXML
+    void generateCaptcha() {
+        captchaCode = CaptchaUtil.getRandom(4);
+        log.info("验证码:" + captchaCode);
+        try {
+            FileOutputStream out = new FileOutputStream("src/main/resources/images/captcha.png");
+            CaptchaUtil.draw(out, captchaCode);
+        } catch (IOException e) {
+            log.error("验证码生成失败");
+            CommonUtil.showAlert(Alert.AlertType.ERROR, "错误", "验证码生成失败");
+        }
+        ivCaptcha.setImage(new Image("file:src/main/resources/images/captcha.png"));
     }
 
     /**

@@ -14,9 +14,6 @@ import java.util.Map;
 public class Context {
     private static final Context context = new Context();
 
-    /** 存储控制器，key为对应的控制器名称 例:login */
-    private final HashMap<String, Object> controllerMap = new HashMap<>();
-
     /** 存储已创建的窗口，key为对应的窗口名称 例:login */
     private final HashMap<String, Stage> stageMap = new HashMap<>();
 
@@ -31,14 +28,6 @@ public class Context {
      */
     public static Context getContext() {
         return context;
-    }
-
-    /**
-     * 获取controller集合
-     * @return controller集合
-     */
-    public Map<String, Object> getControllerMap() {
-        return controllerMap;
     }
 
     /**

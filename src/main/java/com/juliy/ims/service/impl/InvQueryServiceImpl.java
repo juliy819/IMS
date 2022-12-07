@@ -2,7 +2,7 @@ package com.juliy.ims.service.impl;
 
 import com.juliy.ims.dao.InventoryDao;
 import com.juliy.ims.dao.impl.InventoryDaoImpl;
-import com.juliy.ims.entity.model.InvDO;
+import com.juliy.ims.entity.table_unit.InvDO;
 import com.juliy.ims.service.InvQueryService;
 import com.juliy.ims.utils.CommonUtil;
 import javafx.collections.FXCollections;
@@ -18,30 +18,10 @@ import java.util.List;
 public class InvQueryServiceImpl implements InvQueryService {
     private final InventoryDao inventoryDao = new InventoryDaoImpl();
 
-    @Override
-    public List<InvDO> getAllInv() {
-        return inventoryDao.queryAll();
-    }
-
-    @Override
-    public int getFilterCount(String whsName, String id, String type, String name, String spec) {
-        StringBuilder sql = generateSql(whsName, id, type, name, spec);
-        sql.delete(7, sql.indexOf("from") - 1).insert(7, "count(*)");
-        return inventoryDao.queryCount(String.valueOf(sql));
-    }
-
-    @Override
-    public ObservableList<InvDO> filterInvByPage(String whsName, String id, String type, String name, String spec, int page, int pageSize) {
-        StringBuilder sql = generateSql(whsName, id, type, name, spec);
-        int start = (page - 1) * pageSize;
-        sql.append("limit ").append(start).append(",").append(pageSize);
-        List<InvDO> list = inventoryDao.query(String.valueOf(sql));
-        return FXCollections.observableArrayList(list);
-    }
-
     private StringBuilder generateSql(String whsName, String goodsId, String goodsTypeName, String goodsName, String goodsSpec) {
         StringBuilder sql = new StringBuilder();
-        sql.append("select a.goods_qty, b.goods_id, b.goods_name, b.goods_spec, b.goods_unit, c.goods_type_name, d.whs_name " +
+        sql.append("select a.goods_qty, b.goods_id, b.goods_name, b.goods_spec, " +
+                           "b.goods_unit, c.goods_type_name, d.whs_name " +
                            "from t_inventory a " +
                            "left join t_goods b on a.goods_id = b.goods_id " +
                            "left join t_goods_type c on b.goods_type_id = c.goods_type_id " +
@@ -66,5 +46,26 @@ public class InvQueryServiceImpl implements InvQueryService {
 
         sql.append("a.is_deleted != 1 ");
         return sql;
+    }
+
+    @Override
+    public List<InvDO> getAllInv() {
+        return inventoryDao.queryAll();
+    }
+
+    @Override
+    public int getFilterCount(String whsName, String id, String type, String name, String spec) {
+        StringBuilder sql = generateSql(whsName, id, type, name, spec);
+        sql.delete(7, sql.indexOf("from") - 1).insert(7, "count(*)");
+        return inventoryDao.queryCount(String.valueOf(sql));
+    }
+
+    @Override
+    public ObservableList<InvDO> filterInvByPage(String whsName, String id, String type, String name, String spec, int page, int pageSize) {
+        StringBuilder sql = generateSql(whsName, id, type, name, spec);
+        int start = (page - 1) * pageSize;
+        sql.append("limit ").append(start).append(",").append(pageSize);
+        List<InvDO> list = inventoryDao.query(String.valueOf(sql));
+        return FXCollections.observableArrayList(list);
     }
 }

@@ -1,7 +1,7 @@
 package com.juliy.ims.model;
 
 import com.juliy.ims.entity.Goods;
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.service.CreateRecordService;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;

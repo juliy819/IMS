@@ -20,9 +20,8 @@ public interface CompanyDao {
     /**
      * 添加新公司
      * @param company 公司
-     * @return 添加成功返回true，添加失败返回false
      */
-    boolean insert(Company company);
+    void insert(Company company);
 
     /**
      * 判断公司名称是否存在

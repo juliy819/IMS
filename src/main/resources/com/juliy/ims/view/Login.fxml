@@ -97,7 +97,10 @@
                     </styleClass>
                 </Region>
                 <RXTextField fx:id="tfCaptcha" focusTraversable="false" onAction="#login" onClickButton="#clearCaptcha" prefHeight="30.0" prefWidth="125.0" promptText="captcha" styleClass="tf-login" />
-                <Label alignment="CENTER" prefHeight="30.0" prefWidth="120.0" style="-fx-background-color: rgba(102, 204, 204, 0.8);" text="验证码(待实现)" />
+            <ImageView fx:id="ivCaptcha" fitHeight="30.0" fitWidth="120.0" onMouseClicked="#generateCaptcha" pickOnBounds="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ImageView>
             </HBox>
             <JFXCheckBox fx:id="cbRemember" checkedColor="#66cccc" focusTraversable="false" text="记住密码">
                 <cursor>

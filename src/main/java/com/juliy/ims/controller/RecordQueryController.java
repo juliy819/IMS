@@ -1,6 +1,6 @@
 package com.juliy.ims.controller;
 
-import com.juliy.ims.entity.model.RecordDO;
+import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.model.CheckCbbUnitModel;
 import com.juliy.ims.model.PageTableModel;
 import com.juliy.ims.model.SearchCbBoxModel;
