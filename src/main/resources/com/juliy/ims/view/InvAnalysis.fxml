@@ -92,7 +92,7 @@
                     </CheckComboBox>
                 </AnchorPane>
             </HBox>
-             <VBox accessibleText="85/215" layoutY="85.0" prefHeight="485.0" prefWidth="655.0" AnchorPane.bottomAnchor="250.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
+             <VBox accessibleText="85/215" layoutY="85.0" prefHeight="235.0" prefWidth="655.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
                  <styleClass>
                      <String fx:value="pane-float" />
                      <String fx:value="pane-full-screen" />
@@ -170,7 +170,7 @@
                      </Button>
                  </AnchorPane>
              </VBox>
-             <VBox accessibleText="85/215" layoutY="335.3999938964844" prefHeight="485.0" prefWidth="655.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="335.0">
+             <VBox accessibleText="85/215" layoutY="335.3999938964844" prefHeight="235.0" prefWidth="655.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="335.0">
                  <styleClass>
                      <String fx:value="pane-float" />
                      <String fx:value="pane-full-screen" />
@@ -248,6 +248,9 @@
                      </Button>
                  </AnchorPane>
              </VBox>
+         <StackPane.margin>
+            <Insets />
+         </StackPane.margin>
         </AnchorPane>
     </StackPane>
 </fx:root>

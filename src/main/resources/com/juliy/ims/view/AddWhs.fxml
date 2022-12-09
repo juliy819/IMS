@@ -1,130 +1,94 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import com.leewyatt.rxcontrols.controls.RXTextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<fx:root xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0"
-         prefWidth="900.0"
-         styleClass="content" stylesheets="@../css/style.css"
-         type="AnchorPane" xmlns="http://javafx.com/javafx/18"
-         fx:controller="com.juliy.ims.controller.AddWhsController">
-    <AnchorPane layoutX="30.0" layoutY="30.0" AnchorPane.leftAnchor="30.0"
-                AnchorPane.topAnchor="30.0">
-        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root prefHeight="600.0" prefWidth="900.0" styleClass="content" stylesheets="@../css/style.css" type="AnchorPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.AddWhsController">
+    <AnchorPane layoutX="30.0" layoutY="30.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="30.0">
+        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="仓库名称">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
         </HBox>
-        <RXTextField fx:id="tfWhsName" layoutY="25.0" styleClass="tf-add"
-                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.topAnchor="25.0"/>
-        <Text fx:id="txtWhsNameError" fill="RED" layoutX="171.0" layoutY="43.0"
-              strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-              visible="false" AnchorPane.leftAnchor="170.0">
+        <RXTextField fx:id="tfWhsName" layoutY="25.0" promptText="5个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+        <Text fx:id="txtWhsNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
     </AnchorPane>
-    <AnchorPane layoutX="30.0" layoutY="98.0" AnchorPane.leftAnchor="30.0"
-                AnchorPane.topAnchor="90.0">
-        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="30.0" layoutY="98.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="90.0">
+        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="仓库地址">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
         </HBox>
-        <RXTextField fx:id="tfAdd" layoutY="25.0" styleClass="tf-add"
-                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.topAnchor="25.0"/>
-        <Text fx:id="txtAddError" fill="RED" layoutX="171.0" layoutY="43.0"
-              strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-              visible="false" AnchorPane.leftAnchor="170.0">
+        <RXTextField fx:id="tfAdd" layoutY="25.0" promptText="32个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+        <Text fx:id="txtAddError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
     </AnchorPane>
-    <AnchorPane layoutX="30.0" layoutY="158.0" AnchorPane.leftAnchor="30.0"
-                AnchorPane.topAnchor="150.0">
-        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="30.0" layoutY="158.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="150.0">
+        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="负责人姓名">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
         </HBox>
-        <RXTextField fx:id="tfManagerName" layoutY="25.0" styleClass="tf-add"
-                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.topAnchor="25.0"/>
-        <Text fx:id="txtManagerNameError" fill="RED" layoutX="171.0"
-              layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-              visible="false" AnchorPane.leftAnchor="170.0">
+        <RXTextField fx:id="tfManagerName" layoutY="25.0" promptText="4个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+        <Text fx:id="txtManagerNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
     </AnchorPane>
-    <AnchorPane layoutX="25.0" layoutY="238.0" AnchorPane.leftAnchor="30.0"
-                AnchorPane.topAnchor="210.0">
-        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="25.0" layoutY="238.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="210.0">
+        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="联系电话">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*"/>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
         </HBox>
-        <RXTextField fx:id="tfPhone" layoutY="25.0" styleClass="tf-add"
-                     AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                     AnchorPane.topAnchor="25.0"/>
-        <Text fx:id="txtPhoneError" fill="RED" layoutX="171.0" layoutY="43.0"
-              strokeType="OUTSIDE" strokeWidth="0.0" text="Text"
-              visible="false" AnchorPane.leftAnchor="170.0">
+        <RXTextField fx:id="tfPhone" layoutY="25.0" promptText="以1开头的11位号码" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+        <Text fx:id="txtPhoneError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
     </AnchorPane>
-    <AnchorPane layoutX="25.0" layoutY="322.0" AnchorPane.leftAnchor="30.0"
-                AnchorPane.topAnchor="270.0">
-        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0"
-              AnchorPane.topAnchor="0.0">
+    <AnchorPane layoutX="25.0" layoutY="322.0" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="270.0">
+        <HBox AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="备注">
                 <font>
-                    <Font name="System Bold" size="16.0"/>
+                    <Font name="System Bold" size="16.0" />
                 </font>
             </Text>
         </HBox>
-        <TextArea fx:id="taComment" layoutY="52.0" prefHeight="120.0"
-                  prefWidth="400.0" styleClass="ta-add"
-                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.topAnchor="25.0"/>
+        <TextArea fx:id="taComment" layoutY="52.0" prefHeight="120.0" prefWidth="400.0" styleClass="ta-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
     </AnchorPane>
-    <HBox alignment="CENTER" layoutX="25.0" layoutY="524.0" prefHeight="18.0"
-          prefWidth="150.0" AnchorPane.bottomAnchor="60.0">
-        <Text fx:id="txtSuccess" fill="GREEN" strokeType="OUTSIDE"
-              strokeWidth="0.0" text="text" visible="false">
+    <HBox alignment="CENTER" layoutX="25.0" layoutY="524.0" prefHeight="18.0" prefWidth="150.0" AnchorPane.bottomAnchor="60.0">
+        <Text fx:id="txtSuccess" fill="GREEN" strokeType="OUTSIDE" strokeWidth="0.0" text="text" visible="false">
             <font>
-                <Font size="14.0"/>
+                <Font size="14.0" />
             </font>
         </Text>
     </HBox>
-    <Button focusTraversable="false" layoutX="93.0" layoutY="565.0"
-            mnemonicParsing="false" onAction="#addNewWarehouse"
-            styleClass="btn-add" text="添加" AnchorPane.bottomAnchor="20.0"
-            AnchorPane.leftAnchor="60.0"/>
+    <Button focusTraversable="false" layoutX="93.0" layoutY="565.0" mnemonicParsing="false" onAction="#addNewWarehouse" styleClass="btn-add" text="添加" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="60.0" />
 </fx:root>

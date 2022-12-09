@@ -23,7 +23,7 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <ComboBox fx:id="cbbType" layoutY="23.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
+                <ComboBox fx:id="cbbType" layoutY="23.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0">
                     <cursor>
                         <Cursor fx:constant="HAND" />
                     </cursor>
@@ -43,8 +43,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfName" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfName" layoutY="25.0" promptText="32个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -59,8 +59,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfSpec" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtSpecError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfSpec" layoutY="25.0" promptText="127个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtSpecError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -75,8 +75,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfUnit" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtUnitError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfUnit" layoutY="25.0" promptText="2个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtUnitError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -91,8 +91,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfPurPrice" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtPurPriceError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfPurPrice" layoutY="25.0" promptText="包含小数点 例:100.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtPurPriceError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -107,8 +107,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfSellPrice" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtSellPriceError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfSellPrice" layoutY="25.0" promptText="包含小数点 例:100.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtSellPriceError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -123,8 +123,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfMaxQty" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtMaxQtyError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfMaxQty" layoutY="25.0" promptText="9位数以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtMaxQtyError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>
@@ -139,8 +139,8 @@
                     </Text>
                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="*" />
                 </HBox>
-                <RXTextField fx:id="tfMinQty" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
-                <Text fx:id="txtMinQtyError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="170.0">
+                <RXTextField fx:id="tfMinQty" layoutY="25.0" promptText="9位数以内" styleClass="tf-add" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <Text fx:id="txtMinQtyError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.leftAnchor="200.0">
                     <font>
                         <Font size="14.0" />
                     </font>

@@ -180,6 +180,7 @@ public class LoginController {
         //验证码 不区分大小写
         if (!captcha.get().equalsIgnoreCase(captchaCode)) {
             showErrorPrompt("验证码错误");
+            generateCaptcha();
             return;
         }
         //验证账号密码是否正确
@@ -187,6 +188,7 @@ public class LoginController {
             showSuccessPrompt();
         } else {
             showErrorPrompt("用户名或密码错误");
+            generateCaptcha();
             return;
         }
         //判断是否要保存账号密码

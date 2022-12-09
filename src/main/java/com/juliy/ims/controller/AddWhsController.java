@@ -66,7 +66,7 @@ public class AddWhsController {
                tfAdd, txtAddError,
                tfManagerName, txtManagerNameError,
                tfPhone, txtPhoneError)
-                .forEach(CommonUtil::initAddTextField);
+                .forEach(CommonUtil::initEmptyPromptTextField);
     }
 
     /**

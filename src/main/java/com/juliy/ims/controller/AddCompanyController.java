@@ -16,8 +16,7 @@ import org.apache.log4j.Logger;
 import java.util.List;
 import java.util.Map;
 
-import static com.juliy.ims.utils.CommonUtil.isInputEmpty;
-import static com.juliy.ims.utils.CommonUtil.isLengthExceed;
+import static com.juliy.ims.utils.CommonUtil.*;
 
 /**
  * 添加供应商页面控制器
@@ -102,15 +101,12 @@ public class AddCompanyController {
 
         //设置输入框
         Map.of(tfCompanyName, txtCompanyNameError,
-               tfAdd, txtAddError,
                tfContactName, txtContactNameError,
-               tfPhone, txtPhoneError,
-               tfEmail, txtEmailError,
-               tfPost, txtPostError,
-               tfBankName, txtBankNameError,
-               tfBankAcct, txtBankAcctError,
-               tfTaxId, txtTaxIdError
-        ).forEach(CommonUtil::initAddTextField);
+               tfPhone, txtPhoneError
+        ).forEach(CommonUtil::initEmptyPromptTextField);
+
+        List.of(tfAdd, tfEmail, tfPost, tfBankName, tfBankAcct, tfTaxId)
+                .forEach(tf -> tf.setOnClickButton(event -> tf.clear()));
 
         cbbType.getItems().addAll("供应商", "客户");
     }
@@ -159,7 +155,9 @@ public class AddCompanyController {
                 isLengthExceed(post.get(), 16, txtPostError) ||
                 isLengthExceed(bankName.get(), 16, txtBankNameError) ||
                 isLengthExceed(bankAcct.get(), 20, txtBankAcctError) ||
-                isLengthExceed(taxId.get(), 20, txtTaxIdError)) {
+                isFormatIllegal(email.get(), "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", txtEmailError) ||
+                isFormatIllegal(bankAcct.get(), "^\\d{20}$", txtBankAcctError) ||
+                isFormatIllegal(taxId.get(), "^\\d{20}$", txtTaxIdError)) {
             return false;
         }
 

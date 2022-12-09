@@ -111,7 +111,7 @@ public class CommonUtil {
      * @param tf  输入框
      * @param txt 对应的提示文本
      */
-    public static void initAddTextField(RXTextField tf, Text txt) {
+    public static void initEmptyPromptTextField(RXTextField tf, Text txt) {
         //点击按钮清空输入框
         tf.setOnClickButton(event -> tf.clear());
         //失去焦点时，若文本为空则提示;获取焦点时，清除提示

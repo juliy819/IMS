@@ -60,7 +60,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfCompanyName" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfCompanyName" layoutY="25.0" promptText="32个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtCompanyNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -80,7 +80,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfAdd" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfAdd" layoutY="25.0" promptText="32个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtAddError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -107,7 +107,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfContactName" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfContactName" layoutY="25.0" promptText="32个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtContactNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -127,7 +127,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfPhone" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfPhone" layoutY="25.0" promptText="以1开头的11位号码" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtPhoneError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -147,7 +147,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfEmail" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfEmail" layoutY="25.0" promptText="32位以内 例：xxx.@xx.xx" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtEmailError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -167,7 +167,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfPost" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfPost" layoutY="25.0" promptText="16个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtPostError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -194,7 +194,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfBankName" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfBankName" layoutY="25.0" promptText="16个字以内" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtBankNameError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -214,7 +214,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfBankAcct" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfBankAcct" layoutY="25.0" promptText="20位银行账户" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtBankAcctError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />
@@ -234,7 +234,7 @@
                         </font>
                     </Text>
                 </HBox>
-                <RXTextField fx:id="tfTaxId" layoutY="25.0" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                <RXTextField fx:id="tfTaxId" layoutY="25.0" promptText="20位税号" styleClass="tf-add" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="25.0" />
                 <Text fx:id="txtTaxIdError" fill="RED" layoutX="171.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                     <font>
                         <Font size="14.0" />

@@ -95,7 +95,7 @@ public class AddGoodsController {
                tfSellPrice, txtSellPriceError,
                tfMaxQty, txtMaxQtyError,
                tfMinQty, txtMinQtyError)
-                .forEach(CommonUtil::initAddTextField);
+                .forEach(CommonUtil::initEmptyPromptTextField);
 
         //将GoodsType对象转换为String进行显示
         cbbType.setConverter(new StringConverter<>() {

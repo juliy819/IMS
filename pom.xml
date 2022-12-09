@@ -80,6 +80,21 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>0.0.4</version>
+                <configuration>
+                    <stripDebug>true</stripDebug>
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <noManPages>true</noManPages>
+                    <launcher>launcher</launcher>
+                    <jlinkImageName>output</jlinkImageName>
+                    <jlinkZipName>outputzip</jlinkZipName>
+                    <mainClass>org.openjfx.App</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
