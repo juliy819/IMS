@@ -60,6 +60,6 @@ public class WarehouseDaoImpl extends BaseDao implements WarehouseDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_warehouse", "whs_name");
+        return !super.isNameExist(name, "t_warehouse", "whs_name");
     }
 }

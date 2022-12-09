@@ -2,7 +2,6 @@ package com.juliy.ims.service.impl;
 
 import com.juliy.ims.dao.*;
 import com.juliy.ims.dao.impl.*;
-import com.juliy.ims.entity.Record;
 import com.juliy.ims.entity.*;
 import com.juliy.ims.entity.table_unit.RecordDO;
 import com.juliy.ims.service.CreateRecordService;
@@ -41,7 +40,7 @@ public class CreateRecordServiceImpl implements CreateRecordService {
     public void addALocReceipt(List<RecordDO> recList) {
         recList.forEach(recDO -> {
             //将原始记录转为入库记录
-            Record entryRec = toRecord(recDO);
+            MyRecord entryRec = toRecord(recDO);
             entryRec.setReceiptType(entryRec.getReceiptType() + "入库");
             entryRec.setOutQty(0);
             entryRec.setWhsId(entryRec.getCompanyId());
@@ -52,7 +51,7 @@ public class CreateRecordServiceImpl implements CreateRecordService {
             invDao.insertOrUpdate(entryInv);
 
             //将原始记录转为出库记录
-            Record outRec = toRecord(recDO);
+            MyRecord outRec = toRecord(recDO);
             outRec.setReceiptType(outRec.getReceiptType() + "出库");
             outRec.setEntryQty(0);
             outRec.setCompanyId(-1);
@@ -101,8 +100,8 @@ public class CreateRecordServiceImpl implements CreateRecordService {
         return warehouseDao.queryAll();
     }
 
-    private Record toRecord(RecordDO recDO) {
-        Record rec = new Record();
+    private MyRecord toRecord(RecordDO recDO) {
+        MyRecord rec = new MyRecord();
         rec.setCompanyId(recDO.getCompanyId());
         rec.setWhsId(recDO.getWhsId());
         rec.setReceiptType(recDO.getReceiptType());

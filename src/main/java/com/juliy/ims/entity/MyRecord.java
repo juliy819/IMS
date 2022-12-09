@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 @Data
 @NoArgsConstructor
-public class Record {
+public class MyRecord {
     /** 记录编号 */
     private Integer recordId;
     /** 业务日期 */

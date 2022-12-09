@@ -155,6 +155,9 @@ public class OutRecordController {
         String whsName = cbbWhs.getSelectionModel().getSelectedItem().getWhsName();
         for (int i = 0; i < table.getItems().size(); i++) {
             RecordDO rec = table.getItems().get(i);
+            if (rec.getOutQty() == null) {
+                continue;
+            }
             int qty = service.getGoodsQty(whsId, rec.getGoodsId());
             if (rec.getOutQty() > qty) {
                 txtTableError.setText("'" + rec.getGoodsName() + "'库存数量不足!  当前在" + whsName + "'中的库存量为:" + qty);
@@ -173,7 +176,8 @@ public class OutRecordController {
 
         table.getItems().forEach(rec -> {
             //金额为0表示该行未设置好，不进行设置
-            if (rec.getOutAmt().compareTo(new BigDecimal(0)) != 0) {
+            if (rec.getOutAmt() != null &&
+                    rec.getOutAmt().compareTo(new BigDecimal(0)) != 0) {
                 rec.setReceiptType(RECEIPT_TYPE);
                 rec.setReceiptId(receiptId);
                 rec.setCompanyId(cbbCompany.getSelectionModel().getSelectedItem().getCompanyId());

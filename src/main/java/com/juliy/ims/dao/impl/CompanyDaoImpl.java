@@ -69,6 +69,6 @@ public class CompanyDaoImpl extends BaseDao implements CompanyDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return super.isNameExist(name, "t_company", "company_name");
+        return !super.isNameExist(name, "t_company", "company_name");
     }
 }

@@ -1,6 +1,6 @@
 package com.juliy.ims.dao;
 
-import com.juliy.ims.entity.Record;
+import com.juliy.ims.entity.MyRecord;
 import com.juliy.ims.entity.table_unit.RecordDO;
 
 import java.util.List;
@@ -36,5 +36,5 @@ public interface RecordDao {
      * 添加新记录
      * @param rec 记录
      */
-    void insert(Record rec);
+    void insert(MyRecord rec);
 }

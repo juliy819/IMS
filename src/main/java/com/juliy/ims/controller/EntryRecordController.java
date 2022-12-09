@@ -190,8 +190,9 @@ public class EntryRecordController {
         List<RecordDO> recList = new ArrayList<>();
 
         table.getItems().forEach(rec -> {
-            //金额为0表示该行未设置好，不进行设置
-            if (rec.getEntryAmt().compareTo(new BigDecimal(0)) != 0) {
+            //金额为0或为空表示该行未设置好，不进行设置
+            if (rec.getEntryAmt() != null &&
+                    rec.getEntryAmt().compareTo(new BigDecimal(0)) != 0) {
                 rec.setReceiptType(RECEIPT_TYPE);
                 rec.setReceiptId(receiptId);
                 rec.setCompanyId(cbbCompany.getSelectionModel().getSelectedItem().getCompanyId());
