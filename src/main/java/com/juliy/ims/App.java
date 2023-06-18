@@ -1,12 +1,11 @@
 package com.juliy.ims;
 
+import com.juliy.ims.common.Context;
 import com.juliy.ims.utils.CommonUtil;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-
-import static com.juliy.ims.common.Context.getContext;
 
 /**
  * @author JuLiy
@@ -20,7 +19,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        getContext().setHost(getHostServices());
+        Context.getContext().setHost(getHostServices());
         Stage stage = CommonUtil.createStage("login", "login", true);
         stage.show();
     }

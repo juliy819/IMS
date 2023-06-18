@@ -100,7 +100,7 @@ public class GoodsDaoImpl extends BaseDao implements GoodsDao {
 
     @Override
     public boolean isNameExist(String name) {
-        return !super.isNameExist(name, "t_goods", "goods_name");
+        return super.isNameExist(name, "t_goods", "goods_name");
     }
 
     @Override

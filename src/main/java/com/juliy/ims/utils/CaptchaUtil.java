@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.util.Random;
 
 /**
+ * 验证码工具类
  * @author JuLiy
  * @date 2022/12/7 12:08
  */

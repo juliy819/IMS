@@ -4,138 +4,142 @@
 <?import com.leewyatt.rxcontrols.controls.RXPasswordField?>
 <?import com.leewyatt.rxcontrols.controls.RXTextField?>
 <?import com.leewyatt.rxcontrols.controls.RXTranslationButton?>
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Hyperlink?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.effect.DropShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
-<VBox prefHeight="420.0" prefWidth="620.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.juliy.ims.controller.LoginController">
+<?import java.lang.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="420.0" prefWidth="620.0" stylesheets="@../css/style.css"
+      xmlns="http://javafx.com/javafx/18" fx:controller="com.juliy.ims.controller.LoginController">
     <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
     <HBox styleClass="login-content">
         <effect>
-            <DropShadow />
+            <DropShadow/>
         </effect>
-        <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="250.0" spacing="10.0" styleClass="login-left">
+        <VBox alignment="CENTER" prefHeight="400.0" prefWidth="250.0" spacing="10.0" styleClass="login-left">
             <Label text="Welcome" textFill="WHITE">
                 <font>
-                    <Font name="System Bold" size="22.0" />
+                    <Font name="System Bold" size="22.0"/>
                 </font>
                 <VBox.margin>
-                    <Insets top="150.0" />
+                    <Insets/>
                 </VBox.margin>
             </Label>
             <Label text="进销存管理系统" textFill="WHITE">
                 <font>
-                    <Font size="18.0" />
+                    <Font size="18.0"/>
                 </font>
                 <VBox.margin>
-                    <Insets />
+                    <Insets/>
                 </VBox.margin>
             </Label>
-            <Label text="202083290549 鞠立阳" textFill="WHITE">
+            <Label text="by juliy" textFill="WHITE">
                 <VBox.margin>
-                    <Insets />
+                    <Insets top="10.0"/>
                 </VBox.margin>
             </Label>
-            <Hyperlink onAction="#toGitee" styleClass="link" text="源码-&gt;gitee" />
         </VBox>
         <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="350.0" spacing="20.0" styleClass="login-right">
-            <HBox alignment="CENTER_RIGHT" onMouseDragged="#dragWindow" onMousePressed="#getOffset" prefHeight="30.0" prefWidth="350.0">
+            <HBox alignment="CENTER_RIGHT" onMouseDragged="#dragWindow" onMousePressed="#getOffset" prefHeight="30.0"
+                  prefWidth="350.0">
                 <StackPane onMouseClicked="#exitWindow" prefHeight="30.0" prefWidth="30.0">
                     <HBox.margin>
-                        <Insets />
+                        <Insets/>
                     </HBox.margin>
                     <styleClass>
-                        <String fx:value="btn-common" />
-                        <String fx:value="btn-exit" />
+                        <String fx:value="btn-common"/>
+                        <String fx:value="btn-exit"/>
                     </styleClass>
                     <Region maxHeight="15.0" maxWidth="15.0">
                         <StackPane.margin>
-                            <Insets />
+                            <Insets/>
                         </StackPane.margin>
                     </Region>
                 </StackPane>
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" spacing="5.0">
                 <VBox.margin>
-                    <Insets top="30.0" />
+                    <Insets top="30.0"/>
                 </VBox.margin>
                 <Region fx:id="iconUsername" prefHeight="0.0" prefWidth="30.0">
                     <styleClass>
-                        <String fx:value="icon" />
-                        <String fx:value="icon-username" />
+                        <String fx:value="icon"/>
+                        <String fx:value="icon-username"/>
                     </styleClass>
                 </Region>
-                <RXTextField fx:id="tfUsername" focusTraversable="false" onAction="#login" onClickButton="#clearUsername" prefHeight="30.0" prefWidth="250.0" promptText="username" styleClass="tf-login" />
+                <RXTextField fx:id="tfUsername" focusTraversable="false" onAction="#login"
+                             onClickButton="#clearUsername" prefHeight="30.0" prefWidth="250.0" promptText="username"
+                             styleClass="tf-login"/>
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" spacing="5.0">
                 <Region fx:id="iconPassword" prefHeight="25.0" prefWidth="20.0">
                     <styleClass>
-                        <String fx:value="icon" />
-                        <String fx:value="icon-password" />
+                        <String fx:value="icon"/>
+                        <String fx:value="icon-password"/>
                     </styleClass>
                 </Region>
-                <RXPasswordField fx:id="tfPassword" focusTraversable="false" onAction="#login" prefHeight="30.0" prefWidth="250.0" promptText="password" styleClass="tf-login" />
+                <RXPasswordField fx:id="tfPassword" focusTraversable="false" onAction="#login" prefHeight="30.0"
+                                 prefWidth="250.0" promptText="password" styleClass="tf-login"/>
             </HBox>
             <HBox alignment="CENTER" fillHeight="false" spacing="5.0">
                 <Region fx:id="iconCaptcha" prefHeight="0.0" prefWidth="30.0">
                     <styleClass>
-                        <String fx:value="icon" />
-                        <String fx:value="icon-captcha" />
+                        <String fx:value="icon"/>
+                        <String fx:value="icon-captcha"/>
                     </styleClass>
                 </Region>
-                <RXTextField fx:id="tfCaptcha" focusTraversable="false" onAction="#login" onClickButton="#clearCaptcha" prefHeight="30.0" prefWidth="125.0" promptText="captcha" styleClass="tf-login" />
-            <ImageView fx:id="ivCaptcha" fitHeight="30.0" fitWidth="120.0" onMouseClicked="#generateCaptcha" pickOnBounds="true">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></ImageView>
+                <RXTextField fx:id="tfCaptcha" focusTraversable="false" onAction="#login" onClickButton="#clearCaptcha"
+                             prefHeight="30.0" prefWidth="125.0" promptText="captcha" styleClass="tf-login"/>
+                <ImageView fx:id="ivCaptcha" fitHeight="30.0" fitWidth="120.0" onMouseClicked="#generateCaptcha"
+                           pickOnBounds="true">
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </ImageView>
             </HBox>
             <JFXCheckBox fx:id="cbRemember" checkedColor="#66cccc" focusTraversable="false" text="记住密码">
                 <cursor>
-                    <Cursor fx:constant="HAND" />
+                    <Cursor fx:constant="HAND"/>
                 </cursor>
             </JFXCheckBox>
             <HBox alignment="CENTER">
                 <StackPane>
-                    <RXTranslationButton fx:id="btnLogin" disable="true" onAction="#login" prefHeight="40.0" prefWidth="180.0" styleClass="btn-login" text="login" translationDir="RIGHT_TO_LEFT">
+                    <RXTranslationButton fx:id="btnLogin" disable="true" onAction="#login" prefHeight="40.0"
+                                         prefWidth="180.0" styleClass="btn-login" text="login"
+                                         translationDir="RIGHT_TO_LEFT">
                         <cursor>
-                            <Cursor fx:constant="HAND" />
+                            <Cursor fx:constant="HAND"/>
                         </cursor>
                         <graphic>
                             <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
-                                <Image url="@../../../../images/login.png" />
+                                <Image url="@../../../../images/login.png"/>
                             </ImageView>
                         </graphic>
                     </RXTranslationButton>
                     <HBox fx:id="coverBtnLogin" alignment="CENTER" styleClass="btn-login" visible="false">
-                        <ImageView fx:id="ivLoading" fitHeight="32.0" fitWidth="32.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@../../../../images/loading.png" />
+                        <ImageView fx:id="ivLoading" fitHeight="32.0" fitWidth="32.0" opacity="0.8" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../../../../images/loading.png"/>
                         </ImageView>
                     </HBox>
                 </StackPane>
             </HBox>
             <VBox alignment="CENTER" prefHeight="26.0" prefWidth="350.0" spacing="5.0">
-                <Text fx:id="txtPrompt" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="提示" visible="false" />
+                <Text fx:id="txtPrompt" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="提示" visible="false"/>
                 <VBox.margin>
-                    <Insets top="-10.0" />
+                    <Insets top="-10.0"/>
                 </VBox.margin>
             </VBox>
         </VBox>
     </HBox>
-   <styleClass>
-      <String fx:value="root" />
-      <String fx:value="login-root" />
-   </styleClass>
+    <styleClass>
+        <String fx:value="root"/>
+        <String fx:value="login-root"/>
+    </styleClass>
 </VBox>

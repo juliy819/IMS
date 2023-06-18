@@ -155,9 +155,10 @@ public class AddCompanyController {
                 isLengthExceed(post.get(), 16, txtPostError) ||
                 isLengthExceed(bankName.get(), 16, txtBankNameError) ||
                 isLengthExceed(bankAcct.get(), 20, txtBankAcctError) ||
-                isFormatIllegal(email.get(), "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", txtEmailError) ||
-                isFormatIllegal(bankAcct.get(), "^\\d{20}$", txtBankAcctError) ||
-                isFormatIllegal(taxId.get(), "^\\d{20}$", txtTaxIdError)) {
+                (!"".equals(email.get()) && isFormatIllegal(email.get(), "^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\\.[a-zA-Z0-9_-]+)+$", txtEmailError)) ||
+                (!"".equals(bankAcct.get()) && isFormatIllegal(bankAcct.get(), "^\\d{20}$", txtBankAcctError)) ||
+                (!"".equals(taxId.get()) && isFormatIllegal(taxId.get(), "^\\d{20}$", txtTaxIdError))) {
+            log.info(123);
             return false;
         }
 
