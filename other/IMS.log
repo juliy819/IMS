@@ -1,0 +1,8 @@
+2023-06-18 20:37:03 INFO  LoginController:307 - 验证码:5fjQ
+2023-06-18 20:38:34 INFO  GoodsListController:113 - 货品列表页面加载完成
+2023-06-18 20:38:34 INFO  GoodsListController:113 - 货品列表页面加载完成
+2023-06-18 20:39:40 INFO  InvQueryController:104 - 库存查询页面加载完成
+2023-06-18 20:39:41 INFO  RecordQueryController:115 - 记录查询页面加载完成
+2023-06-18 20:39:54 INFO  GoodsListController:113 - 货品列表页面加载完成
+2023-06-18 20:40:00 INFO  RecordQueryController:115 - 记录查询页面加载完成
+2023-06-18 20:40:00 INFO  InvAnalysisController:125 - 库存预警分析页面加载完成

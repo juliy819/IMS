@@ -1,0 +1,11 @@
+ims   -  inventory management system
+
+acct  -  account            账户
+add   -  address            地址
+aloc  -  allocation         调拨
+amt   -  amount             金额
+biz   -  business           业务
+pur   -  purchase           购买
+qty   -  quantity           数量
+spec  -  specification      规格
+whs   -  warehouse          仓库
